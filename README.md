@@ -11,13 +11,13 @@ réalisé dans le cadre de la matière **IHM (HM40)** à l'UTBM, en 2026.
 
 ## Équipe et périmètre
 
-Projet mené à trois : **Belva YONTA**, **Debby Kénza NICOUE-BEGLAH** et **Fawziyya SEBOU**.
+Projet mené en équipe de trois.
 
 - **Produits à trois** : cahier des charges fonctionnel, analyse de la tâche (HTA, SADT), structure des 7 écrans,
   charte graphique, maquettes, modèle PAC et statecharts.
 - **Mon rendu individuel** : étude de la cible, analyse de l'activité avant / après, wireframes,
   évaluation du concurrent Wayground (SUS, DEEP, AttrakDiff, critères de Bastien et Scapin).
-- **Prototype React** : codé par Debby Kénza NICOUE-BEGLAH ([dépôt HM40_JEU](https://github.com/debbykenza/HM40_JEU)).
+- **Prototype React** : codé par une coéquipière.
 
 ## Ce que la page démontre
 
