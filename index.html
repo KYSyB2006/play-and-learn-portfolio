@@ -316,11 +316,11 @@ h3{font-weight:700}
 
 /* Sections et cartes */
 section+section{border-top:var(--edge)}
-#comprendre,#ecrans{background:#fff}
+.band{background:#fff}
 .over{font-size:16px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--green-dark)}
 .sub{color:var(--muted)}
 .card{border:var(--edge);border-radius:20px;box-shadow:none;background:#fff}
-#comprendre .card,#ecrans .card{background:var(--bg)}
+.band .card{background:var(--bg)}
 .badge{background:var(--green-soft);color:var(--green-dark);border:0;border-radius:10px;font-weight:700}
 .step{border-top:var(--edge)}
 .step-label{font-size:16px;letter-spacing:0;text-transform:none;font-weight:700;color:var(--ink);font-family:var(--display)}
@@ -407,7 +407,7 @@ footer .btn-line{background:#fff;color:var(--ink)}
 .step:first-of-type::before{top:14px}
 .step:last-of-type::before{bottom:auto;height:30px}
 .badge{position:relative;z-index:1;width:14px;height:14px;margin-top:10px;border-radius:50%;background:var(--green);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--green);font-size:0;color:transparent}
-#comprendre .badge,#ecrans .badge{border-color:var(--bg)}
+.band .badge{border-color:var(--bg)}
 .step-label{margin-top:4px}
 /* 7. Resultat du Cas 2 en tete */
 .tally{margin:14px 0 8px;padding:18px 20px;border-radius:14px;background:#fff;border:var(--edge)}
@@ -587,7 +587,7 @@ footer .btn-line{background:#fff;color:var(--ink)}
   </div>
 </section>
 
-<section id="comprendre">
+<section id="comprendre" class="band">
   <div class="wrap">
     <p class="over">Cas 1</p>
     <h2>Comprendre avant de dessiner</h2>
@@ -794,7 +794,7 @@ footer .btn-line{background:#fff;color:var(--ink)}
   </div>
 </section>
 
-<section id="ecrans">
+<section id="ecrans" class="band">
   <div class="wrap">
     <h2>Du croquis à l’écran</h2>
     <p class="sub">Les wireframes du parcours, la courbe d’expérience visée et la structure d’un écran. Touchez une image pour l’agrandir.</p>
