@@ -196,6 +196,43 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
 .lightbox p{margin:10px 0 0;color:#fff;font-size:16px;text-align:center}
 .lightbox .close{position:absolute;top:-56px;right:0;width:44px;height:44px;border-radius:999px;border:0;background:#fff;color:var(--ink);font-size:22px;cursor:pointer}
 
+
+/* Explorateur */
+.explorer{margin:8px 0 18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);overflow:hidden}
+.ex-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--bg)}
+.ex-intro{margin:0;font-weight:600;color:var(--ink)}
+.ex-panel{padding:18px}
+.ex-crumbs[hidden]{display:none}
+.ex-crumbs ol{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:14px;color:var(--muted)}
+.ex-crumbs li{display:inline-flex;align-items:center}
+.ex-crumbs li+li::before{content:"›";margin:0 8px;color:var(--faint)}
+.ex-crumbs button{min-height:44px;padding:0;border:0;background:none;font:inherit;font-size:14px;color:var(--blue);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.ex-crumbs [aria-current]{color:var(--ink);font-weight:600}
+.ex-title{margin:0;font-family:var(--display);font-size:20px;outline:none}
+.ex-desc{margin:6px 0 14px;max-width:820px;color:var(--text)}
+.ex-views{margin:0 0 14px}
+.ex-views[hidden]{display:none}
+.ex-stage{display:flex;flex-direction:column;align-items:center;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.ex-frame{position:relative;display:inline-block;max-width:100%;line-height:0}
+.ex-frame img{display:block;max-width:100%;height:auto;max-height:520px;width:auto}
+.ex-stage.is-tall .ex-frame img{max-height:520px}
+.ex-spot{position:absolute;padding:0;border:2px solid rgba(29,78,216,.55);border-radius:10px;background:rgba(29,78,216,.06);cursor:zoom-in;transition:background .15s,border-color .15s,box-shadow .15s}
+.ex-spot:hover{background:rgba(29,78,216,.16);border-color:var(--blue);box-shadow:0 0 0 4px rgba(29,78,216,.15)}
+@media (prefers-reduced-motion:reduce){.ex-spot{transition:none}}
+.ex-tag{margin:10px 0 0;font-size:14px;color:var(--muted)}
+.ex-note{margin:12px 0 0;padding:12px 16px;border-radius:12px;background:#FFF7ED;border:1px solid #FED7AA;color:#7C2D12;font-size:15px}
+.ex-choices{margin-top:14px}
+.ex-choices:empty{display:none}
+.ex-choices-label{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--muted)}
+.ex-chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);font:inherit;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer}
+.ex-chip:hover{border-color:var(--ink)}
+.ex-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ex-actions .btn{min-height:44px;cursor:pointer;font:inherit;font-size:15px;font-weight:600}
+.ex-actions [hidden]{display:none}
+.sr-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.gal-note{margin:-6px 0 14px;color:var(--muted);font-size:15px}
+@media (max-width:720px){.ex-top,.ex-panel{padding:14px}.ex-tabs{width:100%;justify-content:space-between}.ex-tabs button{padding:0 10px;flex:1}.ex-frame img{max-height:420px}}
+
 /* Responsive */
 @media (max-width:960px){
   .hero .wrap{grid-template-columns:1fr}
@@ -431,20 +468,40 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
         <span class="badge" aria-hidden="true">A</span>
         <div>
           <p class="step-label">Action</p>
+          <p>La conception avance en quatre étapes, chacune appuyée sur un diagramme que vous pouvez explorer ci-dessous.</p>
           <ol class="flow">
             <li><b>Besoin</b>À qui sert le produit, dans quel but, et ses 9 situations de vie</li>
             <li><b>Exigences</b>22 fonctions, chacune mesurable, avec une flexibilité de F0 à F3</li>
             <li><b>Tâches</b>HTA en 5 activités, puis diagrammes SADT</li>
             <li><b>Écrans</b>Structure, lois de la Gestalt, charte 60-30-10, PAC et statecharts</li>
           </ol>
-          <figure class="fig">
-            <button type="button" data-zoom="images/hta.png" data-caption="Analyse hiérarchique de la tâche (HTA)" aria-label="Agrandir le diagramme HTA"><img src="images/hta.png" width="1600" height="577" loading="lazy" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données"></button>
-            <figcaption><b>Analyse hiérarchique de la tâche.</b> Cinq activités enchaînées (« Puis »). La branche « Sélectionner une activité » offre des choix exclusifs (« Ou »), et « Réaliser une partie » boucle jusqu’à la fin du quiz.</figcaption>
-          </figure>
-          <figure class="fig">
-            <button type="button" data-zoom="images/navigation-globale.png" data-caption="Navigation globale entre les 7 écrans" aria-label="Agrandir le diagramme de navigation globale"><img src="images/navigation-globale.png" width="1367" height="661" loading="lazy" decoding="async" alt="Statechart de navigation globale : connexion, sélection du mini-jeu, choix du sujet, progression, choix du mode, écran de jeu, écran de résultat, avec les retours et la déconnexion"></button>
-            <figcaption><b>Des tâches aux 7 écrans.</b> La navigation globale traduit l’HTA en parcours : un chemin principal en bleu, et une sortie possible depuis chaque écran après la connexion (en pointillés), la réponse directe au « contrôle explicite » noté 2 / 5 chez Wayground.</figcaption>
-          </figure>
+          <div class="explorer" id="explorer">
+            <div class="ex-top">
+              <p class="ex-intro">Explorer la conception : cliquez sur un élément pour zoomer d’un niveau.</p>
+              <div class="seg ex-tabs" role="tablist" aria-label="Diagramme à explorer">
+                <button type="button" role="tab" id="ex-t-hta" aria-selected="true" aria-controls="ex-panel" data-root="hta">Tâches</button>
+                <button type="button" role="tab" id="ex-t-sadt" aria-selected="false" aria-controls="ex-panel" data-root="sadt" tabindex="-1">Flux</button>
+                <button type="button" role="tab" id="ex-t-nav" aria-selected="false" aria-controls="ex-panel" data-root="nav" tabindex="-1">Écrans</button>
+                <button type="button" role="tab" id="ex-t-classes" aria-selected="false" aria-controls="ex-panel" data-root="classes" tabindex="-1">Données</button>
+              </div>
+            </div>
+            <div class="ex-panel" id="ex-panel" role="tabpanel" aria-labelledby="ex-t-hta">
+              <nav class="ex-crumbs" aria-label="Niveau affiché" hidden><ol id="ex-crumbs"><li><span aria-current="page">Analyse hiérarchique de la tâche</span></li></ol></nav>
+              <h4 class="ex-title" id="ex-title" tabindex="-1">Analyse hiérarchique de la tâche</h4>
+              <p class="ex-desc" id="ex-desc">La tâche « Jouer à PLAY &amp; LEARN et apprendre », découpée en 5 activités qui s’enchaînent (« Puis »).</p>
+              <div class="seg ex-views" id="ex-views" role="tablist" aria-label="Vue" hidden></div>
+              <div class="ex-stage" id="ex-stage">
+                <img id="ex-img" src="images/hta.png" width="1600" height="577" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités">
+              </div>
+              <p class="ex-note" id="ex-note" hidden></p>
+              <div class="ex-choices" id="ex-choices"></div>
+              <div class="ex-actions">
+                <button type="button" class="btn btn-line ex-back" id="ex-back" hidden>← Niveau précédent</button>
+                <button type="button" class="btn btn-line" id="ex-zoom">Agrandir l’image</button>
+              </div>
+              <p class="sr-status" id="ex-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -497,34 +554,15 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
     <p class="sub">Les livrables dans l’ordre de la démarche. Touchez une image pour l’agrandir.</p>
 
     <h3 class="gal-title">Modéliser</h3>
+    <p class="gal-note">Les diagrammes de tâches, de flux, d’écrans et de données sont explorables dans le <a href="#explorer">Cas 2</a>.</p>
     <div class="gal gal-diag">
-      <figure class="shot shot-wide">
-        <button type="button" data-zoom="images/diagramme-classes.png" data-caption="Diagramme de classes" aria-label="Agrandir le diagramme de classes"><img src="images/diagramme-classes.png" loading="lazy" decoding="async" alt="Diagramme de classes UML : compte, profil, sauvegarde, historique, badge, session, partie, niveau, matière, question, réponse juste ou fausse, explication, feedback, résumé de partie, score et mode de jeu, avec leurs associations et cardinalités"></button>
-        <figcaption><b>Diagramme de classes</b>Le modèle de données du jeu : un compte ouvre des sessions, chaque partie porte sur une matière et contient des questions ; les réponses, explications et scores alimentent le résumé de partie et l’historique.</figcaption>
-      </figure>
       <figure class="shot">
         <button type="button" data-zoom="images/courbe-play-learn.png" data-caption="Courbe d’expérience visée" aria-label="Agrandir la courbe d’expérience visée"><img src="images/courbe-play-learn.png" loading="lazy" decoding="async" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours"></button>
         <figcaption><b>Courbe d’expérience visée</b>La même activité que chez Wayground, une fois chaque étape problématique repensée.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-zoom="images/sadt-partie.png" data-caption="SADT : réaliser une partie" aria-label="Agrandir le diagramme SADT d’une partie"><img src="images/sadt-partie.png" loading="lazy" decoding="async" alt="Diagramme SADT de l’activité Réaliser une partie : lire la question, y répondre, recevoir le feedback, revoir le résumé, avec les flux question, réponses, historique, explication et profil"></button>
-        <figcaption><b>SADT : réaliser une partie</b>Les quatre étapes d’une partie et les données qui circulent de l’une à l’autre, jusqu’au résumé et au profil mis à jour.</figcaption>
-      </figure>
-      <figure class="shot">
         <button type="button" data-zoom="images/structure-connexion.png" data-caption="Structure de l’écran de connexion" aria-label="Agrandir la structure de l’écran de connexion"><img src="images/structure-connexion.png" loading="lazy" decoding="async" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques"></button>
         <figcaption><b>Structure d’un écran</b>L’écran de connexion décomposé ; en vert, ce que l’œil doit voir en premier.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-zoom="images/statechart-connexion.png" data-caption="Statechart de la connexion et de l’inscription" aria-label="Agrandir le statechart de la connexion"><img src="images/statechart-connexion.png" loading="lazy" decoding="async" alt="Statechart de la connexion et de l’inscription : saisie de l’e-mail et du mot de passe, choix Google, Microsoft ou e-mail, formulaire, validations et messages d’erreur"></button>
-        <figcaption><b>Statechart de la connexion</b>Chaque état, chaque transition clavier et chaque cas d’erreur, décidés avant le code.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-zoom="images/statechart-jeu.png" data-caption="Statechart de l’écran de jeu" aria-label="Agrandir le statechart de l’écran de jeu"><img src="images/statechart-jeu.png" loading="lazy" decoding="async" alt="Statechart de l’écran de jeu : question et réponses, validation, aiguillage correcte ou incorrecte, bloc explicatif, puis question suivante ou écran de résultat"></button>
-        <figcaption><b>Statechart de l’écran de jeu</b>La boucle question, réponse, explication : le cœur du mode Apprentissage, décrit état par état.</figcaption>
-      </figure>
-      <figure class="shot">
-        <button type="button" data-zoom="images/pac-jeu.png" data-caption="Modèle PAC de l’écran de jeu" aria-label="Agrandir le modèle PAC de l’écran de jeu"><img src="images/pac-jeu.png" loading="lazy" decoding="async" alt="Modèle PAC de l’écran de jeu : bouton retour, bloc d’information sur la progression, bloc question et réponses, bloc explicatif, bouton question suivante"></button>
-        <figcaption><b>Modèle PAC de l’écran de jeu</b>Chaque composant de l’écran, avec son abstraction (A, son rôle) et sa présentation (P, son repère numéroté sur l’écran).</figcaption>
       </figure>
     </div>
 
@@ -604,7 +642,7 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
   'use strict';
 
   /* Onglets du graphique (flèches du clavier) */
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.seg [role="tab"]'));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.chart .seg [role="tab"]'));
   function pick(t, focus) {
     tabs.forEach(function (x) {
       var on = x === t;
@@ -629,20 +667,255 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
   var boxImg = box.querySelector('img');
   var boxCap = box.querySelector('p');
   var opener = null;
+  function openLightbox(src, alt, caption, from) {
+    boxImg.src = src; boxImg.alt = alt || ''; boxCap.textContent = caption || ''; opener = from || null;
+    if (typeof box.showModal === 'function') box.showModal(); else window.open(src, '_blank');
+  }
   document.querySelectorAll('[data-zoom]').forEach(function (b) {
     b.addEventListener('click', function () {
       var img = b.querySelector('img');
-      boxImg.src = b.getAttribute('data-zoom');
-      boxImg.alt = img ? img.alt : '';
-      boxCap.textContent = b.getAttribute('data-caption') || '';
-      opener = b;
-      if (typeof box.showModal === 'function') box.showModal();
-      else window.open(b.getAttribute('data-zoom'), '_blank');
+      openLightbox(b.getAttribute('data-zoom'), img ? img.alt : '', b.getAttribute('data-caption'), b);
     });
   });
   box.querySelector('.close').addEventListener('click', function () { box.close(); });
   box.addEventListener('click', function (e) { if (e.target === box) box.close(); });
   box.addEventListener('close', function () { if (opener) opener.focus(); });
+
+  /* ---------- Explorateur de la conception ---------- */
+  var EX = {
+    hta: {
+      title: 'Analyse hiérarchique de la tâche',
+      desc: 'La tâche « Jouer à PLAY & LEARN et apprendre », découpée en 5 activités qui s’enchaînent (« Puis »).',
+      views: [{ img: 'images/hta.png', w: 1600, h: 577, alt: 'Diagramme HTA : tâche racine Jouer à PLAY & LEARN et apprendre, décomposée en cinq activités' }],
+      spots: [
+        { to: 'hta1', label: '1. Configurer le profil', x: 6.0, y: 25.8, w: 10.0, h: 10.0 },
+        { to: 'hta2', label: '2. Sélectionner une activité', x: 18.6, y: 41.0, w: 10.0, h: 8.9 },
+        { to: 'hta3', label: '3. Réaliser une partie', x: 32.7, y: 25.8, w: 10.0, h: 10.0 },
+        { to: 'hta4', label: '4. Consulter la progression', x: 63.5, y: 40.3, w: 10.0, h: 10.3 },
+        { to: 'hta5', label: '5. Synchroniser les données', x: 74.9, y: 25.8, w: 10.0, h: 10.0 }
+      ]
+    },
+    hta1: { title: '1. Configurer le profil', desc: 'L’enfant s’identifie et personnalise son profil, puis un parent donne son accord, obligatoire avant 15 ans selon la CNIL. Les deux étapes s’enchaînent dans cet ordre.',
+      views: [{ img: 'images/x/hta-1.png', w: 282, h: 232, alt: 'Branche 1 de l’HTA : s’identifier et personnaliser le profil, puis obtenir l’accord parental' }] },
+    hta2: { title: '2. Sélectionner une activité', desc: 'Deux choix successifs : le type de jeu, puis le nombre de joueurs. Chacun propose des options exclusives (« Ou ») : Apprentissage ou Challenge, solo ou multijoueur.',
+      note: 'Sur le diagramme, les deux sous-tâches de 2.2 portent par erreur le libellé « Choisir le mode Challenge » : il s’agit de « Solo » et « Multijoueur ».',
+      views: [{ img: 'images/x/hta-2.png', w: 576, h: 320, alt: 'Branche 2 de l’HTA : choisir le type de jeu (Apprentissage ou Challenge), puis le nombre de joueurs' }] },
+    hta3: { title: '3. Réaliser une partie', desc: 'Le cœur du jeu : lire la question, répondre, recevoir le feedback, puis revoir le résumé. Les trois premières étapes bouclent jusqu’à la fin de la partie.',
+      views: [{ img: 'images/x/hta-3.png', w: 536, h: 270, alt: 'Branche 3 de l’HTA : lire la consigne, répondre, recevoir le feedback, revoir le résumé, avec une boucle jusqu’à la fin de partie' }] },
+    hta4: { title: '4. Consulter la progression', desc: 'Un tableau de bord des scores et des badges gagnés, consultable même sans connexion.',
+      views: [{ img: 'images/x/hta-4.png', w: 172, h: 222, alt: 'Branche 4 de l’HTA : voir le tableau de bord et les badges' }] },
+    hta5: { title: '5. Synchroniser les données', desc: 'Authentification sur le compte cloud, lancement de la synchronisation, puis contrôle de l’intégrité : la progression suit l’enfant d’un appareil à l’autre.',
+      views: [{ img: 'images/x/hta-5.png', w: 410, h: 230, alt: 'Branche 5 de l’HTA : authentification, synchronisation, confirmation de l’intégrité' }] },
+
+    sadt: {
+      title: 'SADT : vue d’ensemble (A-0)',
+      desc: 'Le système vu comme une seule activité. Les informations de l’enfant entrent, l’envie d’apprendre et le consentement parental contrôlent, le profil, le compte et l’historique sortent à jour. En bas, ceux qui réalisent l’activité : l’enfant (E), le parent responsable (R), le terminal (M) et la base de données (BD).',
+      views: [{ img: 'images/x/sadt-a0.png', w: 1075, h: 529, alt: 'Actigramme SADT A-0 : Jouer à PLAY & LEARN et apprendre, avec ses entrées, contrôles, sorties et mécanismes' }],
+      spots: [{ to: 'sadt1', label: 'Décomposer l’activité (niveau 1)', x: 34.0, y: 36.8, w: 29.6, h: 29.2 }]
+    },
+    sadt1: {
+      title: 'SADT, niveau 1 : cinq activités',
+      desc: 'Le compte, le profil et l’historique circulent d’une activité à l’autre. Trois activités sont détaillées au niveau 2.',
+      views: [{ img: 'images/x/sadt-n1.png', w: 1600, h: 547, alt: 'SADT niveau 1 : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données' }],
+      spots: [
+        { to: 'sadt-profil', label: 'Configurer le profil', x: 11.1, y: 46.2, w: 7.9, h: 17.3 },
+        { to: 'sadt-selection', label: 'Sélectionner une activité', x: 28.8, y: 45.1, w: 7.9, h: 17.3 },
+        { to: 'sadt-partie', label: 'Réaliser une partie', x: 46.6, y: 48.0, w: 7.9, h: 17.3 }
+      ]
+    },
+    'sadt-profil': { title: 'Niveau 2 : configurer le profil', desc: 'Les informations de l’enfant servent à créer et personnaliser le profil, sous le contrôle de son envie d’apprendre ; le consentement parental vient ensuite valider le compte. Le parent (R) n’intervient qu’à cette étape.',
+      views: [{ img: 'images/x/sadt-profil.png', w: 814, h: 444, alt: 'SADT niveau 2 : s’identifier et personnaliser le profil, puis obtenir l’accord parental' }] },
+    'sadt-selection': { title: 'Niveau 2 : sélectionner une activité', desc: 'À partir du compte, du profil et de l’historique, l’enfant choisit le type de jeu puis le nombre de joueurs ; en sortent le mode de jeu, le mini-jeu et la matière, qui paramètrent la partie.',
+      views: [{ img: 'images/x/sadt-selection.png', w: 983, h: 418, alt: 'SADT niveau 2 : choisir le type de jeu, puis le nombre de joueurs' }] },
+    'sadt-partie': { title: 'Niveau 2 : réaliser une partie', desc: 'Quatre étapes et les données qui circulent : la question et ses réponses, la réponse choisie, l’explication, jusqu’au résumé de partie, à l’historique et au profil mis à jour. Le retour vers « Lire la question » forme la boucle de la partie.',
+      views: [{ img: 'images/sadt-partie.png', w: 1600, h: 339, alt: 'SADT niveau 2 : lire la question, y répondre, recevoir le feedback, revoir le résumé' }] },
+
+    nav: {
+      title: 'Navigation globale',
+      desc: 'Les 7 écrans et leurs transitions : le parcours principal en bleu, les retours en pointillés. Choisissez un écran pour voir sa maquette, sa structure et son comportement.',
+      views: [{ img: 'images/navigation-globale.png', w: 1367, h: 661, alt: 'Statechart de navigation globale entre les 7 écrans' }],
+      spots: [
+        { to: 's1', label: '01 · Connexion / inscription', x: 2.9, y: 30.6, w: 16.9, h: 13.9 },
+        { to: 's2', label: '02 · Sélection du mini-jeu', x: 27.0, y: 30.6, w: 16.9, h: 13.9 },
+        { to: 's3', label: '03 · Choix du sujet', x: 51.1, y: 30.6, w: 16.9, h: 13.9 },
+        { to: 's4', label: '04 · Progression', x: 75.3, y: 30.6, w: 16.9, h: 13.9 },
+        { to: 's5', label: '05 · Choix du mode', x: 75.3, y: 79.3, w: 16.9, h: 13.9 },
+        { to: 's6', label: '06 · Écran de jeu', x: 41.6, y: 79.3, w: 16.8, h: 13.9 },
+        { to: 's7', label: '07 · Résultat', x: 7.9, y: 79.1, w: 17.0, h: 14.2 }
+      ]
+    },
+    s1: { title: '01 · Connexion / inscription', desc: 'Inscription en un geste (Google, Microsoft ou e-mail) ou connexion par un formulaire court. En cas d’erreur, un message s’affiche et l’enfant revient sur le champ à corriger.',
+      views: [
+        { label: 'Écran', tag: 'Version finale', img: 'images/maquette-connexion.png', w: 660, h: 816, alt: 'Version finale, écran de connexion' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-connexion.png', w: 1468, h: 713, alt: 'Modèle PAC de l’écran de connexion' },
+        { label: 'Comportement', img: 'images/x/sc-connexion.png', w: 1377, h: 750, alt: 'Statechart de la connexion et de l’inscription' }] },
+    s2: { title: '02 · Sélection du mini-jeu', desc: 'Une grille de mini-jeux et les statistiques de l’enfant (coupes, séries, distinctions), avec la déconnexion toujours accessible.',
+      views: [
+        { label: 'Écran', tag: 'Version finale', img: 'images/maquette-minijeux.png', w: 1138, h: 508, alt: 'Version finale, sélection des mini-jeux' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-minijeux.png', w: 1218, h: 673, alt: 'Modèle PAC de la sélection des mini-jeux' },
+        { label: 'Comportement', img: 'images/x/sc-minijeux.png', w: 1378, h: 692, alt: 'Statechart de la sélection des mini-jeux' }] },
+    s3: { title: '03 · Choix du sujet', desc: 'Une liste de sujets parcourable au clavier ; chaque carte associe une icône, un nom et une courte description.',
+      views: [
+        { label: 'Écran', tag: 'Première version du prototype', img: 'images/x/ecran-sujet.png', w: 585, h: 1266, alt: 'Prototype, choix du sujet' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-sujet.png', w: 898, h: 702, alt: 'Modèle PAC du choix du sujet' },
+        { label: 'Comportement', img: 'images/x/sc-sujet.png', w: 1382, h: 683, alt: 'Statechart du choix du sujet' }] },
+    s4: { title: '04 · Progression', desc: 'Les statistiques et la chronologie du sujet : chapitre, unité et niveau. « Continuer » mène au choix du mode.',
+      views: [
+        { label: 'Écran', tag: 'Première version du prototype', img: 'images/prototype-progression.png', w: 585, h: 1266, alt: 'Prototype, progression' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-progression.png', w: 1066, h: 710, alt: 'Modèle PAC de la progression' },
+        { label: 'Comportement', img: 'images/x/sc-progression.png', w: 1378, h: 693, alt: 'Statechart de la progression' }] },
+    s5: { title: '05 · Choix du mode', desc: 'Deux choix indépendants, modélisés en états orthogonaux : le type de jeu et le nombre de joueurs. Le quiz ne démarre qu’une fois les deux faits.',
+      views: [
+        { label: 'Écran', tag: 'Première version du prototype', img: 'images/prototype-mode.png', w: 585, h: 1266, alt: 'Prototype, choix du mode' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-mode.png', w: 1582, h: 752, alt: 'Modèle PAC du choix du mode' },
+        { label: 'Comportement', img: 'images/x/sc-mode.png', w: 1383, h: 690, alt: 'Statechart du choix du mode, en états orthogonaux' }] },
+    s6: { title: '06 · Écran de jeu', desc: 'La boucle question, réponse, explication, jusqu’à la fin du quiz, avec une barre de progression toujours visible.',
+      views: [
+        { label: 'Écran', tag: 'Première version du prototype', img: 'images/prototype-quiz.png', w: 585, h: 1266, alt: 'Prototype, question de quiz corrigée' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-jeu.png', w: 1600, h: 630, alt: 'Modèle PAC de l’écran de jeu' },
+        { label: 'Comportement', img: 'images/x/sc-jeu.png', w: 1377, h: 687, alt: 'Statechart de l’écran de jeu' }] },
+    s7: { title: '07 · Résultat', desc: 'Le score et le pourcentage de réussite, avec « Rejouer » (mêmes réglages) ou le retour à l’accueil.',
+      views: [
+        { label: 'Écran', tag: 'Version finale', img: 'images/maquette-resultats.png', w: 761, h: 834, alt: 'Version finale, écran de résultats' },
+        { label: 'Structure (PAC)', img: 'images/x/pac-resultat.png', w: 1600, h: 636, alt: 'Modèle PAC de l’écran de résultat' },
+        { label: 'Comportement', img: 'images/x/sc-resultat.png', w: 1382, h: 693, alt: 'Statechart de l’écran de résultat' }] },
+
+    classes: {
+      title: 'Diagramme de classes',
+      desc: 'Le modèle de données du jeu, en trois groupes de classes.',
+      views: [{ img: 'images/diagramme-classes.png', w: 1303, h: 643, alt: 'Diagramme de classes UML complet de PLAY & LEARN' }],
+      spots: [
+        { to: 'cl1', label: 'Compte et progression', x: 1.5, y: 3.1, w: 30.7, h: 59.1 },
+        { to: 'cl2', label: 'Partie', x: 33.0, y: 6.2, w: 25.3, h: 87.1 },
+        { to: 'cl3', label: 'Questions et réponses', x: 60.6, y: 24.9, w: 38.4, h: 66.9 }
+      ]
+    },
+    cl1: { title: 'Compte et progression', desc: 'Un compte possède un profil, ouvre des sessions, obtient des badges et met à jour une sauvegarde dont l’historique est composé : c’est ce qui permet de retrouver sa progression sur un autre appareil.',
+      views: [{ img: 'images/x/classes-compte.png', w: 450, h: 430, alt: 'Classes Historique, Sauvegarde, Badge, Compte et Session' }] },
+    cl2: { title: 'Partie', desc: 'Une partie se joue à un niveau, porte sur une matière, est caractérisée par un mode de jeu et génère un résumé qui contient les scores.',
+      views: [{ img: 'images/x/classes-partie.png', w: 410, h: 623, alt: 'Classes Profil, Niveau, Partie, Matière, Résumé de partie, Mode de jeu et Score' }] },
+    cl3: { title: 'Questions et réponses', desc: 'Une question possède des réponses, justes ou fausses, chacune avec son explication ; le feedback réunit question, réponse et explication. C’est le modèle du mode Apprentissage.',
+      views: [{ img: 'images/x/classes-question.png', w: 533, h: 450, alt: 'Classes Question, Feedback, Réponse, Explication, Réponse juste et Réponse fausse' }] }
+  };
+
+  var exRoot = document.getElementById('explorer');
+  if (exRoot) {
+    var exTabs = Array.prototype.slice.call(exRoot.querySelectorAll('.ex-tabs [role="tab"]'));
+    var exPanel = document.getElementById('ex-panel');
+    var exCrumbs = document.getElementById('ex-crumbs');
+    var exTitle = document.getElementById('ex-title');
+    var exDesc = document.getElementById('ex-desc');
+    var exNote = document.getElementById('ex-note');
+    var exViews = document.getElementById('ex-views');
+    var exStage = document.getElementById('ex-stage');
+    var exChoices = document.getElementById('ex-choices');
+    var exBack = document.getElementById('ex-back');
+    var exZoom = document.getElementById('ex-zoom');
+    var exStatus = document.getElementById('ex-status');
+    var stack = ['hta'];
+    var viewIndex = 0;
+
+    var el = function (tag, attrs, text) {
+      var e = document.createElement(tag);
+      if (attrs) Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+      if (text != null) e.textContent = text;
+      return e;
+    };
+
+    var render = function (focusTitle) {
+      var id = stack[stack.length - 1];
+      var node = EX[id];
+      var view = node.views[Math.min(viewIndex, node.views.length - 1)];
+
+      exCrumbs.textContent = '';
+      exCrumbs.parentNode.hidden = stack.length < 2;
+      stack.forEach(function (sid, i) {
+        var li = el('li');
+        if (i === stack.length - 1) li.appendChild(el('span', { 'aria-current': 'page' }, EX[sid].title));
+        else {
+          var b = el('button', { type: 'button' }, EX[sid].title);
+          b.addEventListener('click', function () { stack = stack.slice(0, i + 1); viewIndex = 0; render(true); });
+          li.appendChild(b);
+        }
+        exCrumbs.appendChild(li);
+      });
+
+      exTitle.textContent = node.title;
+      exDesc.textContent = node.desc;
+      exNote.hidden = !node.note;
+      exNote.textContent = node.note || '';
+
+      exViews.textContent = '';
+      exViews.hidden = node.views.length < 2;
+      if (node.views.length > 1) {
+        node.views.forEach(function (v, i) {
+          var b = el('button', { type: 'button', role: 'tab', 'aria-selected': i === viewIndex ? 'true' : 'false', tabindex: i === viewIndex ? '0' : '-1' }, v.label);
+          b.addEventListener('click', function () { viewIndex = i; render(false); exViews.querySelectorAll('button')[i].focus(); });
+          b.addEventListener('keydown', function (e) {
+            if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+            e.preventDefault();
+            viewIndex = (i + (e.key === 'ArrowRight' ? 1 : node.views.length - 1)) % node.views.length;
+            render(false); exViews.querySelectorAll('button')[viewIndex].focus();
+          });
+          exViews.appendChild(b);
+        });
+      }
+
+      exStage.textContent = '';
+      exStage.className = 'ex-stage' + (view.h > view.w ? ' is-tall' : '');
+      var frame = el('div', { 'class': 'ex-frame' });
+      var img = el('img', { src: view.img, width: view.w, height: view.h, alt: view.alt, decoding: 'async' });
+      frame.appendChild(img);
+      (node.spots || []).forEach(function (s) {
+        var hb = el('button', { type: 'button', 'class': 'ex-spot', tabindex: '-1', 'aria-hidden': 'true', title: s.label,
+          style: 'left:' + s.x + '%;top:' + s.y + '%;width:' + s.w + '%;height:' + s.h + '%' });
+        hb.addEventListener('click', function () { go(s.to); });
+        frame.appendChild(hb);
+      });
+      exStage.appendChild(frame);
+      if (view.tag) exStage.appendChild(el('p', { 'class': 'ex-tag' }, view.tag));
+
+      exChoices.textContent = '';
+      if (node.spots && node.spots.length) {
+        exChoices.appendChild(el('p', { 'class': 'ex-choices-label' }, node.spots.length > 1 ? 'Zoomer sur :' : 'Zoomer :'));
+        var wrap = el('div', { 'class': 'chips' });
+        node.spots.forEach(function (s) {
+          var b = el('button', { type: 'button', 'class': 'ex-chip' }, s.label);
+          b.addEventListener('click', function () { go(s.to); });
+          wrap.appendChild(b);
+        });
+        exChoices.appendChild(wrap);
+      }
+
+      exBack.hidden = stack.length < 2;
+      exZoom.onclick = function () { openLightbox(view.img, view.alt, node.title + (node.views.length > 1 ? ' · ' + view.label : ''), exZoom); };
+      exStatus.textContent = node.title;
+      if (focusTitle) exTitle.focus({ preventScroll: true });
+    };
+
+    var go = function (to) { stack.push(to); viewIndex = 0; render(true); };
+    exBack.addEventListener('click', function () { stack.pop(); viewIndex = 0; render(true); });
+
+    var pickRoot = function (t, focus) {
+      exTabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute('aria-selected', on ? 'true' : 'false');
+        x.tabIndex = on ? 0 : -1;
+      });
+      exPanel.setAttribute('aria-labelledby', t.id);
+      stack = [t.getAttribute('data-root')]; viewIndex = 0; render(false);
+      if (focus) t.focus();
+    };
+    exTabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { pickRoot(t, false); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        pickRoot(exTabs[(i + (e.key === 'ArrowRight' ? 1 : exTabs.length - 1)) % exTabs.length], true);
+      });
+    });
+    render(false);
+  }
 
   /* Sommaire : section en cours, indice de défilement, progression de lecture */
   var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
