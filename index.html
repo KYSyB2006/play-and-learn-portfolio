@@ -1,23 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<script>
-(function(){
-  try{
-    var saved = localStorage.getItem('mc-theme');
-    if(!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){ saved = 'dark'; }
-    if(saved === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); }
-  }catch(e){}
-})();
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLAY &amp; LEARN — étude de cas UX / IHM | Belva YONTA</title>
 <meta name="description" content="Étude de cas UX : conception de PLAY &amp; LEARN, jeu éducatif pour enfants de 10 à 12 ans. Étude de la cible, évaluation SUS et DEEP, HTA, SADT, maquettes.">
 <meta name="author" content="Belva YONTA">
-<meta name="theme-color" content="#1552e0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#07090f" media="(prefers-color-scheme: dark)">
-
+<meta name="theme-color" content="#0A0A0A">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PLAY &amp; LEARN — concevoir un jeu éducatif pour les 10-12 ans">
 <meta property="og:description" content="De l’étude de la cible aux maquettes : comment une évaluation chiffrée du concurrent a guidé la conception d’un jeu éducatif.">
@@ -25,471 +14,270 @@
 <meta property="og:url" content="https://kysyb2006.github.io/play-and-learn-portfolio/">
 <meta property="og:image" content="https://kysyb2006.github.io/play-and-learn-portfolio/images/apercu.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PLAY &amp; LEARN — concevoir un jeu éducatif pour les 10-12 ans">
-<meta name="twitter:description" content="De l’étude de la cible aux maquettes : comment une évaluation chiffrée du concurrent a guidé la conception d’un jeu éducatif.">
 <meta name="twitter:image" content="https://kysyb2006.github.io/play-and-learn-portfolio/images/apercu.png">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231552e0'/%3E%3Cpath d='M8 21V11h3l3 5 3-5h3v10h-3v-5l-3 5-3-5v5z' fill='white'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://kysyb2006.github.io/play-and-learn-portfolio/">
+<link rel="icon" href="https://kysyb2006.github.io/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#fcfdff;
-    --bg-deep:#f2f5fa;
-    --surface:#ffffff;
-    --border:#e6ebf3;
-    --border-strong:#d4dcea;
-    --text:#080d18;
-    --text-dim:#4d5768;
-    --text-faint:#6b7688;
-    --blue:#1552e0;
-    --blue-dark:#0d3cb0;
-    --blue-soft:#eef3ff;
-    --blue-line:#cddeff;
-    --glow-a:rgba(21,82,224,.15);
-    --glow-b:rgba(56,110,235,.11);
-    --glow-c:rgba(0,150,200,.09);
-    --amber:#b45309;
-    --amber-soft:#fffaf2;
-    --amber-line:#f6e2c6;
-    --amber-text:#7c3a0c;
-    --amber-text-strong:#4d2306;
-    --code-bg:#0b1120;
-    --code-head:#070c17;
-    --code-line:#1c2740;
-    --code-text:#dde7fa;
-    --dot:#ccd6e8;
-    --shadow-sm:0 1px 2px rgba(8,13,24,.04),0 1px 3px rgba(8,13,24,.04);
-    --shadow-md:0 4px 14px -6px rgba(8,13,24,.10),0 2px 6px -3px rgba(8,13,24,.06);
-    --shadow-lg:0 24px 56px -28px rgba(8,13,24,.30),0 8px 20px -12px rgba(21,82,224,.16);
-    --ease:cubic-bezier(.16,1,.3,1);
-    --mono:'JetBrains Mono','SFMono-Regular',Consolas,monospace;
-    --sans:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
-  }
-  [data-theme="dark"]{
-    --bg:#07090f;
-    --bg-deep:#04060a;
-    --surface:#0e1119;
-    --border:#1c212d;
-    --border-strong:#2a3140;
-    --text:#f4f7fc;
-    --text-dim:#98a2b6;
-    --text-faint:#7d8799;
-    --blue:#5b9dff;
-    --blue-dark:#8ec0ff;
-    --blue-soft:#0e1b31;
-    --blue-line:#25406b;
-    --glow-a:rgba(59,130,246,.20);
-    --glow-b:rgba(56,130,235,.14);
-    --glow-c:rgba(20,150,190,.10);
-    --amber:#f0b45f;
-    --amber-soft:#17120a;
-    --amber-line:#3b2f1a;
-    --amber-text:#f0dcbb;
-    --amber-text-strong:#fff0d6;
-    --code-bg:#0a0e18;
-    --code-head:#05080f;
-    --code-line:#1a2133;
-    --dot:#1c2331;
-    --shadow-sm:0 1px 2px rgba(0,0,0,.5);
-    --shadow-md:0 4px 16px -6px rgba(0,0,0,.6);
-    --shadow-lg:0 24px 56px -28px rgba(0,0,0,.85),0 8px 20px -12px rgba(91,157,255,.14);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
-    line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-    transition:background-color .35s var(--ease),color .35s var(--ease);
-  }
-  a{color:var(--blue);text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 32px;}
-  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px;}
-  ::selection{background:var(--blue);color:#fff;}
-  code{font-family:var(--mono);font-size:.88em;background:var(--surface);border:1px solid var(--border-strong);padding:1px 5px;border-radius:5px;color:inherit;white-space:nowrap;}
+:root{
+  --bg:#FAFAFA; --surface:#FFFFFF; --ink:#0A0A0A; --text:#262626; --muted:#525252; --faint:#737373;
+  --line:#E5E5E5; --line-strong:#D4D4D4; --soft:#F0F0F0; --blue:#1D4ED8; --blue-dark:#1E3A8A; --blue-soft:#EEF3FF;
+  --display:'Space Grotesk',system-ui,sans-serif; --sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+a{color:var(--blue)}a:hover{color:var(--blue-dark)}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-9999px;top:8px;z-index:20;background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;text-decoration:none}
+.skip:focus{left:16px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 
-  .progress-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--blue),#6aa4ff);z-index:100;box-shadow:0 0 12px rgba(21,82,224,.5);}
+/* Barre du haut */
+.top{position:sticky;top:0;z-index:10;background:rgba(250,250,250,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.back{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:var(--ink);text-decoration:none;font-family:var(--display);font-weight:600;font-size:16px;white-space:nowrap}
+.back:hover{color:var(--blue)}
+.back .arrow{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:var(--ink);color:#fff;font-size:16px}
+.toc-wrap{position:relative;min-width:0}
+.toc{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;color:var(--muted);text-decoration:none;font-weight:600;font-size:16px;white-space:nowrap;border-radius:999px}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--ink);box-shadow:inset 0 -3px 0 var(--blue);border-radius:0}
+.toc-wrap::after{content:"";position:absolute;right:0;top:0;bottom:0;width:36px;background:linear-gradient(to right,rgba(250,250,250,0),var(--bg));pointer-events:none;opacity:0;transition:opacity .2s}
+.toc-wrap.has-more::after{opacity:1}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--blue)}
 
-  nav{position:sticky;top:0;z-index:50;background:rgba(252,253,255,.78);background:color-mix(in srgb, var(--bg) 78%, transparent);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);border-bottom:1px solid transparent;transition:border-color .35s var(--ease),background-color .35s var(--ease);}
-  [data-theme="dark"] nav{background:rgba(7,9,15,.78);background:color-mix(in srgb, var(--bg) 78%, transparent);}
-  nav.scrolled{border-bottom-color:var(--border);}
-  nav .wrap{position:relative;display:flex;align-items:center;justify-content:space-between;padding:15px 32px;}
-  .brand{font-weight:800;font-size:14.5px;color:var(--text);letter-spacing:-.3px;}
-  .brand span{color:var(--blue);}
-  .nav-right{display:flex;align-items:center;gap:8px;}
-  nav ul{list-style:none;display:flex;gap:2px;margin:0 12px 0 0;padding:0;flex-wrap:wrap;}
-  nav ul a{display:block;color:var(--text-dim);font-size:13px;font-weight:600;position:relative;padding:7px 12px;border-radius:8px;transition:color .2s var(--ease),background-color .2s var(--ease);}
-  nav ul a:hover{color:var(--text);background:var(--bg-deep);text-decoration:none;}
-  nav ul a.active{color:var(--blue);background:var(--blue-soft);}
+/* Accroche */
+.hero{padding:64px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:56px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;font-size:14px;font-weight:600;color:var(--blue)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+h1{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(36px,5.2vw,58px);line-height:1.05;letter-spacing:-.025em}
+.lede{margin:20px 0 0;max-width:620px;font-size:18px;color:var(--muted)}
+.chips,.meta{display:flex;flex-wrap:wrap;gap:8px}
+.meta{margin-top:22px}
+.pill{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border-radius:999px;background:var(--soft);color:var(--text);font-size:14px;font-weight:600}
+.chip{display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:14px;color:var(--text)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px}
+.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{background:var(--blue);color:#fff}
+.btn-line{border:1px solid var(--line-strong);color:var(--ink);background:var(--surface)}.btn-line:hover{border-color:var(--ink);color:var(--ink)}
+.hero-shot{margin:0}
+.hero-shot img{display:block;width:100%;height:auto;border-radius:28px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(10,10,10,.06),0 24px 48px -20px rgba(10,10,10,.28);background:#fff}
+.hero-shot figcaption{margin-top:12px;text-align:center;font-size:14px;color:var(--muted)}
 
-  .theme-toggle,.nav-toggle{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-dim);flex-shrink:0;transition:all .2s var(--ease);}
-  .theme-toggle:hover,.nav-toggle:hover{border-color:var(--border-strong);color:var(--text);background:var(--bg-deep);}
-  .theme-toggle:active,.nav-toggle:active{transform:scale(.94);}
-  .theme-toggle svg,.nav-toggle svg{width:17px;height:17px;}
-  .icon-moon,.icon-close{display:none;}
-  [data-theme="dark"] .icon-sun{display:none;}
-  [data-theme="dark"] .icon-moon{display:block;}
-  .nav-toggle.open .icon-menu{display:none;}
-  .nav-toggle.open .icon-close{display:block;}
-  .nav-toggle{display:none;}
+/* Sections */
+section{padding:56px 0}
+section+section{border-top:1px solid var(--line)}
+.over{margin:0;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h2{margin:6px 0 0;font-family:var(--display);font-weight:600;font-size:30px;line-height:1.2;letter-spacing:-.01em}
+.sub{margin:10px 0 0;max-width:720px;color:var(--muted);font-size:18px}
+h3{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.3;margin:0}
+.card{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:32px}
 
-  header.hero{position:relative;padding:104px 0 88px;overflow:hidden;}
-  .hero-aurora{
-    position:absolute;top:-30%;left:-10%;right:-10%;height:130%;pointer-events:none;z-index:0;
-    background:
-      radial-gradient(38% 46% at 18% 22%, var(--glow-a) 0%, transparent 68%),
-      radial-gradient(32% 40% at 72% 12%, var(--glow-b) 0%, transparent 70%),
-      radial-gradient(34% 44% at 52% 48%, var(--glow-c) 0%, transparent 72%);
-  }
-  .hero-grid{
-    position:absolute;inset:0;pointer-events:none;z-index:0;
-    background-image:radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0);
-    background-size:26px 26px;
-    -webkit-mask-image:radial-gradient(ellipse 60% 62% at 20% 18%, #000 8%, transparent 70%);
-    mask-image:radial-gradient(ellipse 60% 62% at 20% 18%, #000 8%, transparent 70%);
-    opacity:.6;
-  }
-  .grain{
-    position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.026;
-    transform:translateZ(0);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  header.hero .wrap{position:relative;z-index:1;}
-  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;color:var(--blue-dark);background:var(--blue-soft);border:1px solid var(--blue-line);padding:6px 14px;border-radius:20px;margin-bottom:26px;letter-spacing:.7px;}
-  .eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px var(--blue-line);flex-shrink:0;}
-  h1.title{font-size:clamp(31px,4.4vw,46px);line-height:1.14;margin:0 0 22px;font-weight:800;letter-spacing:-.03em;color:var(--text);max-width:26ch;text-wrap:balance;}
-  h1.title .accent{color:var(--blue);}
-  .lede{font-size:17.5px;line-height:1.68;color:var(--text-dim);max-width:610px;margin:0 0 32px;}
-  .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
-  .pill{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);border:1px solid var(--border);background:var(--surface);padding:6px 12px;border-radius:999px;box-shadow:var(--shadow-sm);transition:all .2s var(--ease);}
-  .pill:hover{border-color:var(--border-strong);color:var(--text);transform:translateY(-2px);}
-  .cta-row{display:flex;gap:11px;flex-wrap:wrap;}
-  .btn{padding:12px 22px;border-radius:11px;font-size:13.5px;font-weight:700;border:1px solid var(--border);letter-spacing:-.1px;}
-  .btn.primary{background:var(--text);color:var(--bg);border:1px solid var(--text);transition:all .2s var(--ease);box-shadow:var(--shadow-md);}
-  .btn.primary:hover{text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow-lg);opacity:.9;}
-  .btn.primary:active{transform:translateY(0) scale(.985);}
-  .btn.ghost{color:var(--text);background:var(--surface);transition:all .2s var(--ease);box-shadow:var(--shadow-sm);}
-  .btn.ghost:hover{text-decoration:none;border-color:var(--border-strong);transform:translateY(-2px);box-shadow:var(--shadow-md);}
-  .btn.ghost:active{transform:translateY(0) scale(.985);}
+/* En bref */
+.brief{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.brief h3{font-size:18px;margin:0 0 6px}
+.brief h3:not(:first-child){margin-top:20px}
+.brief p,.brief li{margin:0;color:var(--muted)}
+.brief ul{margin:0;padding-left:20px}
+.glossary{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px}
+.glossary dt{font-weight:700;color:var(--ink)}
+.glossary dd{margin:0;color:var(--muted)}
 
-  section{padding:80px 0;border-top:1px solid var(--border);transition:border-color .3s ease;}
-  .section-tag{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10.5px;color:var(--blue);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:14px;font-weight:700;}
-  .section-tag::before{content:"";width:20px;height:1.5px;background:var(--blue);border-radius:2px;flex-shrink:0;}
-  h2{font-size:clamp(24px,3vw,32px);margin:0 0 12px;font-weight:800;letter-spacing:-1.1px;line-height:1.15;}
-  .section-sub{color:var(--text-dim);font-size:15px;line-height:1.68;max-width:640px;margin-bottom:34px;}
+/* Cas d'etude */
+.step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:24px 0;border-top:1px solid var(--line)}
+.step:first-of-type{border-top:0;padding-top:4px}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:12px;background:var(--ink);color:#fff;font-family:var(--display);font-weight:700}
+.step-label{margin:6px 0 10px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.step p{margin:0 0 12px;color:var(--text)}
+.case-title{margin:0 0 8px;font-size:22px}
+.lead-kpi{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:4px 0 16px}
+.lead-kpi .n{font-family:var(--display);font-weight:700;font-size:48px;line-height:1;color:var(--ink)}
+.lead-kpi .l{color:var(--muted);max-width:420px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:4px 0 18px}
+.kpi{background:var(--bg);border-radius:16px;padding:16px 18px}
+.kpi .n{display:block;font-family:var(--display);font-weight:700;font-size:30px;line-height:1.1}
+.kpi .l{display:block;margin-top:4px;font-size:14px;color:var(--muted)}
+.callout{margin:16px 0 0;padding:18px 20px;border-radius:16px;background:var(--bg);border:1px solid var(--line)}
+.callout b{color:var(--ink)}
+.limit{margin:14px 0 0;padding:14px 18px;border-radius:14px;background:#FFF7ED;border:1px solid #FED7AA;color:#7C2D12;font-size:16px}
+.limit b{color:#431407}
+.flow{list-style:none;margin:4px 0 18px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:f}
+.flow li{position:relative;background:var(--bg);border-radius:16px;padding:16px;font-size:16px;color:var(--muted)}
+.flow b{display:block;font-family:var(--display);font-size:16px;color:var(--ink);margin-bottom:4px}
+.fig{margin:6px 0 16px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
+.fig button{display:block;width:100%;padding:14px;border:0;background:#fff;cursor:zoom-in}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption{padding:12px 16px 14px;border-top:1px solid var(--line);background:var(--surface);font-size:14px;color:var(--muted)}
+.fig figcaption b{color:var(--ink)}
 
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
-  .reveal.in{opacity:1;transform:translateY(0);}
+/* Graphique */
+.chart{margin:0;padding:20px;border:1px solid var(--line);border-radius:18px}
+.chart-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.chart-head h4{margin:0;font-family:var(--display);font-size:18px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--soft)}
+.seg button{min-height:44px;padding:0 16px;border:0;border-radius:999px;background:transparent;font:inherit;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(10,10,10,.12)}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars[hidden]{display:none}
+.bar{display:grid;grid-template-columns:150px minmax(0,1fr) 44px;align-items:center;gap:12px;font-size:16px}
+.bar .track{height:12px;border-radius:999px;background:var(--soft);overflow:hidden}
+.bar .fill{display:block;height:100%;border-radius:999px;background:#A3A3A3}
+.bar.weak .fill{background:var(--ink)}
+.bar.weak .name,.bar.weak .v{font-weight:700;color:var(--ink)}
+.bar .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.legend{margin:12px 0 0;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ink);margin-right:6px;vertical-align:0}
 
-  /* team / scope block */
-  .scope-note{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:8px 24px 22px;margin-bottom:22px;font-size:14px;color:var(--text-dim);box-shadow:var(--shadow-sm);transition:background-color .3s ease,border-color .3s ease;}
-  .scope-note b{color:var(--text);}
-  table.team{width:100%;border-collapse:collapse;font-size:13px;}
-  table.team th{text-align:left;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-faint);padding:14px 12px 10px;border-bottom:1px solid var(--border);font-weight:700;}
-  table.team td{padding:13px 12px;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:top;line-height:1.55;transition:background-color .2s ease;}
-  table.team tbody tr:last-child td{border-bottom:none;}
-  table.team tbody tr:hover td{background:var(--blue-soft);}
-  table.team tr.mine td{background:var(--blue-soft);color:var(--text);}
-  table.team tr.mine td:first-child{border-left:3px solid var(--blue);font-weight:700;}
-  table.team .badge{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:800;color:#fff;background:var(--blue);padding:2px 7px;border-radius:5px;margin-left:6px;letter-spacing:.4px;vertical-align:middle;}
-  .scale-note{margin-top:18px;padding:13px 16px;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--text-faint);border-radius:0 10px 10px 0;font-size:12.5px;line-height:1.65;color:var(--text-faint);}
+/* Tableaux */
+.tbl{width:100%;border-collapse:collapse;margin-top:6px;font-size:16px}
+.tbl th{text-align:left;font-size:14px;font-weight:600;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td:first-child{width:42%;color:var(--ink)}
+.st{display:inline-block;margin-right:8px;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
+.st-ok{background:#ECFDF3;color:#14532D}
+.st-part{background:#FFF7ED;color:#7C2D12}
+.st-final{background:var(--blue-soft);color:var(--blue-dark)}
 
-  /* case study */
-  .case{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:38px 40px 40px;margin-bottom:18px;box-shadow:var(--shadow-md);overflow:hidden;transition:border-color .3s var(--ease),box-shadow .35s var(--ease);}
-  .case::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue) 22%,#8b5cf6 55%,transparent);opacity:.55;}
-  .case:hover{box-shadow:var(--shadow-lg);border-color:var(--border-strong);}
-  .case-kicker{display:inline-flex;align-items:center;font-family:var(--mono);font-size:10px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:1.3px;margin-bottom:12px;background:var(--blue-soft);border:1px solid var(--blue-line);padding:5px 11px;border-radius:999px;}
-  .case h3{font-size:clamp(19px,2.2vw,25px);margin:0 0 4px;font-weight:800;letter-spacing:-.85px;line-height:1.22;}
-  .case .problem{font-size:15px;line-height:1.72;color:var(--text-dim);margin-bottom:6px;}
-  .case .problem b{color:var(--text);}
+/* Detail repliable */
+.more{margin-top:20px;border-top:1px solid var(--line);padding-top:4px}
+.more>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;min-height:48px;font-weight:600;color:var(--ink)}
+.more>summary::-webkit-details-marker{display:none}
+.more>summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.more[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.more>summary:hover{color:var(--blue)}
+.more-body{padding-top:8px}
+.more-body h4{margin:18px 0 8px;font-family:var(--display);font-size:18px}
+.more-body h4:first-child{margin-top:4px}
+.more-body ul{margin:0 0 8px;padding-left:20px;color:var(--text)}
+.more-body li{margin-bottom:6px}
+.more-body p{color:var(--text)}
 
-  /* CAR timeline */
-  .car-step{position:relative;padding-left:52px;margin-top:38px;}
-  .car-step::before{content:"";position:absolute;left:15px;top:38px;bottom:-38px;width:1px;background:linear-gradient(var(--border-strong),var(--border) 70%,transparent);}
-  .car-step:last-child::before{display:none;}
-  .car-head{display:flex;align-items:center;min-height:32px;margin-bottom:14px;}
-  .car-badge{
-    position:absolute;left:0;top:0;width:32px;height:32px;border-radius:10px;
-    background:var(--surface);border:1px solid var(--border-strong);color:var(--blue);
-    font-family:var(--mono);font-size:13px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-    box-shadow:var(--shadow-sm);transition:all .25s var(--ease);
-  }
-  .car-step:hover .car-badge{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 6px 16px -6px rgba(21,82,224,.7);}
-  .car-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.9px;color:var(--text-faint);}
+/* Galerie */
+.gal-title{margin:32px 0 14px;font-size:18px}
+.gal{display:grid;gap:16px}
+.gal-diag{grid-template-columns:repeat(2,minmax(0,1fr))}
+.gal-screens{grid-template-columns:repeat(4,minmax(0,1fr))}
+.shot{margin:0;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.shot button{display:flex;align-items:center;justify-content:center;padding:14px;border:0;background:#fff;cursor:zoom-in;height:320px}
+.gal-screens .shot button{height:360px}
+.shot img{width:100%;height:100%;object-fit:contain}
+.shot figcaption{flex:1;padding:14px 16px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.shot figcaption b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+.shot button:hover,.fig button:hover{background:#FCFCFC}
 
-  .code-block{position:relative;margin-top:20px;border-radius:14px;overflow:hidden;border:1px solid var(--code-line);box-shadow:var(--shadow-md);transition:box-shadow .3s var(--ease);}
-  .code-block:hover{box-shadow:var(--shadow-lg);}
-  .code-head{display:flex;align-items:center;gap:11px;background:var(--code-head);padding:10px 12px 10px 15px;border-bottom:1px solid var(--code-line);}
-  .code-dots{display:flex;gap:6px;flex-shrink:0;}
-  .code-dots i{width:9px;height:9px;border-radius:50%;display:block;opacity:.85;}
-  .code-file{font-family:var(--mono);font-size:10.5px;color:#7d90b5;letter-spacing:.3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .copy-btn{margin-left:auto;font-family:var(--mono);font-size:10px;padding:5px 11px;border-radius:7px;border:1px solid #24304c;background:transparent;color:#8fa4c9;cursor:pointer;transition:all .18s var(--ease);letter-spacing:.4px;flex-shrink:0;text-transform:uppercase;}
-  .copy-btn:hover{border-color:#40567e;color:#fff;background:#18233a;}
-  .copy-btn:active{transform:scale(.94);}
-  .copy-btn.copied{background:var(--blue);border-color:var(--blue);color:#fff;}
+/* Methodes et suite */
+.methods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:24px}
+.methods div{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
+.methods h3{font-size:16px;margin-bottom:12px}
+.next{margin:20px 0 0;padding-left:20px;max-width:820px}
+.next li{margin-bottom:8px;color:var(--text)}
 
-  pre{background:var(--code-bg);color:var(--code-text);padding:20px 22px;overflow-x:auto;font-family:var(--mono);font-size:12.4px;line-height:1.75;margin:0;border:none;border-radius:0;}
-  pre .cm{color:#5f77a8;}
-  pre .kw{color:#7fb0ff;}
-  .code-cap{font-family:var(--mono);font-size:11px;color:var(--text-faint);margin-top:10px;}
+/* Pied de page */
+footer{border-top:1px solid var(--line);background:var(--surface);padding:28px 0}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
 
-  .why{background:var(--bg-deep);border:1px solid var(--border);border-left:2px solid var(--blue);border-radius:0 12px 12px 0;padding:16px 20px;margin-top:20px;font-size:13.5px;line-height:1.72;color:var(--text-dim);transition:background-color .3s ease;}
-  .why b{color:var(--text);}
-  .limit{background:var(--amber-soft);border:1px solid var(--amber-line);border-left:2px solid var(--amber);border-radius:0 12px 12px 0;padding:16px 20px;margin-top:20px;font-size:13.5px;line-height:1.72;color:var(--amber-text);transition:background-color .3s ease;}
-  .limit b{color:var(--amber-text-strong);}
+/* Visionneuse */
+.lightbox{border:0;padding:0;background:transparent;max-width:min(1200px,94vw);max-height:92vh;overflow:visible}
+.lightbox::backdrop{background:rgba(10,10,10,.82)}
+.lightbox img{display:block;max-width:min(1200px,94vw);max-height:84vh;width:auto;height:auto;border-radius:14px;background:#fff}
+.lightbox p{margin:10px 0 0;color:#fff;font-size:16px;text-align:center}
+.lightbox .close{position:absolute;top:-56px;right:0;width:44px;height:44px;border-radius:999px;border:0;background:#fff;color:var(--ink);font-size:22px;cursor:pointer}
 
-  .flow{display:flex;align-items:stretch;gap:11px;margin:4px 0 20px;flex-wrap:wrap;}
-  .flow-step{flex:1;min-width:150px;background:var(--bg-deep);border:1px solid var(--border);border-radius:14px;padding:17px 19px;transition:all .25s var(--ease);}
-  .flow-step:hover{transform:translateY(-4px);border-color:var(--blue-line);background:var(--blue-soft);box-shadow:var(--shadow-md);}
-  .flow-step .n{font-family:var(--mono);font-size:10px;color:var(--blue);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1.2px;}
-  .flow-step p{margin:0;font-size:13px;line-height:1.62;color:var(--text-dim);}
-  .flow-arrow{display:flex;align-items:center;color:var(--text-faint);font-size:16px;padding:0 2px;opacity:.6;}
-
-  /* insight bars + tabs */
-  .insight{background:var(--bg-deep);border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin-top:4px;transition:background-color .3s ease,border-color .3s ease;}
-  .insight-head{font-size:14.5px;font-weight:800;margin-bottom:5px;letter-spacing:-.3px;}
-  .insight-sub{font-size:10.5px;color:var(--text-faint);margin-bottom:20px;font-family:var(--mono);letter-spacing:.2px;}
-  .tabs{display:inline-flex;gap:3px;margin-bottom:24px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);padding:4px;border-radius:999px;box-shadow:var(--shadow-sm);}
-  .tab-btn{font-family:var(--sans);font-size:12.5px;font-weight:700;padding:8px 16px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--text-dim);cursor:pointer;transition:all .22s var(--ease);}
-  .tab-btn:hover{color:var(--text);}
-  .tab-btn[aria-selected="true"]{background:var(--text);border-color:var(--text);color:var(--bg);}
-  .tab-btn:active{transform:scale(.97);}
-  .tab-panel{display:none;flex-direction:column;gap:13px;}
-  .tab-panel.active{display:flex;}
-  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:4px 0 20px;}
-  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);transition:all .25s var(--ease);}
-  .kpi:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border-strong);}
-  .kpi-num{display:block;font-size:24px;font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1.1;}
-  .kpi-lbl{display:block;font-size:11.5px;color:var(--text-faint);margin-top:5px;line-height:1.4;}
-
-  .bar-row{display:grid;grid-template-columns:118px 1fr 60px;align-items:center;gap:14px;cursor:default;}
-  .bar-row:hover .bar-fill{filter:brightness(1.15) saturate(1.1);}
-  .bar-row:hover .bar-label{color:var(--text);}
-  .bar-row.is-zero .bar-track{border-color:var(--amber);border-style:dashed;}
-  .bar-row.is-zero .bar-val{color:var(--amber);font-weight:800;}
-  .bar-row.is-zero .bar-label{color:var(--amber-text-strong);font-weight:700;}
-  [data-theme="dark"] .bar-row.is-zero .bar-label{color:var(--amber);}
-  .bar-label{font-size:12.5px;color:var(--text-dim);font-weight:600;transition:color .2s var(--ease);}
-  .bar-track{background:var(--surface);border:1px solid var(--border);border-radius:999px;height:15px;overflow:hidden;}
-  .bar-fill{height:100%;border-radius:999px;width:0%;background:linear-gradient(90deg,var(--blue),#7aa9ff);transition:width 1.1s var(--ease),filter .2s ease;}
-  .bar-val{font-family:var(--mono);font-size:11.5px;color:var(--text);text-align:right;font-weight:600;}
-  .insight-callout{margin-top:24px;padding:17px 19px;background:var(--surface);border:1px solid var(--border);border-radius:14px;font-size:13.5px;line-height:1.72;color:var(--text-dim);box-shadow:var(--shadow-sm);transition:all .3s ease;}
-  .insight-callout b{color:var(--text);}
-
-  /* dashboards */
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px;}
-  .dash-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow-sm);transition:all .28s var(--ease);}
-  .dash-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--border-strong);}
-  .dash-card h3{font-size:15px;margin:0 0 5px;font-weight:800;letter-spacing:-.35px;}
-  .dash-card .sub{font-size:10.5px;color:var(--text-faint);margin-bottom:16px;font-family:var(--mono);letter-spacing:.2px;}
-  .viz-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
-  .viz-list li{font-size:12.5px;line-height:1.65;color:var(--text-dim);display:flex;gap:10px;align-items:flex-start;}
-  .viz-list li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:8px;box-shadow:0 0 0 3px var(--blue-soft);}
-
-  /* galerie captures */
-  .shots{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px;}
-  .shot{margin:0;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all .28s var(--ease);}
-  .shot:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--border-strong);}
-  .shot a{display:block;line-height:0;background:var(--bg-deep);}
-  .shot img{width:100%;height:auto;display:block;}
-  .shot figcaption{padding:14px 18px 16px;font-size:12.5px;line-height:1.6;color:var(--text-dim);border-top:1px solid var(--border);}
-  .shot figcaption b{display:block;color:var(--text);font-size:13.5px;margin-bottom:3px;letter-spacing:-.2px;}
-  .shots-empty{
-    background:var(--bg-deep);border:1px dashed var(--border-strong);border-radius:16px;
-    padding:26px 28px;font-size:13.5px;line-height:1.7;color:var(--text-dim);
-  }
-  .shots-empty b{color:var(--text);}
-  .shots-empty code{white-space:normal;}
-
-  /* stack */
-  .stack-groups{display:flex;flex-direction:column;gap:24px;}
-  .stack-group .label{font-family:var(--mono);font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:13px;}
-  .chips{display:flex;flex-wrap:wrap;gap:9px;}
-  .chip{font-size:12.5px;padding:8px 15px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-weight:600;color:var(--text-dim);box-shadow:var(--shadow-sm);transition:all .22s var(--ease);cursor:default;}
-  .chip:hover{border-color:var(--border-strong);color:var(--text);transform:translateY(-3px);box-shadow:var(--shadow-md);}
-
-  .perspective{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 32px;font-size:14px;line-height:1.72;color:var(--text-dim);box-shadow:var(--shadow-sm);transition:background-color .3s ease,border-color .3s ease;}
-  .perspective ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;}
-  .perspective li{display:flex;gap:13px;align-items:flex-start;transition:color .2s var(--ease);}
-  .perspective li:hover{color:var(--text);}
-  .perspective li::before{content:"";width:5px;height:5px;border-radius:1px;background:var(--blue);flex-shrink:0;margin-top:9px;transform:rotate(45deg);box-shadow:0 0 0 3px var(--blue-soft);}
-
-  footer{padding:52px 0 72px;text-align:center;color:var(--text-faint);font-size:12.5px;border-top:1px solid var(--border);}
-  footer p{margin:0;line-height:1.7;}
-  .note{margin-top:12px;font-size:11px;opacity:.8;font-style:italic;}
-
-  .to-top{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;border:none;font-size:18px;cursor:pointer;box-shadow:0 10px 24px -8px rgba(22,86,214,.55);opacity:0;pointer-events:none;transform:translateY(10px);transition:all .25s ease;z-index:90;}
-  .to-top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
-  .to-top:hover{background:var(--blue-dark);}
-
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;}
-    .reveal{opacity:1;transform:none;transition:none;}
-    .bar-fill{transition:none;}
-    .grain,.hero-aurora{display:none;}
-    html{scroll-behavior:auto;}
-  }
-
-  @media (max-width:720px){
-    .wrap{padding:0 20px;}
-    nav .wrap{padding:13px 20px;}
-    header.hero{padding:64px 0 56px;}
-    h1.title{letter-spacing:-.02em;max-width:none;line-height:1.18;}
-    .lede{font-size:16px;}
-    section{padding:56px 0;}
-    h2{letter-spacing:-.7px;}
-    .case{padding:26px 22px 28px;border-radius:16px;}
-    .case h3{letter-spacing:-.5px;}
-    .grid2,.shots{grid-template-columns:1fr;}
-    .kpi-row{grid-template-columns:repeat(2,1fr);}
-    .kpi-num{font-size:20px;}
-    .flow{flex-direction:column;}
-    .flow-arrow{transform:rotate(90deg);justify-content:center;padding:2px 0;}
-    .car-step{padding-left:40px;margin-top:30px;}
-    .car-badge{width:28px;height:28px;font-size:12px;border-radius:9px;}
-    .car-step::before{left:13px;top:34px;bottom:-30px;}
-    .insight{padding:20px 18px;}
-    .perspective{padding:22px 20px;}
-    .scope-note{padding:4px 16px 18px;}
-    table.team th:nth-child(3),table.team td:nth-child(3){display:none;}
-    .nav-toggle{display:flex;}
-    .nav-right ul{
-      display:none;
-      position:absolute;
-      top:100%;left:0;right:0;
-      flex-direction:column;
-      gap:14px;
-      background:var(--surface);
-      border-bottom:1px solid var(--border);
-      padding:16px 28px 20px;
-      box-shadow:0 16px 30px -18px rgba(0,0,0,.25);
-    }
-    .nav-right ul.mobile-open{display:flex;}
-    .bar-row{grid-template-columns:85px 1fr 48px;}
-  }
-  .scope-lead{margin:0 0 14px;color:var(--text-dim);font-size:15px;line-height:1.6;}
-  table.team a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;}
-  .insight .insight-sub{color:var(--text-dim);}
-  footer a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;}
-  footer .note{color:var(--text-dim);opacity:1;}
-  [data-theme="dark"] table.team .badge{color:#07090f;}
-  table.decisions td:first-child{width:46%;}
-  .shot{display:flex;flex-direction:column;}
-  .shot a{display:flex;align-items:center;justify-content:center;padding:12px;background:#fff;}
-  .shot img{width:100%;height:100%;object-fit:contain;background:#fff;}
-  .shot figcaption{flex:1;}
-  .shots-diag{grid-template-columns:repeat(2,1fr);}
-  .shots-diag .shot a{height:340px;}
-  .shots-screens{grid-template-columns:repeat(4,1fr);}
-  .shots-screens .shot a{height:360px;}
-  .gal-title{margin:30px 0 14px;font-size:15px;letter-spacing:-.2px;color:var(--text);}
-  .gal-title:first-of-type{margin-top:6px;}
-  .hero-split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:center;}
-  .hero-phones{margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start;}
-  .hero-phones img{width:100%;height:auto;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow-lg);background:#fff;}
-  .hero-phones img:nth-child(2){margin-top:28px;}
-  .hero-phones figcaption{grid-column:1/-1;text-align:center;font-size:12.5px;color:var(--text-dim);margin-top:4px;}
-  .brief{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow-sm);}
-  .brief h3{margin:0 0 6px;font-size:15px;color:var(--text);}
-  .brief h3:not(:first-child){margin-top:18px;}
-  .brief p,.brief li{color:var(--text-dim);font-size:14.5px;line-height:1.6;margin:0;}
-  .brief ul{margin:0;padding-left:18px;}
-  .glossary{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px;}
-  .glossary dt{font-weight:700;color:var(--text);}
-  .glossary dd{margin:0;color:var(--text-dim);line-height:1.5;}
-  .actions{margin:0 0 18px;padding-left:20px;color:var(--text-dim);font-size:15px;line-height:1.65;}
-  .actions li{margin-bottom:6px;}
-  .actions b{color:var(--text);}
-  .inline-fig{margin:18px 0;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-  .inline-fig a{display:block;padding:14px;line-height:0;}
-  .inline-fig img{width:100%;height:auto;display:block;}
-  .inline-fig figcaption{padding:12px 16px 14px;font-size:13.5px;line-height:1.6;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface);}
-  .inline-fig figcaption b{color:var(--text);}
-  .st{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px;white-space:nowrap;vertical-align:1px;}
-  .st-ok{background:#e7f6ec;color:#14532d;}
-  .st-part{background:var(--amber-soft);color:var(--amber-text-strong);border:1px solid var(--amber-line);}
-  .st-final{background:var(--blue-soft);color:var(--blue-dark);}
-  [data-theme="dark"] .st-ok{background:#12301f;color:#bdf0cf;}
-  [data-theme="dark"] .st-final{color:#cfe0ff;background:#15233d;}
-  table.coverage{margin-top:18px;}
-  @media (max-width:960px){.hero-split{grid-template-columns:1fr;}.hero-phones{max-width:460px;}.shots-screens{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:720px){.brief{grid-template-columns:1fr;padding:20px;}.shots-diag{grid-template-columns:1fr;}}
-  @media (max-width:520px){.shots-screens{grid-template-columns:1fr;}.shots-diag .shot a,.shots-screens .shot a{height:260px;}.glossary{grid-template-columns:1fr;gap:2px;}.glossary dd{margin-bottom:8px;}}
-  .scope-note .scope-lead{padding-top:14px;}
+/* Responsive */
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero-shot{display:none}
+  .flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .gal-screens{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .methods{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  .top .wrap{min-height:56px}
+  .back .label{display:none}
+  .hero{padding:36px 0 32px}
+  .lede,.sub{font-size:18px}
+  section{padding:40px 0}
+  h2{font-size:26px}
+  .card{padding:20px;border-radius:20px}
+  .brief{grid-template-columns:1fr;gap:20px}
+  .glossary{grid-template-columns:1fr;gap:2px}
+  .glossary dd{margin-bottom:10px}
+  .step{grid-template-columns:1fr;gap:6px}
+  .badge{width:32px;height:32px;border-radius:10px}
+  .lead-kpi .n{font-size:40px}
+  .gal-diag{grid-template-columns:1fr}
+  .shot button,.gal-screens .shot button{height:260px}
+  .bar{grid-template-columns:118px minmax(0,1fr) 40px;font-size:14px}
+  .tbl td:first-child{width:auto}
+  .tbl thead{display:none}
+  .tbl tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
+  .tbl td{display:block;border:0;padding:4px 0}
+  .methods{grid-template-columns:1fr}
+}
+@media (max-width:420px){.flow{grid-template-columns:1fr}.gal-screens{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<a class="skip" href="#contenu">Aller au contenu</a>
 
-<div class="grain" aria-hidden="true"></div>
-<div class="progress-bar" id="progressBar"></div>
-
-<nav id="siteNav">
+<header class="top">
   <div class="wrap">
-    <div class="brand">PLAY &amp; LEARN<span>.</span>ux</div>
-    <div class="nav-right">
-      <ul id="navLinks">
-        <li><a href="#projet">Projet</a></li>
-        <li><a href="#comprendre">Comprendre</a></li>
-        <li><a href="#concevoir">Concevoir</a></li>
-        <li><a href="#ecrans">Écrans</a></li>
-        <li><a href="#perspectives">Suite</a></li>
-        <li><a href="https://kysyb2006.github.io/">Portfolio</a></li>
-      </ul>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Changer de thème" title="Changer de thème">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
-      </button>
-      <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navLinks">
-        <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-    </div>
+    <a class="back" href="https://kysyb2006.github.io/" aria-label="Retour au portfolio"><span class="arrow" aria-hidden="true">←</span><span class="label" aria-hidden="true">Portfolio</span></a>
+    <nav class="toc-wrap" aria-label="Sections de l’étude de cas">
+      <div class="toc">
+        <a href="#projet">Projet</a>
+        <a href="#comprendre">Comprendre</a>
+        <a href="#concevoir">Concevoir</a>
+        <a href="#ecrans">Écrans</a>
+        <a href="#suite">Suite</a>
+      </div>
+    </nav>
   </div>
-</nav>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
 
-<header class="hero">
-  <div class="hero-aurora" aria-hidden="true"></div>
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="wrap hero-split">
+<main id="contenu">
+
+<section class="hero" aria-label="Présentation">
+  <div class="wrap">
     <div>
-      <div class="eyebrow">PROJET IHM — HM40 · UTBM · 2026</div>
-      <h1 class="title">Concevoir un jeu éducatif que des enfants de 10 à 12 ans <span class="accent">ont envie d’ouvrir</span></h1>
-      <p class="lede">
-        PLAY &amp; LEARN est un ludiciel de culture générale pour préadolescents. Avant d’écrire une ligne de code,
-        l’équipe a étudié la cible, mesuré les défauts d’un concurrent, puis traduit chaque mesure en exigence, en
-        diagramme et en écran : des décisions de conception fondées sur des chiffres plutôt que sur des goûts.
-      </p>
-      <div class="meta-row">
-        <span class="pill">Belva YONTA</span>
-        <span class="pill">yontabelva@gmail.com</span>
+      <p class="status">Projet IHM · UTBM · 2026</p>
+      <h1>Concevoir un jeu éducatif que des enfants de 10 à 12 ans ont envie d’ouvrir</h1>
+      <p class="lede">PLAY &amp; LEARN est un ludiciel de culture générale pour préadolescents. Avant d’écrire une ligne de code, l’équipe a étudié la cible, mesuré les défauts d’un concurrent, puis traduit chaque mesure en exigence, en diagramme et en écran : des décisions fondées sur des chiffres plutôt que sur des goûts.</p>
+      <div class="meta">
         <span class="pill">Étude de cas UX / IHM</span>
         <span class="pill">Projet d’équipe</span>
+        <span class="pill">Belva YONTA</span>
       </div>
-      <div class="cta-row">
-        <a class="btn primary" href="#comprendre">Voir les deux cas d’étude →</a>
-        <a class="btn ghost" href="#ecrans">Voir directement les écrans</a>
+      <div class="cta">
+        <a class="btn btn-dark" href="#comprendre">Voir les deux cas d’étude</a>
+        <a class="btn btn-line" href="#ecrans">Voir les écrans</a>
       </div>
     </div>
-    <figure class="hero-phones" aria-label="Captures de la première version du prototype">
-      <img src="images/prototype-progression.png" width="585" height="1266" alt="Prototype : progression du chapitre avec XP et étapes à débloquer" decoding="async">
-      <img src="images/prototype-mode.png" width="585" height="1266" alt="Prototype : choix entre les modes Apprentissage et Challenge" decoding="async">
-      <img src="images/prototype-quiz.png" width="585" height="1266" alt="Prototype : question corrigée avec un encadré Le savais-tu" decoding="async">
+    <figure class="hero-shot">
+      <img src="images/prototype-quiz.png" width="585" height="1266" decoding="async" alt="Prototype : question de quiz corrigée, la bonne et la mauvaise réponse signalées, encadré Le savais-tu">
       <figcaption>Première version du prototype</figcaption>
     </figure>
   </div>
-</header>
+</section>
 
 <section id="projet">
   <div class="wrap">
-    <div class="section-tag">Le projet</div>
+    <p class="over">Le projet</p>
     <h2>Le projet en bref</h2>
-    <p class="section-sub">Le cadre, ce qui a été livré, et les quelques termes de conception utilisés plus bas.</p>
-
-    <div class="brief reveal">
-      <div class="brief-col">
+    <div class="card brief">
+      <div>
         <h3>Cadre</h3>
         <p>Matière IHM (HM40) à l’UTBM, en 2026, en équipe de trois. Un enjeu central : <b>la conception passe avant le code</b>.</p>
         <h3>Livrables de l’équipe</h3>
@@ -501,9 +289,9 @@
           <li>Un prototype React</li>
         </ul>
         <h3>Deux versions du produit</h3>
-        <p><b>Première version du prototype</b> : les captures de cette page (fond clair). <b>Version finale</b> : décrite dans le rapport, avec comptes et sauvegarde hors ligne ; ses écrans figurent dans la galerie (fond vert), son code n’est pas public.</p>
+        <p><b>Première version du prototype</b> : les captures à fond clair. <b>Version finale</b> : décrite dans le rapport, avec comptes et sauvegarde hors ligne ; ses écrans figurent dans la galerie (fond vert), son code n’est pas public.</p>
       </div>
-      <div class="brief-col">
+      <div>
         <h3>Lexique</h3>
         <dl class="glossary">
           <dt>SUS</dt><dd>Questionnaire standard d’utilisabilité, noté sur 100.</dd>
@@ -521,501 +309,347 @@
 
 <section id="comprendre">
   <div class="wrap">
-    <div class="section-tag">Cas 1 — Comprendre avant de dessiner</div>
-    <h2>La cible, son activité, et ce qui rate chez le concurrent</h2>
-    <p class="section-sub">Qui sont ces enfants, que font-ils vraiment quand ils « apprennent en jouant », et pourquoi les applications existantes les perdent-elles ?</p>
+    <p class="over">Cas 1</p>
+    <h2>Comprendre avant de dessiner</h2>
+    <p class="sub">Qui sont ces enfants, que font-ils vraiment quand ils « apprennent en jouant », et pourquoi les applications existantes les perdent-elles ?</p>
 
-    <div class="case reveal">
-      <div class="case-kicker">Cas d’étude — méthode CAR</div>
-      <h3>Transformer des données sur une tranche d’âge en décisions de conception</h3>
+    <article class="card">
+      <h3 class="case-title">Transformer des données sur une tranche d’âge en décisions de conception</h3>
 
-      <div class="car-step">
-        <div class="car-head"><span class="car-badge">C</span><span class="car-label">Contexte</span></div>
-        <p class="problem">À 10 – 12 ans, un enfant passe de la pensée concrète à la pensée abstraite, se lasse vite, craint l’échec et rejette tout ce qui fait « bébé ». Les applications éducatives existantes sont lentes, n’expliquent pas les réponses et se pilotent mal.</p>
-        <div class="kpi-row">
-          <div class="kpi"><span class="kpi-num">1,62 M</span><span class="kpi-lbl">enfants de 10 à 12 ans en France</span></div>
-          <div class="kpi"><span class="kpi-num">45 %</span><span class="kpi-lbl">anxieux face à l’échec</span></div>
-          <div class="kpi"><span class="kpi-num">20 – 45 min</span><span class="kpi-lbl">d’attention soutenue</span></div>
-          <div class="kpi"><span class="kpi-num">35 %</span><span class="kpi-lbl">en famille monoparentale ou recomposée</span></div>
+      <div class="step">
+        <span class="badge" aria-hidden="true">C</span>
+        <div>
+          <p class="step-label">Contexte</p>
+          <p>À 10 – 12 ans, un enfant passe de la pensée concrète à la pensée abstraite, se lasse vite, craint l’échec (45 % des enfants de cet âge) et rejette tout ce qui fait « bébé ». Les applications éducatives existantes sont lentes, n’expliquent pas les réponses et se pilotent mal.</p>
         </div>
       </div>
 
-      <div class="car-step">
-        <div class="car-head"><span class="car-badge">A</span><span class="car-label">Action</span></div>
-        <ul class="actions">
-          <li><b>Étudier la cible</b> sur sept dimensions (démographie, physique, cognitif, psychologie, valeurs, social, culture), à partir de l’INSEE, de l’UNICEF et de Santé publique France.</li>
-          <li><b>Analyser l’activité</b> chez le concurrent Wayground : chaque action de l’enfant notée positive, neutre ou négative, puis tracée sur une courbe d’expérience.</li>
-          <li><b>Mesurer</b> Wayground avec quatre outils : SUS, DEEP, AttrakDiff et critères de Bastien et Scapin.</li>
-        </ul>
-
-        <figure class="inline-fig">
-          <a href="images/courbe-wayground.png" target="_blank" rel="noopener"><img src="images/courbe-wayground.png" width="1250" height="630" loading="lazy" decoding="async" alt="Courbe d’expérience de Wayground : positive du lancement jusqu’à la lecture des exemples de questions, puis sous la ligne neutre du lancement du jeu jusqu’à la sortie"></a>
-          <figcaption><b>Courbe d’expérience de Wayground.</b> Positive jusqu’au choix du thème, elle passe sous la ligne neutre dès le lancement du jeu et n’en ressort plus : lire les questions, répondre, lire une réponse sans explication, quitter par une navigation peu claire. Le cœur du produit est précisément ce qui déçoit.</figcaption>
-        </figure>
-
-        <div class="why">
-          <b>AttrakDiff confirme le diagnostic</b>, sur une échelle de −3 à +3 : Wayground est jugé attirant (+1), mais peu stimulant (−0,14), peu valorisant pour l’utilisateur (−0,57) et d’une utilité perçue quasi neutre (+0,14). Son apparence plaît ; son usage, beaucoup moins.
-        </div>
-
-        <div class="limit">
-          <b>Limite assumée :</b> l’évaluation de Wayground repose sur un seul évaluateur de l’équipe, en situation d’utilisateur. Les scores donnent une tendance qui oriente la conception ; ce n’est pas une mesure statistique.
+      <div class="step">
+        <span class="badge" aria-hidden="true">A</span>
+        <div>
+          <p class="step-label">Action</p>
+          <p>Nous avons étudié la cible à partir de sources publiques, analysé l’activité d’un enfant sur le concurrent Wayground, puis mesuré ce concurrent avec quatre outils d’évaluation.</p>
+          <figure class="fig">
+            <button type="button" data-zoom="images/courbe-wayground.png" data-caption="Courbe d’expérience de Wayground" aria-label="Agrandir la courbe d’expérience de Wayground"><img src="images/courbe-wayground.png" width="1250" height="630" loading="lazy" decoding="async" alt="Courbe d’expérience de Wayground : positive du lancement jusqu’à la lecture des exemples de questions, puis sous la ligne neutre du lancement du jeu jusqu’à la sortie"></button>
+            <figcaption><b>Courbe d’expérience de Wayground.</b> Positive jusqu’au choix du thème, elle passe sous la ligne neutre dès le lancement du jeu et n’en ressort plus. Le cœur du produit est précisément ce qui déçoit.</figcaption>
+          </figure>
         </div>
       </div>
 
-      <div class="car-step">
-        <div class="car-head"><span class="car-badge">R</span><span class="car-label">Résultat</span></div>
+      <div class="step">
+        <span class="badge" aria-hidden="true">R</span>
+        <div>
+          <p class="step-label">Résultat</p>
+          <div class="lead-kpi"><span class="n">47,5 / 100</span><span class="l">score SUS de Wayground, nettement sous 68, la moyenne de référence établie par Jeff Sauro sur plus de 500 études.</span></div>
 
-        <div class="kpi-row">
-          <div class="kpi"><span class="kpi-num">47,5</span><span class="kpi-lbl">score SUS de Wayground, contre 68 en moyenne</span></div>
-          <div class="kpi"><span class="kpi-num">2,33 / 5</span><span class="kpi-lbl">structure perçue (DEEP)</span></div>
-          <div class="kpi"><span class="kpi-num">2 / 5</span><span class="kpi-lbl">contrôle explicite (Bastien et Scapin)</span></div>
-          <div class="kpi"><span class="kpi-num">7</span><span class="kpi-lbl">décisions de conception qui en découlent</span></div>
+          <div class="chart">
+            <div class="chart-head">
+              <h4>Où Wayground perd ses utilisateurs (notes sur 5)</h4>
+              <div class="seg" role="tablist" aria-label="Grille d’évaluation">
+                <button type="button" role="tab" id="t-deep" aria-selected="true" aria-controls="p-deep">DEEP</button>
+                <button type="button" role="tab" id="t-bs" aria-selected="false" aria-controls="p-bs" tabindex="-1">Bastien et Scapin</button>
+              </div>
+            </div>
+            <div class="bars" role="tabpanel" id="p-deep" aria-labelledby="t-deep">
+              <div class="bar"><span class="name">Cohérence</span><span class="track"><span class="fill" style="width:80%"></span></span><span class="v">4</span></div>
+              <div class="bar"><span class="name">Contenu</span><span class="track"><span class="fill" style="width:75%"></span></span><span class="v">3,75</span></div>
+              <div class="bar"><span class="name">Navigation</span><span class="track"><span class="fill" style="width:67%"></span></span><span class="v">3,33</span></div>
+              <div class="bar"><span class="name">Guidage visuel</span><span class="track"><span class="fill" style="width:60%"></span></span><span class="v">3</span></div>
+              <div class="bar"><span class="name">Effort cognitif</span><span class="track"><span class="fill" style="width:53%"></span></span><span class="v">2,66</span></div>
+              <div class="bar weak"><span class="name">Structure</span><span class="track"><span class="fill" style="width:47%"></span></span><span class="v">2,33</span></div>
+            </div>
+            <div class="bars" role="tabpanel" id="p-bs" aria-labelledby="t-bs" hidden>
+              <div class="bar"><span class="name">Homogénéité</span><span class="track"><span class="fill" style="width:80%"></span></span><span class="v">4</span></div>
+              <div class="bar"><span class="name">Guidage</span><span class="track"><span class="fill" style="width:73%"></span></span><span class="v">3,67</span></div>
+              <div class="bar"><span class="name">Adaptabilité</span><span class="track"><span class="fill" style="width:70%"></span></span><span class="v">3,5</span></div>
+              <div class="bar"><span class="name">Signifiance</span><span class="track"><span class="fill" style="width:60%"></span></span><span class="v">3</span></div>
+              <div class="bar weak"><span class="name">Gestion des erreurs</span><span class="track"><span class="fill" style="width:47%"></span></span><span class="v">2,33</span></div>
+              <div class="bar weak"><span class="name">Charge de travail</span><span class="track"><span class="fill" style="width:45%"></span></span><span class="v">2,25</span></div>
+              <div class="bar weak"><span class="name">Contrôle explicite</span><span class="track"><span class="fill" style="width:40%"></span></span><span class="v">2</span></div>
+              <div class="bar weak"><span class="name">Compatibilité</span><span class="track"><span class="fill" style="width:40%"></span></span><span class="v">2</span></div>
+            </div>
+            <p class="legend"><i aria-hidden="true"></i>En noir : notes inférieures à 2,5 / 5.</p>
+          </div>
+
+          <div class="callout"><b>Les deux grilles convergent : Wayground est cohérent visuellement mais difficile à comprendre et à piloter.</b> Chacune de ses faiblesses est devenue l’une de nos 7 décisions de conception, vérifiées une à une dans le Cas 2.</div>
+          <p class="limit"><b>Limite assumée :</b> l’évaluation repose sur un seul évaluateur de l’équipe. Elle donne une tendance, pas une mesure statistique.</p>
+
+          <details class="more">
+            <summary>Voir le détail : méthode, AttrakDiff et les 7 décisions</summary>
+            <div class="more-body">
+              <h4>Méthode</h4>
+              <ul>
+                <li><b>Étude de la cible</b> sur sept dimensions (démographie, physique, cognitif, psychologie, valeurs, social, culture), à partir de l’INSEE, de l’UNICEF et de Santé publique France. Quelques repères : 1,62 million d’enfants de 10 à 12 ans en France, une attention soutenue de 20 à 45 minutes, 35 % en famille monoparentale ou recomposée.</li>
+                <li><b>Analyse de l’activité</b> chez Wayground : chaque action de l’enfant notée positive, neutre ou négative, puis tracée sur la courbe ci-dessus.</li>
+                <li><b>Évaluation</b> avec le SUS, le DEEP, AttrakDiff et les critères de Bastien et Scapin.</li>
+              </ul>
+              <h4>AttrakDiff confirme le diagnostic</h4>
+              <p>Sur une échelle de −3 à +3, Wayground est jugé attirant (+1), mais peu stimulant (−0,14), peu valorisant pour l’utilisateur (−0,57) et d’une utilité perçue quasi neutre (+0,14). Son apparence plaît ; son usage, beaucoup moins.</p>
+              <h4>Des constats aux décisions</h4>
+              <table class="tbl">
+                <thead><tr><th>Constat</th><th>Décision de conception</th></tr></thead>
+                <tbody>
+                  <tr><td>Retour en arrière peu clair, contrôle explicite à 2 / 5</td><td>① Flèche de retour visible sur chaque écran</td></tr>
+                  <tr><td>Réponses données sans explication</td><td>② Mode Apprentissage : explication juste après chaque réponse</td></tr>
+                  <tr><td>Explications qui coupent l’élan quand la réponse est connue</td><td>③ Mode Challenge : bilan seulement en fin de partie</td></tr>
+                  <tr><td>45 % des enfants anxieux face à l’échec</td><td>④ Rejouer les questions ratées sans pénalité</td></tr>
+                  <tr><td>Attention limitée, fatigue fréquente</td><td>⑤ Sessions courtes, pause au plus tard toutes les 7 minutes</td></tr>
+                  <tr><td>35 % des enfants entre deux foyers ou avec un seul parent</td><td>⑥ Hors ligne et synchronisation entre appareils</td></tr>
+                  <tr><td>Rejet des interfaces « infantiles »</td><td>⑦ Codes des jeux vidéo : chapitres, badges, XP, séries</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
         </div>
-
-        <div class="insight">
-          <div class="insight-head">Où Wayground perd ses utilisateurs</div>
-          <div class="insight-sub">Évaluation du concurrent, notes sur 5, même échelle pour les deux grilles</div>
-
-          <div class="tabs" role="tablist" aria-label="Basculer entre les deux grilles d’évaluation">
-            <button class="tab-btn" type="button" role="tab" id="tab-deep" aria-selected="true" aria-controls="panel-deep" tabindex="0" data-tab="deep">Questionnaire DEEP</button>
-            <button class="tab-btn" type="button" role="tab" id="tab-bs" aria-selected="false" aria-controls="panel-bs" tabindex="-1" data-tab="bs">Critères de Bastien et Scapin</button>
-          </div>
-
-          <div class="tab-panel active" role="tabpanel" id="panel-deep" aria-labelledby="tab-deep" data-panel="deep">
-            <div class="bar-row"><div class="bar-label">Cohérence</div><div class="bar-track"><div class="bar-fill" data-width="80%"></div></div><div class="bar-val">4</div></div>
-            <div class="bar-row"><div class="bar-label">Contenu</div><div class="bar-track"><div class="bar-fill" data-width="75%"></div></div><div class="bar-val">3,75</div></div>
-            <div class="bar-row"><div class="bar-label">Navigation</div><div class="bar-track"><div class="bar-fill" data-width="67%"></div></div><div class="bar-val">3,33</div></div>
-            <div class="bar-row"><div class="bar-label">Guidage visuel</div><div class="bar-track"><div class="bar-fill" data-width="60%"></div></div><div class="bar-val">3</div></div>
-            <div class="bar-row"><div class="bar-label">Effort cognitif</div><div class="bar-track"><div class="bar-fill" data-width="53%"></div></div><div class="bar-val">2,66</div></div>
-            <div class="bar-row"><div class="bar-label">Structure</div><div class="bar-track"><div class="bar-fill" data-width="47%"></div></div><div class="bar-val">2,33</div></div>
-          </div>
-
-          <div class="tab-panel" role="tabpanel" id="panel-bs" aria-labelledby="tab-bs" data-panel="bs">
-            <div class="bar-row"><div class="bar-label">Homogénéité</div><div class="bar-track"><div class="bar-fill" data-width="80%"></div></div><div class="bar-val">4</div></div>
-            <div class="bar-row"><div class="bar-label">Guidage</div><div class="bar-track"><div class="bar-fill" data-width="73%"></div></div><div class="bar-val">3,67</div></div>
-            <div class="bar-row"><div class="bar-label">Adaptabilité</div><div class="bar-track"><div class="bar-fill" data-width="70%"></div></div><div class="bar-val">3,5</div></div>
-            <div class="bar-row"><div class="bar-label">Signifiance</div><div class="bar-track"><div class="bar-fill" data-width="60%"></div></div><div class="bar-val">3</div></div>
-            <div class="bar-row"><div class="bar-label">Gestion des erreurs</div><div class="bar-track"><div class="bar-fill" data-width="47%"></div></div><div class="bar-val">2,33</div></div>
-            <div class="bar-row"><div class="bar-label">Charge de travail</div><div class="bar-track"><div class="bar-fill" data-width="45%"></div></div><div class="bar-val">2,25</div></div>
-            <div class="bar-row"><div class="bar-label">Contrôle explicite</div><div class="bar-track"><div class="bar-fill" data-width="40%"></div></div><div class="bar-val">2</div></div>
-            <div class="bar-row"><div class="bar-label">Compatibilité</div><div class="bar-track"><div class="bar-fill" data-width="40%"></div></div><div class="bar-val">2</div></div>
-          </div>
-
-          <div class="insight-callout">
-            Les deux grilles convergent : <b>Wayground est cohérent visuellement mais difficile à comprendre et à piloter</b>.
-            Sa structure, son contrôle explicite et sa charge de travail sont ses points les plus faibles. Son score SUS
-            de 47,5 reste nettement sous 68, la moyenne de référence établie par Jeff Sauro à partir de plus de 500 études.
-            <br><br>
-            <b>Ce que nous en avons fait :</b> chaque faiblesse mesurée est devenue une exigence de conception.
-          </div>
-        </div>
-
-        <table class="team decisions">
-          <thead><tr><th>Constat</th><th>Décision de conception</th></tr></thead>
-          <tbody>
-            <tr><td>Retour en arrière peu clair, contrôle explicite à 2 / 5</td><td>① Flèche de retour visible sur chaque écran, parcours linéaire</td></tr>
-            <tr><td>Réponses données sans explication</td><td>② <b>Mode Apprentissage</b> : explication immédiatement après chaque réponse</td></tr>
-            <tr><td>Explications qui coupent l’élan quand l’enfant connaît déjà la réponse</td><td>③ <b>Mode Challenge</b> : bilan et explications seulement en fin de partie</td></tr>
-            <tr><td>45 % des enfants anxieux face à l’échec</td><td>④ Rejouer les questions ratées sans pénalité</td></tr>
-            <tr><td>Attention de 20 à 45 minutes, fatigue fréquente</td><td>⑤ Sessions courtes, pause proposée au plus tard toutes les 7 minutes</td></tr>
-            <tr><td>35 % des enfants partagent leur temps entre deux foyers ou vivent avec un seul parent</td><td>⑥ Fonctionnement hors ligne et synchronisation entre appareils</td></tr>
-            <tr><td>Rejet des interfaces « infantiles »</td><td>⑦ Codes visuels des jeux vidéo : chapitres, badges, XP, séries</td></tr>
-          </tbody>
-        </table>
       </div>
-    </div>
+    </article>
   </div>
 </section>
 
 <section id="concevoir">
   <div class="wrap">
-    <div class="section-tag">Cas 2 — De l’exigence à l’écran</div>
-    <h2>Une chaîne de conception traçable</h2>
-    <p class="section-sub">Comment passer de « l’enfant doit pouvoir apprendre sans réseau » à un écran précis, et vérifier ensuite que le produit tient ses promesses ?</p>
+    <p class="over">Cas 2</p>
+    <h2>De l’exigence à l’écran</h2>
+    <p class="sub">Comment passer de « l’enfant doit pouvoir apprendre sans réseau » à un écran précis, puis vérifier que le produit tient ses promesses ?</p>
 
-    <div class="case reveal">
-      <div class="case-kicker">Cas d’étude — méthode CAR</div>
-      <h3>Chaque écran doit pouvoir remonter jusqu’à un besoin</h3>
+    <article class="card">
+      <h3 class="case-title">Chaque écran doit pouvoir remonter jusqu’à un besoin</h3>
 
-      <div class="car-step">
-        <div class="car-head"><span class="car-badge">C</span><span class="car-label">Contexte</span></div>
-        <p class="problem">Une liste de bonnes intentions ne guide pas le développement. Il fallait des exigences vérifiables et hiérarchisées, et des écrans dont chaque élément se justifie, pour que le prototype ne dérive pas des besoins de l’enfant.</p>
-      </div>
-
-      <div class="car-step">
-        <div class="car-head"><span class="car-badge">A</span><span class="car-label">Action</span></div>
-
-        <div class="flow">
-          <div class="flow-step"><div class="n">Besoin</div><p>À qui sert le produit, sur quoi il agit, dans quel but ; puis les 9 situations de vie du produit, de l’installation à la désinstallation</p></div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Exigences</div><p>22 fonctions de service, chacune avec un critère mesurable, un niveau attendu et une flexibilité de F0 à F3</p></div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Tâches</div><p>HTA en 5 activités, puis diagrammes SADT des flux entre activités</p></div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Écrans</div><p>Structure de chaque écran, lois de la Gestalt, charte couleur 60-30-10, puis modèles PAC et statecharts</p></div>
-        </div>
-
-        <figure class="inline-fig">
-          <a href="images/hta.png" target="_blank" rel="noopener"><img src="images/hta.png" width="1152" height="424" loading="lazy" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données"></a>
-          <figcaption><b>Analyse hiérarchique de la tâche.</b> Cinq activités. La branche « Sélectionner une activité » sépare les modes Apprentissage et Challenge, et le jeu solo du multijoueur.</figcaption>
-        </figure>
-
-        <div class="why">
-          <b>Pourquoi deux modes plutôt qu’un :</b> l’analyse de la tâche a fait apparaître deux besoins contradictoires, apprendre (et donc être corrigé tout de suite) et se mesurer (et donc ne pas être interrompu). Plutôt qu’un compromis qui servirait mal les deux, l’HTA les sépare en deux branches.
-        </div>
-
-        <div class="why" style="margin-top:16px;">
-          <b>Un exemple de traçabilité :</b> l’exigence FP2 impose que 100 % des scores et badges soient conservés sur l’appareil, au niveau F0, non négociable. La version finale y répond par une sauvegarde « local-first » : le score s’écrit d’abord sur l’appareil, se synchronise ensuite en arrière-plan, et à la reconnexion la progression la plus avancée l’emporte.
+      <div class="step">
+        <span class="badge" aria-hidden="true">C</span>
+        <div>
+          <p class="step-label">Contexte</p>
+          <p>Une liste de bonnes intentions ne guide pas le développement. Il fallait des exigences vérifiables et hiérarchisées, et des écrans dont chaque élément se justifie, pour que le prototype ne dérive pas des besoins de l’enfant.</p>
         </div>
       </div>
 
-      <div class="car-step">
-        <div class="car-head"><span class="car-badge">R</span><span class="car-label">Résultat</span></div>
-        <p class="problem">Pour savoir si la conception a tenu, nous avons repris les 7 décisions du Cas 1 et vérifié chacune dans le code de la première version du prototype.</p>
-
-        <div class="kpi-row">
-          <div class="kpi"><span class="kpi-num">3 / 7</span><span class="kpi-lbl">décisions entièrement livrées dans le premier prototype</span></div>
-          <div class="kpi"><span class="kpi-num">3 / 7</span><span class="kpi-lbl">livrées en partie</span></div>
-          <div class="kpi"><span class="kpi-num">1 / 7</span><span class="kpi-lbl">réservée à la version finale</span></div>
-        </div>
-
-        <table class="team decisions coverage">
-          <thead><tr><th>Décision</th><th>Dans la première version du prototype</th></tr></thead>
-          <tbody>
-            <tr><td>① Retour visible sur chaque écran</td><td><span class="st st-ok">Livrée</span> Flèche de retour sur tous les écrans</td></tr>
-            <tr><td>② Mode Apprentissage</td><td><span class="st st-ok">Livrée</span> Correction immédiate et encadré « Le savais-tu ? »</td></tr>
-            <tr><td>⑦ Codes des jeux vidéo</td><td><span class="st st-ok">Livrée</span> Chapitres, XP, badges, série de jours</td></tr>
-            <tr><td>③ Mode Challenge</td><td><span class="st st-part">En partie</span> Le mode se choisit, mais le quiz corrige toujours immédiatement</td></tr>
-            <tr><td>④ Rejouer les questions ratées</td><td><span class="st st-part">En partie</span> « Rejouer » relance tout le quiz, pas seulement les erreurs</td></tr>
-            <tr><td>⑤ Sessions courtes et pauses</td><td><span class="st st-part">En partie</span> Quiz de 5 questions, mais aucune pause proposée</td></tr>
-            <tr><td>⑥ Hors ligne et synchronisation</td><td><span class="st st-final">Version finale</span> Décrite dans le rapport, absente de cette première version</td></tr>
-          </tbody>
-        </table>
-
-        <div class="insight-callout">
-          <b>Ce que ça change :</b> les trois décisions partielles sont exactement celles qui répondent aux faiblesses les plus
-          graves de Wayground, l’anxiété face à l’échec et l’élan coupé. Ce sont donc les premières à finaliser, et les premières
-          à faire tester par des enfants.
-        </div>
-
-        <div class="limit">
-          <b>Écarts assumés :</b> le cahier des charges visait une application mobile (React Native ou Flutter) ; nous avons livré une application web React, plus rapide à prototyper dans le temps du projet. Le multijoueur est conçu mais affiché « bientôt disponible ». Enfin, aucun test n’a été mené avec de vrais enfants de 10 à 12 ans.
+      <div class="step">
+        <span class="badge" aria-hidden="true">A</span>
+        <div>
+          <p class="step-label">Action</p>
+          <ol class="flow">
+            <li><b>Besoin</b>À qui sert le produit, dans quel but, et ses 9 situations de vie</li>
+            <li><b>Exigences</b>22 fonctions, chacune mesurable, avec une flexibilité de F0 à F3</li>
+            <li><b>Tâches</b>HTA en 5 activités, puis diagrammes SADT</li>
+            <li><b>Écrans</b>Structure, lois de la Gestalt, charte 60-30-10, PAC et statecharts</li>
+          </ol>
+          <figure class="fig">
+            <button type="button" data-zoom="images/hta.png" data-caption="Analyse hiérarchique de la tâche (HTA)" aria-label="Agrandir le diagramme HTA"><img src="images/hta.png" width="1152" height="424" loading="lazy" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données"></button>
+            <figcaption><b>Analyse hiérarchique de la tâche.</b> Cinq activités ; la branche « Sélectionner une activité » sépare les modes Apprentissage et Challenge.</figcaption>
+          </figure>
         </div>
       </div>
-    </div>
+
+      <div class="step">
+        <span class="badge" aria-hidden="true">R</span>
+        <div>
+          <p class="step-label">Résultat</p>
+          <p>Nous avons repris les 7 décisions du Cas 1 et vérifié chacune dans le code de la première version du prototype.</p>
+          <div class="kpis">
+            <div class="kpi"><span class="n">3 / 7</span><span class="l">entièrement livrées</span></div>
+            <div class="kpi"><span class="n">3 / 7</span><span class="l">livrées en partie</span></div>
+            <div class="kpi"><span class="n">1 / 7</span><span class="l">réservée à la version finale</span></div>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Décision</th><th>Dans la première version du prototype</th></tr></thead>
+            <tbody>
+              <tr><td>① Retour visible sur chaque écran</td><td><span class="st st-ok">Livrée</span>Flèche de retour sur tous les écrans</td></tr>
+              <tr><td>② Mode Apprentissage</td><td><span class="st st-ok">Livrée</span>Correction immédiate et encadré « Le savais-tu ? »</td></tr>
+              <tr><td>⑦ Codes des jeux vidéo</td><td><span class="st st-ok">Livrée</span>Chapitres, XP, badges, série de jours</td></tr>
+              <tr><td>③ Mode Challenge</td><td><span class="st st-part">En partie</span>Le mode se choisit, mais le quiz corrige toujours immédiatement</td></tr>
+              <tr><td>④ Rejouer les questions ratées</td><td><span class="st st-part">En partie</span>« Rejouer » relance tout le quiz, pas seulement les erreurs</td></tr>
+              <tr><td>⑤ Sessions courtes et pauses</td><td><span class="st st-part">En partie</span>Quiz de 5 questions, mais aucune pause proposée</td></tr>
+              <tr><td>⑥ Hors ligne et synchronisation</td><td><span class="st st-final">Version finale</span>Décrite dans le rapport, absente de cette première version</td></tr>
+            </tbody>
+          </table>
+          <div class="callout"><b>Ce que ça change :</b> les trois décisions partielles répondent aux faiblesses les plus graves de Wayground, l’anxiété face à l’échec et l’élan coupé. Ce sont les premières à finaliser, et les premières à faire tester par des enfants.</div>
+          <p class="limit"><b>Écarts assumés :</b> une application web React au lieu de l’application mobile prévue, un multijoueur conçu mais « bientôt disponible », et aucun test avec de vrais enfants.</p>
+
+          <details class="more">
+            <summary>Voir le détail : deux modes et traçabilité</summary>
+            <div class="more-body">
+              <h4>Pourquoi deux modes plutôt qu’un</h4>
+              <p>L’analyse de la tâche a fait apparaître deux besoins contradictoires : apprendre, donc être corrigé tout de suite, et se mesurer, donc ne pas être interrompu. Plutôt qu’un compromis qui servirait mal les deux, l’HTA les sépare en deux branches.</p>
+              <h4>Un exemple de traçabilité</h4>
+              <p>L’exigence FP2 impose que 100 % des scores et badges soient conservés sur l’appareil, au niveau F0, non négociable. La version finale y répond par une sauvegarde « local-first » : le score s’écrit d’abord sur l’appareil, se synchronise ensuite en arrière-plan, et à la reconnexion la progression la plus avancée l’emporte.</p>
+              <h4>Pourquoi une application web</h4>
+              <p>Le cahier des charges visait React Native ou Flutter. Une application web React était plus rapide à prototyper dans le temps du projet, au prix d’une expérience moins native sur téléphone.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
 <section id="ecrans">
   <div class="wrap">
-    <div class="section-tag">Restitution</div>
+    <p class="over">Restitution</p>
     <h2>Du croquis à l’écran</h2>
-    <p class="section-sub">Les livrables dans l’ordre de la démarche. Cliquez sur une image pour l’ouvrir en grand.</p>
+    <p class="sub">Les livrables dans l’ordre de la démarche. Touchez une image pour l’agrandir.</p>
 
     <h3 class="gal-title">Modéliser</h3>
-    <div class="shots shots-diag reveal" id="shots">
-      <figure class="shot" data-shot>
-        <a href="images/courbe-play-learn.png" target="_blank" rel="noopener"><img src="images/courbe-play-learn.png" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours" loading="lazy" decoding="async"></a>
+    <div class="gal gal-diag">
+      <figure class="shot">
+        <button type="button" data-zoom="images/courbe-play-learn.png" data-caption="Courbe d’expérience visée" aria-label="Agrandir la courbe d’expérience visée"><img src="images/courbe-play-learn.png" loading="lazy" decoding="async" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours"></button>
         <figcaption><b>Courbe d’expérience visée</b>La même activité que chez Wayground, une fois chaque étape problématique repensée.</figcaption>
       </figure>
-      <figure class="shot" data-shot>
-        <a href="images/sadt-a0.png" target="_blank" rel="noopener"><img src="images/sadt-a0.png" alt="Diagramme SADT A-0 : entrée informations de l’enfant, contrôles envie d’apprendre et consentement parental, sorties profil, compte et historique" loading="lazy" decoding="async"></a>
-        <figcaption><b>SADT, vue d’ensemble</b>Ce qui entre (informations de l’enfant), ce qui contrôle (envie d’apprendre, consentement parental), ce qui sort.</figcaption>
+      <figure class="shot">
+        <button type="button" data-zoom="images/sadt-a0.png" data-caption="SADT, vue d’ensemble" aria-label="Agrandir le diagramme SADT"><img src="images/sadt-a0.png" loading="lazy" decoding="async" alt="Diagramme SADT A-0 : entrée informations de l’enfant, contrôles envie d’apprendre et consentement parental, sorties profil, compte et historique"></button>
+        <figcaption><b>SADT, vue d’ensemble</b>Ce qui entre, ce qui contrôle (envie d’apprendre, consentement parental), ce qui sort.</figcaption>
       </figure>
-      <figure class="shot" data-shot>
-        <a href="images/structure-connexion.png" target="_blank" rel="noopener"><img src="images/structure-connexion.png" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques" loading="lazy" decoding="async"></a>
-        <figcaption><b>Structure d’un écran</b>L’écran de connexion décomposé ; en vert, ce que l’œil doit voir en premier à chaque niveau.</figcaption>
+      <figure class="shot">
+        <button type="button" data-zoom="images/structure-connexion.png" data-caption="Structure de l’écran de connexion" aria-label="Agrandir la structure de l’écran de connexion"><img src="images/structure-connexion.png" loading="lazy" decoding="async" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques"></button>
+        <figcaption><b>Structure d’un écran</b>L’écran de connexion décomposé ; en vert, ce que l’œil doit voir en premier.</figcaption>
       </figure>
-      <figure class="shot" data-shot>
-        <a href="images/statechart-connexion.png" target="_blank" rel="noopener"><img src="images/statechart-connexion.png" alt="Statechart de la connexion et de l’inscription : états de saisie, transitions clavier, validations et messages d’erreur" loading="lazy" decoding="async"></a>
+      <figure class="shot">
+        <button type="button" data-zoom="images/statechart-connexion.png" data-caption="Statechart de la connexion et de l’inscription" aria-label="Agrandir le statechart de la connexion"><img src="images/statechart-connexion.png" loading="lazy" decoding="async" alt="Statechart de la connexion et de l’inscription : états de saisie, transitions clavier, validations et messages d’erreur"></button>
         <figcaption><b>Statechart de la connexion</b>Chaque état, chaque transition clavier et chaque cas d’erreur, décidés avant le code.</figcaption>
       </figure>
     </div>
 
     <h3 class="gal-title">Dessiner, puis livrer</h3>
-    <div class="shots shots-screens reveal">
-      <figure class="shot" data-shot>
-        <a href="images/wireframes.png" target="_blank" rel="noopener"><img src="images/wireframes.png" alt="Neuf wireframes en niveaux de gris : ouverture, inscription, choix du sujet, exemples de questions, solo ou amis, choix du mode, récompenses, résultat, sortie" loading="lazy" decoding="async"></a>
+    <div class="gal gal-screens">
+      <figure class="shot">
+        <button type="button" data-zoom="images/wireframes.png" data-caption="Wireframes" aria-label="Agrandir les wireframes"><img src="images/wireframes.png" loading="lazy" decoding="async" alt="Neuf wireframes en niveaux de gris : ouverture, inscription, choix du sujet, exemples de questions, solo ou amis, choix du mode, récompenses, résultat, sortie"></button>
         <figcaption><b>Wireframes</b>Neuf écrans basse fidélité, de l’ouverture à la sortie.</figcaption>
       </figure>
-      <figure class="shot" data-shot>
-        <a href="images/maquette-connexion.png" target="_blank" rel="noopener"><img src="images/maquette-connexion.png" alt="Version finale, écran de connexion : inscription avec Google, Microsoft ou e-mail, puis formulaire court" loading="lazy" decoding="async"></a>
+      <figure class="shot">
+        <button type="button" data-zoom="images/maquette-connexion.png" data-caption="Version finale : connexion" aria-label="Agrandir l’écran de connexion de la version finale"><img src="images/maquette-connexion.png" loading="lazy" decoding="async" alt="Version finale, écran de connexion : inscription avec Google, Microsoft ou e-mail, puis formulaire court"></button>
         <figcaption><b>Version finale : connexion</b>Inscription en un geste, formulaire réduit au minimum.</figcaption>
       </figure>
-      <figure class="shot" data-shot>
-        <a href="images/maquette-minijeux.png" target="_blank" rel="noopener"><img src="images/maquette-minijeux.png" alt="Version finale, écran de sélection des mini-jeux : grille de cartes et bandeau de statistiques" loading="lazy" decoding="async"></a>
+      <figure class="shot">
+        <button type="button" data-zoom="images/maquette-minijeux.png" data-caption="Version finale : mini-jeux" aria-label="Agrandir l’écran des mini-jeux de la version finale"><img src="images/maquette-minijeux.png" loading="lazy" decoding="async" alt="Version finale, écran de sélection des mini-jeux : grille de cartes et bandeau de statistiques"></button>
         <figcaption><b>Version finale : mini-jeux</b>Grille de cartes et statistiques, dans le vert principal de la charte.</figcaption>
       </figure>
-      <figure class="shot" data-shot>
-        <a href="images/maquette-resultats.png" target="_blank" rel="noopener"><img src="images/maquette-resultats.png" alt="Version finale, écran de résultats : trophée, score 4 sur 5, trois étoiles, boutons Rejouer et Accueil" loading="lazy" decoding="async"></a>
-        <figcaption><b>Version finale : résultats</b>Récompense immédiate et « Rejouer » mis en avant pour dédramatiser l’erreur.</figcaption>
+      <figure class="shot">
+        <button type="button" data-zoom="images/maquette-resultats.png" data-caption="Version finale : résultats" aria-label="Agrandir l’écran de résultats de la version finale"><img src="images/maquette-resultats.png" loading="lazy" decoding="async" alt="Version finale, écran de résultats : trophée, score 4 sur 5, trois étoiles, boutons Rejouer et Accueil"></button>
+        <figcaption><b>Version finale : résultats</b>Récompense immédiate et « Rejouer » mis en avant.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-zoom="images/prototype-progression.png" data-caption="Première version du prototype : progression" aria-label="Agrandir l’écran de progression du prototype"><img src="images/prototype-progression.png" loading="lazy" decoding="async" alt="Prototype : progression du chapitre 1 avec XP, série de jours et étapes à débloquer"></button>
+        <figcaption><b>Prototype : progression</b>Chapitre, XP, série de jours et étapes à débloquer.</figcaption>
+      </figure>
+      <figure class="shot">
+        <button type="button" data-zoom="images/prototype-mode.png" data-caption="Première version du prototype : choix du mode" aria-label="Agrandir l’écran de choix du mode du prototype"><img src="images/prototype-mode.png" loading="lazy" decoding="async" alt="Prototype : choix du type de jeu Apprentissage ou Challenge et du nombre de joueurs"></button>
+        <figcaption><b>Prototype : choix du mode</b>Les deux branches de l’HTA, telles que conçues.</figcaption>
       </figure>
     </div>
-
-    <div class="shots-empty" id="shotsEmpty" hidden>
-      <b>Images manquantes.</b> Les images attendues sont dans le dossier <code>images/</code> du dépôt.
-    </div>
   </div>
 </section>
 
-<section id="stack">
+<section id="methodes">
   <div class="wrap">
-    <div class="section-tag">Méthodes</div>
+    <p class="over">Méthodes</p>
     <h2>Méthodes et outils</h2>
-    <div class="stack-groups reveal">
-      <div class="stack-group">
-        <div class="label">Recherche utilisateur</div>
-        <div class="chips">
-          <span class="chip">Étude de la cible</span>
-          <span class="chip">Analyse de l’activité</span>
-          <span class="chip">Courbe d’expérience</span>
-          <span class="chip">Analyse concurrentielle</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="label">Évaluation</div>
-        <div class="chips">
-          <span class="chip">SUS</span>
-          <span class="chip">DEEP</span>
-          <span class="chip">AttrakDiff</span>
-          <span class="chip">Critères de Bastien et Scapin</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="label">Spécification et modélisation</div>
-        <div class="chips">
-          <span class="chip">Analyse fonctionnelle</span>
-          <span class="chip">HTA</span>
-          <span class="chip">SADT</span>
-          <span class="chip">PAC</span>
-          <span class="chip">Statecharts</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="label">Interface et prototype</div>
-        <div class="chips">
-          <span class="chip">Wireframes</span>
-          <span class="chip">Lois de la Gestalt</span>
-          <span class="chip">Règle 60-30-10</span>
-          <span class="chip">React</span>
-        </div>
-      </div>
+    <div class="methods">
+      <div><h3>Recherche utilisateur</h3><div class="chips"><span class="chip">Étude de la cible</span><span class="chip">Analyse de l’activité</span><span class="chip">Courbe d’expérience</span></div></div>
+      <div><h3>Évaluation</h3><div class="chips"><span class="chip">SUS</span><span class="chip">DEEP</span><span class="chip">AttrakDiff</span><span class="chip">Bastien et Scapin</span></div></div>
+      <div><h3>Modélisation</h3><div class="chips"><span class="chip">Analyse fonctionnelle</span><span class="chip">HTA</span><span class="chip">SADT</span><span class="chip">PAC</span><span class="chip">Statecharts</span></div></div>
+      <div><h3>Interface</h3><div class="chips"><span class="chip">Wireframes</span><span class="chip">Gestalt</span><span class="chip">60-30-10</span><span class="chip">React</span></div></div>
     </div>
   </div>
 </section>
 
-<section id="perspectives">
+<section id="suite">
   <div class="wrap">
-    <div class="section-tag">Suite</div>
+    <p class="over">Suite</p>
     <h2>Ce que nous ferions avec plus de temps</h2>
-    <div class="perspective reveal">
-      <ul>
-        <li>Terminer les trois décisions partielles : un vrai mode Challenge à correction différée, « Rejouer » limité aux questions ratées, et des pauses proposées.</li>
-        <li>Faire tester le prototype par cinq enfants de 10 à 12 ans, en observant où ils hésitent, plutôt que d’en juger à leur place.</li>
-        <li>Passer notre propre prototype au SUS et au DEEP, pour comparer honnêtement avec les 47,5 de Wayground.</li>
-        <li>Appliquer les exigences d’accessibilité déjà écrites dans le cahier des charges : police OpenDyslexic, guidage audio, cibles tactiles de 44 px.</li>
-      </ul>
-    </div>
+    <ul class="next">
+      <li>Terminer les trois décisions partielles : un vrai mode Challenge à correction différée, « Rejouer » limité aux questions ratées, et des pauses proposées.</li>
+      <li>Faire tester le prototype par cinq enfants de 10 à 12 ans, en observant où ils hésitent, plutôt que d’en juger à leur place.</li>
+      <li>Passer notre propre prototype au SUS et au DEEP, pour comparer honnêtement avec les 47,5 de Wayground.</li>
+      <li>Appliquer les exigences d’accessibilité déjà écrites : police OpenDyslexic, guidage audio, cibles tactiles de 44 px.</li>
+    </ul>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
-    <p>PLAY &amp; LEARN — projet d’équipe, matière IHM (HM40), UTBM, 2026 · Belva YONTA · <a href="https://kysyb2006.github.io/">Retour au portfolio</a></p>
-    <p class="note">Chiffres et visuels issus des rendus du projet : cahier des charges, rapport final et rendus d’exercices. Statistiques sur la cible : INSEE, UNICEF France, Santé publique France. Moyenne SUS : Jeff Sauro, MeasuringU.</p>
+    <p>PLAY &amp; LEARN — projet d’équipe, matière IHM (HM40), UTBM, 2026. Sources : rendus du projet ; INSEE, UNICEF France et Santé publique France pour la cible ; Jeff Sauro (MeasuringU) pour la moyenne SUS.</p>
+    <a class="btn btn-line" href="https://kysyb2006.github.io/">← Retour au portfolio</a>
   </div>
 </footer>
 
-<button class="to-top" id="toTop" type="button" aria-label="Retour en haut" title="Retour en haut">↑</button>
+<dialog class="lightbox" id="lightbox" aria-label="Image agrandie">
+  <button type="button" class="close" aria-label="Fermer">×</button>
+  <img src="" alt="">
+  <p></p>
+</dialog>
 
 <script>
-(function(){
-  var root = document.documentElement;
+(function () {
+  'use strict';
 
-  var themeToggle = document.getElementById('themeToggle');
-  themeToggle.addEventListener('click', function(){
-    var isDark = root.getAttribute('data-theme') === 'dark';
-    var next = isDark ? 'light' : 'dark';
-    if(next === 'dark'){ root.setAttribute('data-theme','dark'); } else { root.removeAttribute('data-theme'); }
-    localStorage.setItem('mc-theme', next);
-  });
-
-  var navToggle = document.getElementById('navToggle');
-  var navLinksEl = document.getElementById('navLinks');
-  if(navToggle && navLinksEl){
-    navToggle.addEventListener('click', function(){
-      var isOpen = navLinksEl.classList.toggle('mobile-open');
-      navToggle.classList.toggle('open', isOpen);
-      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  /* Onglets du graphique (flèches du clavier) */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.seg [role="tab"]'));
+  function pick(t, focus) {
+    tabs.forEach(function (x) {
+      var on = x === t;
+      x.setAttribute('aria-selected', on ? 'true' : 'false');
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
     });
-    navLinksEl.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        navLinksEl.classList.remove('mobile-open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded','false');
-      });
-    });
+    if (focus) t.focus();
   }
-
-  var progressBar = document.getElementById('progressBar');
-  var siteNav = document.getElementById('siteNav');
-  function updateProgress(){
-    var h = document.documentElement;
-    var scrollable = h.scrollHeight - h.clientHeight;
-    var pct = scrollable > 0 ? (h.scrollTop / scrollable) * 100 : 0;
-    progressBar.style.width = pct + '%';
-    if(siteNav){ siteNav.classList.toggle('scrolled', h.scrollTop > 8); }
-  }
-  window.addEventListener('scroll', updateProgress, {passive:true});
-  updateProgress();
-
-  var toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', function(){
-    toTop.classList.toggle('show', window.scrollY > 480);
-  }, {passive:true});
-  toTop.addEventListener('click', function(){
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-
-  var revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, {threshold:0.15});
-    revealEls.forEach(function(el){ io.observe(el); });
-  } else {
-    revealEls.forEach(function(el){ el.classList.add('in'); });
-  }
-
-  function animateBarsIn(container){
-    var fills = container.querySelectorAll('.tab-panel.active .bar-fill[data-width]');
-    fills.forEach(function(f, i){
-      setTimeout(function(){ f.style.width = f.getAttribute('data-width'); }, 100 + i * 70);
-    });
-  }
-  var insightEls = document.querySelectorAll('.insight');
-  if('IntersectionObserver' in window){
-    var insightIo = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          animateBarsIn(entry.target);
-          insightIo.unobserve(entry.target);
-        }
-      });
-    }, {threshold:0.4});
-    insightEls.forEach(function(el){ insightIo.observe(el); });
-  } else {
-    insightEls.forEach(function(el){ animateBarsIn(el); });
-  }
-
-  // ── Galerie : masque les figures dont l'image est absente ───────────────
-  (function(){
-    var grid = document.getElementById('shots');
-    var empty = document.getElementById('shotsEmpty');
-    if(!grid) return;
-    var figures = grid.querySelectorAll('[data-shot]');
-    var pending = figures.length;
-    function settle(){
-      if(--pending > 0) return;
-      var left = grid.querySelectorAll('[data-shot]:not([hidden])').length;
-      if(left === 0){ grid.hidden = true; if(empty) empty.hidden = false; }
-    }
-    figures.forEach(function(fig){
-      var img = fig.querySelector('img');
-      if(!img){ fig.hidden = true; settle(); return; }
-      if(img.complete){
-        if(!img.naturalWidth) fig.hidden = true;
-        settle();
-      } else {
-        img.addEventListener('load', settle, {once:true});
-        img.addEventListener('error', function(){ fig.hidden = true; settle(); }, {once:true});
-      }
-    });
-  })();
-
-  var sections = document.querySelectorAll('section[id]');
-  var navLinks = document.querySelectorAll('nav ul a');
-  if('IntersectionObserver' in window){
-    var navIo = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(!entry.isIntersecting) return;
-        var id = entry.target.getAttribute('id');
-        navLinks.forEach(function(l){ l.classList.remove('active'); });
-        var link = document.querySelector('nav ul a[href="#' + id + '"]');
-        if(link){ link.classList.add('active'); }
-      });
-    }, {rootMargin:'-42% 0px -50% 0px', threshold:0});
-    sections.forEach(function(s){ navIo.observe(s); });
-  }
-
-  document.querySelectorAll('.code-block').forEach(function(block){
-    var btn = block.querySelector('.copy-btn');
-    var pre = block.querySelector('pre');
-    if(!btn || !pre) return;
-    btn.addEventListener('click', function(){
-      var text = pre.innerText;
-      var done = function(){
-        var original = btn.textContent;
-        btn.textContent = 'Copié ✓';
-        btn.classList.add('copied');
-        setTimeout(function(){ btn.textContent = original; btn.classList.remove('copied'); }, 1500);
-      };
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(done).catch(done);
-      } else {
-        var ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select();
-        try{ document.execCommand('copy'); }catch(e){}
-        document.body.removeChild(ta);
-        done();
-      }
-    });
-  });
-
-  document.querySelectorAll('.tabs[role="tablist"]').forEach(function(tabGroup){
-    var buttons = tabGroup.querySelectorAll('.tab-btn');
-    var insight = tabGroup.closest('.insight');
-    var panels = insight ? insight.querySelectorAll('.tab-panel') : [];
-    buttons.forEach(function(btn){
-      btn.addEventListener('click', function(){ activateTab(btn); });
-      btn.addEventListener('keydown', function(e){
-        if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(t, false); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
         e.preventDefault();
-        var list = Array.prototype.slice.call(buttons);
-        var idx = list.indexOf(btn);
-        var next = e.key === 'ArrowRight' ? (idx + 1) % list.length : (idx - 1 + list.length) % list.length;
-        list[next].focus();
-        activateTab(list[next]);
-      });
+        pick(tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length], true);
+      }
     });
-    function activateTab(btn){
-      buttons.forEach(function(b){ b.setAttribute('aria-selected','false'); b.setAttribute('tabindex','-1'); });
-      btn.setAttribute('aria-selected','true'); btn.setAttribute('tabindex','0');
-      var target = btn.getAttribute('data-tab');
-      panels.forEach(function(p){
-        var match = p.getAttribute('data-panel') === target;
-        p.classList.toggle('active', match);
-        if(match){
-          var fills = p.querySelectorAll('.bar-fill[data-width]');
-          fills.forEach(function(f){ f.style.width = '0%'; });
-          requestAnimationFrame(function(){
-            setTimeout(function(){
-              fills.forEach(function(f, i){
-                setTimeout(function(){ f.style.width = f.getAttribute('data-width'); }, i * 60);
-              });
-            }, 30);
-          });
-        }
-      });
-    }
   });
+
+  /* Visionneuse d'images */
+  var box = document.getElementById('lightbox');
+  var boxImg = box.querySelector('img');
+  var boxCap = box.querySelector('p');
+  var opener = null;
+  document.querySelectorAll('[data-zoom]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var img = b.querySelector('img');
+      boxImg.src = b.getAttribute('data-zoom');
+      boxImg.alt = img ? img.alt : '';
+      boxCap.textContent = b.getAttribute('data-caption') || '';
+      opener = b;
+      if (typeof box.showModal === 'function') box.showModal();
+      else window.open(b.getAttribute('data-zoom'), '_blank');
+    });
+  });
+  box.querySelector('.close').addEventListener('click', function () { box.close(); });
+  box.addEventListener('click', function (e) { if (e.target === box) box.close(); });
+  box.addEventListener('close', function () { if (opener) opener.focus(); });
+
+  /* Sommaire : section en cours, indice de défilement, progression de lecture */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var wrap = document.querySelector('.toc-wrap');
+  var toc = document.querySelector('.toc');
+  var bar = document.getElementById('progress');
+  function fade() { wrap.classList.toggle('has-more', toc.scrollLeft + toc.clientWidth < toc.scrollWidth - 4); }
+  function onScroll() {
+    var y = window.pageYOffset;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, y / h * 100) : 0) + '%';
+    var cur = null;
+    links.forEach(function (a) {
+      var s = document.querySelector(a.getAttribute('href'));
+      if (s && s.getBoundingClientRect().top <= 120) cur = a;
+    });
+    links.forEach(function (a) {
+      var on = a === cur;
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  toc.addEventListener('scroll', fade, { passive: true });
+  window.addEventListener('resize', fade);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  fade(); onScroll();
 })();
 </script>
-
 </body>
 </html>
