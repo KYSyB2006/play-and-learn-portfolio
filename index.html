@@ -274,7 +274,7 @@ footer .btn-line{background:#fff;border-color:#fff;color:var(--green-dark)}
   .lightbox .prev{left:4px;top:auto;bottom:-60px;transform:none}.lightbox .next{right:4px;top:auto;bottom:-60px;transform:none}
 }
 
-/* Refonte ludique : cartes de jeu/* Version sobre : palette du jeu, mise en forme minimaliste */
+/* Version sobre : palette du jeu, mise en forme minimaliste */
 body{background:var(--bg);color:var(--ink)}
 h1,h2,h3,h4,.ex-title,.chart-head h4{font-family:var(--display);color:var(--ink)}
 h1{font-weight:800;letter-spacing:-.02em}
@@ -391,7 +391,9 @@ section+section{border-top:var(--edge)}
 footer{background:#fff;border-top:var(--edge)}
 footer p{color:var(--muted)}
 footer .btn-line{background:#fff;color:var(--ink)}
-h:960px){
+
+/* Responsive */
+@media (max-width:960px){
   .hero .wrap{grid-template-columns:1fr}
   .hero-shot{display:none}
   .flow{grid-template-columns:repeat(2,minmax(0,1fr))}
