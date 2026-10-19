@@ -170,6 +170,9 @@ h3{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.3;mar
 .shot button{display:flex;align-items:center;justify-content:center;padding:14px;border:0;background:#fff;cursor:zoom-in;height:320px}
 .gal-screens .shot button{height:360px}
 .shot img{width:100%;height:100%;object-fit:contain}
+.shot-wide{grid-column:1/-1}
+.gal .shot-wide button{height:auto;max-height:560px}
+.shot-wide img{height:auto}
 .shot figcaption{flex:1;padding:14px 16px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
 .shot figcaption b{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
 .shot button:hover,.fig button:hover{background:#FCFCFC}
@@ -300,6 +303,7 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
           <dt>HTA</dt><dd>La tâche de l’utilisateur découpée en sous-tâches, avec leur enchaînement.</dd>
           <dt>SADT</dt><dd>Diagrammes de flux : ce qui entre, contrôle et sort de chaque activité.</dd>
           <dt>F0 à F3</dt><dd>Flexibilité d’une exigence, de non négociable (F0) à indicative (F3).</dd>
+          <dt>Diagramme de classes</dt><dd>Les objets manipulés par l’application et leurs liens : le modèle de données.</dd>
           <dt>PAC, statechart</dt><dd>Modèles d’un écran : ses composants, avec leur rôle (abstraction) et leur forme à l’écran (présentation), puis ses états et transitions.</dd>
         </dl>
       </div>
@@ -434,8 +438,8 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
             <li><b>Écrans</b>Structure, lois de la Gestalt, charte 60-30-10, PAC et statecharts</li>
           </ol>
           <figure class="fig">
-            <button type="button" data-zoom="images/hta.png" data-caption="Analyse hiérarchique de la tâche (HTA)" aria-label="Agrandir le diagramme HTA"><img src="images/hta.png" width="1152" height="424" loading="lazy" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données"></button>
-            <figcaption><b>Analyse hiérarchique de la tâche.</b> Cinq activités ; la branche « Sélectionner une activité » sépare les modes Apprentissage et Challenge.</figcaption>
+            <button type="button" data-zoom="images/hta.png" data-caption="Analyse hiérarchique de la tâche (HTA)" aria-label="Agrandir le diagramme HTA"><img src="images/hta.png" width="1600" height="577" loading="lazy" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données"></button>
+            <figcaption><b>Analyse hiérarchique de la tâche.</b> Cinq activités enchaînées (« Puis »). La branche « Sélectionner une activité » offre des choix exclusifs (« Ou »), et « Réaliser une partie » boucle jusqu’à la fin du quiz.</figcaption>
           </figure>
           <figure class="fig">
             <button type="button" data-zoom="images/navigation-globale.png" data-caption="Navigation globale entre les 7 écrans" aria-label="Agrandir le diagramme de navigation globale"><img src="images/navigation-globale.png" width="1367" height="661" loading="lazy" decoding="async" alt="Statechart de navigation globale : connexion, sélection du mini-jeu, choix du sujet, progression, choix du mode, écran de jeu, écran de résultat, avec les retours et la déconnexion"></button>
@@ -494,13 +498,17 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
 
     <h3 class="gal-title">Modéliser</h3>
     <div class="gal gal-diag">
+      <figure class="shot shot-wide">
+        <button type="button" data-zoom="images/diagramme-classes.png" data-caption="Diagramme de classes" aria-label="Agrandir le diagramme de classes"><img src="images/diagramme-classes.png" loading="lazy" decoding="async" alt="Diagramme de classes UML : compte, profil, sauvegarde, historique, badge, session, partie, niveau, matière, question, réponse juste ou fausse, explication, feedback, résumé de partie, score et mode de jeu, avec leurs associations et cardinalités"></button>
+        <figcaption><b>Diagramme de classes</b>Le modèle de données du jeu : un compte ouvre des sessions, chaque partie porte sur une matière et contient des questions ; les réponses, explications et scores alimentent le résumé de partie et l’historique.</figcaption>
+      </figure>
       <figure class="shot">
         <button type="button" data-zoom="images/courbe-play-learn.png" data-caption="Courbe d’expérience visée" aria-label="Agrandir la courbe d’expérience visée"><img src="images/courbe-play-learn.png" loading="lazy" decoding="async" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours"></button>
         <figcaption><b>Courbe d’expérience visée</b>La même activité que chez Wayground, une fois chaque étape problématique repensée.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-zoom="images/sadt-a0.png" data-caption="SADT, vue d’ensemble" aria-label="Agrandir le diagramme SADT"><img src="images/sadt-a0.png" loading="lazy" decoding="async" alt="Diagramme SADT A-0 : entrée informations de l’enfant, contrôles envie d’apprendre et consentement parental, sorties profil, compte et historique"></button>
-        <figcaption><b>SADT, vue d’ensemble</b>Ce qui entre, ce qui contrôle (envie d’apprendre, consentement parental), ce qui sort.</figcaption>
+        <button type="button" data-zoom="images/sadt-partie.png" data-caption="SADT : réaliser une partie" aria-label="Agrandir le diagramme SADT d’une partie"><img src="images/sadt-partie.png" loading="lazy" decoding="async" alt="Diagramme SADT de l’activité Réaliser une partie : lire la question, y répondre, recevoir le feedback, revoir le résumé, avec les flux question, réponses, historique, explication et profil"></button>
+        <figcaption><b>SADT : réaliser une partie</b>Les quatre étapes d’une partie et les données qui circulent de l’une à l’autre, jusqu’au résumé et au profil mis à jour.</figcaption>
       </figure>
       <figure class="shot">
         <button type="button" data-zoom="images/structure-connexion.png" data-caption="Structure de l’écran de connexion" aria-label="Agrandir la structure de l’écran de connexion"><img src="images/structure-connexion.png" loading="lazy" decoding="async" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques"></button>
