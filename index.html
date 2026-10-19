@@ -228,13 +228,13 @@ footer p{margin:0;font-size:14px;color:var(--muted);max-width:640px}
 .ex-choices{margin-top:14px}
 .ex-choices:empty{display:none}
 .ex-choices-label{margin:0 0 8px;font-size:14px;font-weight:600;color:var(--muted)}
-.ex-chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);font:inherit;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer}
+.ex-chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);font:inherit;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer}
 .ex-chip:hover{border-color:var(--ink)}
 .ex-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.ex-actions .btn{min-height:44px;cursor:pointer;font:inherit;font-size:15px;font-weight:600}
+.ex-actions .btn{min-height:44px;cursor:pointer;font:inherit;font-size:16px;font-weight:600}
 .ex-actions [hidden]{display:none}
 .sr-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.gal-note{margin:-6px 0 14px;color:var(--muted);font-size:15px}
+.gal-note{margin:-6px 0 14px;color:var(--muted);font-size:16px}
 @media (max-width:720px){.ex-top,.ex-panel{padding:14px}.ex-tabs{width:100%;justify-content:space-between}.ex-tabs button{padding:0 10px;flex:1}.ex-frame img{max-height:420px}}
 
 /* Corrections UX/UI */
@@ -269,7 +269,7 @@ footer .btn-line{background:#fff;border-color:#fff;color:var(--green-dark)}
   .ex-stage:not(.is-wide){align-items:center}
   .ex-hint{display:block;visibility:hidden;min-height:1.5em}
   .ex-tabs{gap:2px}
-  .ex-tabs button{padding:0 6px;min-width:0;font-size:15px}
+  .ex-tabs button{padding:0 6px;min-width:0;font-size:16px}
   .ex-hint.on{visibility:visible}
   .lightbox .prev{left:4px;top:auto;bottom:-60px;transform:none}.lightbox .next{right:4px;top:auto;bottom:-60px;transform:none}
 }
@@ -317,7 +317,7 @@ h3{font-weight:700}
 /* Sections et cartes */
 section+section{border-top:var(--edge)}
 #comprendre,#ecrans{background:#fff}
-.over{font-size:15px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--green-dark)}
+.over{font-size:16px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--green-dark)}
 .sub{color:var(--muted)}
 .card{border:var(--edge);border-radius:20px;box-shadow:none;background:#fff}
 #comprendre .card,#ecrans .card{background:var(--bg)}
@@ -392,6 +392,56 @@ footer{background:#fff;border-top:var(--edge)}
 footer p{color:var(--muted)}
 footer .btn-line{background:#fff;color:var(--ink)}
 
+/* Corrections de la critique (soir) */
+/* 1. Longueur de ligne */
+.step p,.step li,.more-body p,.callout,.limit,.ex-desc,.tally-lead{max-width:34rem}
+.sub{max-width:36rem}
+.step .lead-kpi,.step .tbl{max-width:none}
+/* 4. Méthodes en quatre lignes */
+.methods-list{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.methods-list dt{font-weight:700;color:var(--ink)}
+.methods-list dd{margin:0;color:var(--muted)}
+/* 5. C / A / R : une ligne de progression plutôt que des lettres */
+.step{position:relative;grid-template-columns:28px minmax(0,1fr)}
+.step::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:2px;background:var(--line)}
+.step:first-of-type::before{top:14px}
+.step:last-of-type::before{bottom:auto;height:30px}
+.badge{position:relative;z-index:1;width:14px;height:14px;margin-top:10px;border-radius:50%;background:var(--green);border:3px solid var(--bg);box-shadow:0 0 0 1px var(--green);font-size:0;color:transparent}
+#comprendre .badge,#ecrans .badge{border-color:var(--bg)}
+.step-label{margin-top:4px}
+/* 7. Résultat du Cas 2 en tête */
+.tally{margin:14px 0 8px;padding:18px 20px;border-radius:14px;background:#fff;border:var(--edge)}
+.tally-lead{margin:0 0 12px;font-weight:600;color:var(--ink)}
+.tally-bar{display:flex;gap:4px;height:14px}
+.tally-bar span{border-radius:4px}
+.t-ok{background:var(--green)}
+.t-part{background:var(--yellow)}
+.t-no{background:#fff;border:1.5px dashed var(--faint)}
+.tally-key{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px;font-size:14px;color:var(--text)}
+.tally-key i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+/* Explorateur : version écrite sur l'image, niveau visible */
+.ex-frame{position:relative}
+.ex-tag{position:absolute;left:8px;top:8px;margin:0;padding:3px 10px;border-radius:999px;background:var(--yellow-soft);color:var(--ink);font-size:14px;font-weight:600;line-height:1.4;z-index:2}
+.ex-tag.is-final{background:var(--green);color:#fff}
+.ex-crumbs ol{margin-bottom:2px}
+.ex-intro{font-family:var(--display)}
+/* 8. Galerie : wireframes en grand */
+.gal-feature{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto}
+.gal-feature .shot:first-child{grid-row:1/3}
+.gal-feature .shot:first-child button{height:auto;max-height:none;flex:1}
+.gal-feature .shot:first-child img{height:auto;max-height:620px}
+.gal-feature .shot:not(:first-child) button{height:220px}
+/* Typographie : échelle resserrée */
+.st{font-size:14px}
+.gal-note{font-size:16px}
+.ex-actions .btn{font-size:16px}
+
+/* Étapes compactes */
+.flow{gap:8px}
+.flow li{padding:12px 14px;font-size:14px}
+.flow b{font-size:16px;margin-bottom:0}
+@media (max-width:420px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 /* Responsive */
 @media (max-width:960px){
   .hero .wrap{grid-template-columns:1fr}
@@ -426,7 +476,30 @@ footer .btn-line{background:#fff;color:var(--ink)}
   .tbl tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}
   .tbl td{display:block;border:0;padding:4px 0}
 }
-@media (max-width:420px){.flow{grid-template-columns:1fr}.gal-screens{grid-template-columns:1fr}}
+@media (max-width:420px){.gal-screens{grid-template-columns:1fr}}
+@media (max-width:960px){
+  .hero-shot{display:block;max-width:300px;margin:8px auto 0;padding:12px}
+  .hero-shot img{max-height:300px;object-fit:cover;object-position:top}
+  .hero-shot::before{inset:0 0 34px 0}
+  .gal-feature{grid-template-columns:1fr}
+  .gal-feature .shot:first-child{grid-row:auto}
+}
+@media (max-width:720px){
+  .hero-shot{max-width:240px}
+  .hero-shot img{max-height:240px}
+  .ex-tabs button{font-size:14px;padding:0 8px;flex:1 1 auto;min-width:0}
+  .ex-top{flex-direction:column;align-items:stretch}
+  .ex-top .ex-tabs{width:100%;box-sizing:border-box}
+  .ex-top .ex-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;border-radius:24px}
+  .ex-top .ex-tabs button{width:100%;padding:0 6px;font-size:16px}
+  .step{grid-template-columns:20px minmax(0,1fr);gap:10px}
+  .badge{width:12px;height:12px;margin-top:8px}
+  .step::before{left:5px}
+  .gal-feature .shot:first-child img{max-height:440px}
+  .methods-list{grid-template-columns:1fr;gap:0}
+  .methods-list dd{margin-bottom:8px}
+}
+
 </style>
 </head>
 <body>
@@ -434,14 +507,14 @@ footer .btn-line{background:#fff;color:var(--ink)}
 
 <header class="top">
   <div class="wrap">
-    <a class="back" href="https://kysyb2006.github.io/" aria-label="Retour au portfolio"><span class="arrow" aria-hidden="true">←</span><span class="label" aria-hidden="true">Portfolio</span></a>
+    <a class="back" href="https://kysyb2006.github.io/" aria-label="Retour au portfolio"><span class="arrow" aria-hidden="true">←</span><span class="label" aria-hidden="true">Portfolio de Belva YONTA</span></a>
     <nav class="toc-wrap" aria-label="Sections de l’étude de cas">
       <div class="toc">
         <a href="#projet">Projet</a>
         <a href="#comprendre">Comprendre</a>
         <a href="#concevoir">Concevoir</a>
-        <a href="#ecrans">Écrans</a>
-        <a href="#suite">Suite</a>
+        <a href="#ecrans">Dessiner</a>
+        <a href="#suite">Améliorer</a>
       </div>
     </nav>
   </div>
@@ -455,20 +528,15 @@ footer .btn-line{background:#fff;color:var(--ink)}
     <div>
       <p class="status">Projet IHM · UTBM · 2026</p>
       <h1>Concevoir un jeu éducatif que des enfants de 10 à 12 ans ont envie d’ouvrir</h1>
-      <p class="lede">PLAY &amp; LEARN est un ludiciel de culture générale pour préadolescents. Avant d’écrire une ligne de code, l’équipe a étudié la cible, mesuré les défauts d’un concurrent, puis traduit chaque mesure en exigence, en diagramme et en écran : des décisions fondées sur des chiffres plutôt que sur des goûts.</p>
-      <div class="meta">
-        <span class="pill">Étude de cas UX / IHM</span>
-        <span class="pill">Projet d’équipe</span>
-        <span class="pill">Belva YONTA</span>
-      </div>
+      <p class="lede">Un jeu de culture générale pour les 10 – 12 ans. Avant d’écrire une ligne de code, notre équipe a mesuré la cible et un concurrent, puis traduit chaque mesure en exigence et en écran.</p>
       <div class="cta">
         <a class="btn btn-dark" href="#comprendre">Voir les deux cas d’étude</a>
-        <a class="btn btn-line" href="#ecrans">Voir les écrans</a>
+        <a class="btn btn-line" href="#ecrans">Voir les maquettes</a>
       </div>
     </div>
     <figure class="hero-shot">
       <img src="images/prototype-quiz.png" width="585" height="1266" decoding="async" alt="Prototype : question de quiz corrigée, la bonne et la mauvaise réponse signalées, encadré Le savais-tu">
-      <figcaption>Première version du prototype</figcaption>
+      <figcaption>Prototype</figcaption>
     </figure>
   </div>
 </section>
@@ -488,12 +556,17 @@ footer .btn-line{background:#fff;color:var(--ink)}
           <li>Analyse de la tâche, structure et maquettes des 7 écrans</li>
           <li>Un prototype React</li>
         </ul>
-        <h3>Deux versions du produit</h3>
-        <p><b>Première version du prototype</b> : les captures à fond clair. <b>Version finale</b> : décrite dans le rapport, avec comptes et sauvegarde hors ligne ; ses écrans figurent dans l’explorateur du Cas 2 (fond vert), son code n’est pas public.</p>
+        <h3>Deux versions</h3>
+        <p>Le <b>prototype</b> React codé par l’équipe, et la <b>version finale</b> décrite dans le rapport, avec comptes et sauvegarde hors ligne (code non public). Chaque écran de la page indique sa version.</p>
       </div>
       <div>
         <h3>Méthodes</h3>
-        <p>Recherche utilisateur (étude de la cible, analyse de l’activité, courbe d’expérience) ; évaluation (SUS, DEEP, AttrakDiff, critères de Bastien et Scapin) ; modélisation (analyse fonctionnelle, HTA, SADT, diagramme de classes, PAC, statecharts) ; interface (wireframes, lois de la Gestalt, règle 60-30-10) ; prototype React.</p>
+        <dl class="methods-list">
+          <dt>Recherche</dt><dd>Étude de la cible, analyse de l’activité, courbe d’expérience</dd>
+          <dt>Évaluation</dt><dd>SUS, DEEP, AttrakDiff, Bastien et Scapin</dd>
+          <dt>Modélisation</dt><dd>Analyse fonctionnelle, HTA, SADT, classes, PAC, statecharts</dd>
+          <dt>Interface</dt><dd>Wireframes, Gestalt, règle 60-30-10, prototype React</dd>
+        </dl>
         <details class="more glossary-box">
           <summary>Les termes utilisés (8)</summary>
           <div class="more-body">
@@ -621,6 +694,17 @@ footer .btn-line{background:#fff;color:var(--ink)}
 
     <article class="card">
       <h3 class="case-title">Chaque écran doit pouvoir remonter jusqu’à un besoin</h3>
+      <aside class="tally" aria-label="Résultat en bref">
+        <p class="tally-lead">Sur les 7 décisions issues du Cas 1, le prototype en livre 3 entièrement et 3 en partie.</p>
+        <div class="tally-bar" role="img" aria-label="7 décisions : 3 livrées, 3 en partie, 1 absente">
+          <span class="t-ok" style="flex:3"></span><span class="t-part" style="flex:3"></span><span class="t-no" style="flex:1"></span>
+        </div>
+        <ul class="tally-key">
+          <li><i class="t-ok" aria-hidden="true"></i>3 livrées</li>
+          <li><i class="t-part" aria-hidden="true"></i>3 en partie</li>
+          <li><i class="t-no" aria-hidden="true"></i>1 absente du prototype</li>
+        </ul>
+      </aside>
 
       <div class="step">
         <span class="badge" aria-hidden="true">C</span>
@@ -634,30 +718,30 @@ footer .btn-line{background:#fff;color:var(--ink)}
         <span class="badge" aria-hidden="true">A</span>
         <div>
           <p class="step-label">Action</p>
-          <p>La conception avance en quatre étapes, chacune appuyée sur un diagramme que vous pouvez explorer ci-dessous.</p>
+          <p>La conception avance en quatre étapes, du besoin à l’écran. Les diagrammes de chaque étape s’explorent ci-dessous.</p>
           <ol class="flow">
-            <li><b>Besoin</b>À qui sert le produit, dans quel but, et ses 9 situations de vie</li>
-            <li><b>Exigences</b>22 fonctions, chacune mesurable, avec une flexibilité de F0 à F3</li>
-            <li><b>Tâches</b>HTA en 5 activités, puis diagrammes SADT</li>
-            <li><b>Écrans</b>Structure, lois de la Gestalt, charte 60-30-10, PAC et statecharts</li>
+            <li><b>Besoin</b>9 situations de vie</li>
+            <li><b>Exigences</b>22 fonctions, F0 à F3</li>
+            <li><b>Tâches</b>HTA et SADT</li>
+            <li><b>Écrans</b>7 écrans, PAC, statecharts</li>
           </ol>
           <div class="explorer" id="explorer">
             <div class="ex-top">
-              <p class="ex-intro">Explorer la conception : touchez un cadre ou un bouton pour zoomer d’un niveau.</p>
+              <p class="ex-intro">Explorer la conception, niveau par niveau</p>
               <div class="seg ex-tabs" role="tablist" aria-label="Diagramme à explorer">
-                <button type="button" role="tab" id="ex-t-hta" aria-selected="true" aria-controls="ex-panel" data-root="hta">Tâches</button>
+                <button type="button" role="tab" id="ex-t-nav" aria-selected="true" aria-controls="ex-panel" data-root="nav">Écrans</button>
+                <button type="button" role="tab" id="ex-t-hta" aria-selected="false" aria-controls="ex-panel" data-root="hta" tabindex="-1">Tâches</button>
                 <button type="button" role="tab" id="ex-t-sadt" aria-selected="false" aria-controls="ex-panel" data-root="sadt" tabindex="-1">Activités</button>
-                <button type="button" role="tab" id="ex-t-nav" aria-selected="false" aria-controls="ex-panel" data-root="nav" tabindex="-1">Écrans</button>
                 <button type="button" role="tab" id="ex-t-classes" aria-selected="false" aria-controls="ex-panel" data-root="classes" tabindex="-1">Données</button>
               </div>
             </div>
-            <div class="ex-panel" id="ex-panel" role="tabpanel" aria-labelledby="ex-t-hta">
-              <nav class="ex-crumbs" aria-label="Niveau affiché" hidden><ol id="ex-crumbs"><li><span aria-current="page">Analyse hiérarchique de la tâche</span></li></ol></nav>
-              <h4 class="ex-title" id="ex-title" tabindex="-1">Analyse hiérarchique de la tâche</h4>
-              <p class="ex-desc" id="ex-desc">La tâche « Jouer à PLAY &amp; LEARN et apprendre », découpée en 5 activités qui s’enchaînent (« Puis »).</p>
+            <div class="ex-panel" id="ex-panel" role="tabpanel" aria-labelledby="ex-t-nav">
+              <nav class="ex-crumbs" aria-label="Niveau affiché" hidden><ol id="ex-crumbs"><li><span aria-current="page">Navigation globale</span></li></ol></nav>
+              <h4 class="ex-title" id="ex-title" tabindex="-1">Navigation globale</h4>
+              <p class="ex-desc" id="ex-desc">Les 7 écrans et leurs transitions.</p>
               <div class="seg ex-views" id="ex-views" role="tablist" aria-label="Vue" hidden></div>
               <div class="ex-stage" id="ex-stage" role="region" aria-label="Diagramme affiché" tabindex="0">
-                <img id="ex-img" src="images/hta.png" width="1600" height="577" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités">
+                <img id="ex-img" src="images/navigation-globale.png" width="1367" height="661" decoding="async" alt="Statechart de navigation globale entre les 7 écrans">
               </div>
               <p class="ex-hint" id="ex-hint">Faites glisser le diagramme vers la gauche pour le parcourir.</p>
               <p class="ex-note" id="ex-note" hidden></p>
@@ -676,14 +760,16 @@ footer .btn-line{background:#fff;color:var(--ink)}
         <span class="badge" aria-hidden="true">R</span>
         <div>
           <p class="step-label">Résultat</p>
-          <p>Nous avons repris les 7 décisions du Cas 1 et vérifié chacune dans le code de la première version du prototype.</p>
-          <div class="kpis">
-            <div class="kpi"><span class="n">3 / 7</span><span class="l">entièrement livrées</span></div>
-            <div class="kpi"><span class="n">3 / 7</span><span class="l">livrées en partie</span></div>
-            <div class="kpi"><span class="n">1 / 7</span><span class="l">réservée à la version finale</span></div>
-          </div>
-          <table class="tbl">
-            <thead><tr><th>Décision</th><th>Dans la première version du prototype</th></tr></thead>
+          <p>Nous avons repris les 7 décisions du Cas 1 et vérifié chacune dans le code du prototype : 3 sont livrées, 3 le sont en partie, 1 est réservée à la version finale.</p>
+          <div class="callout"><b>Ce que ça change :</b> les trois décisions partielles répondent aux faiblesses les plus graves de Wayground, l’anxiété face à l’échec et l’élan coupé. Ce sont les premières à finaliser, et les premières à faire tester par des enfants.</div>
+          <p class="limit"><b>Écarts assumés :</b> une application web React au lieu de l’application mobile prévue, un multijoueur conçu mais « bientôt disponible », et aucun test avec de vrais enfants.</p>
+
+          <details class="more">
+            <summary>Voir le détail : les 7 décisions, deux modes et traçabilité</summary>
+            <div class="more-body">
+              <h4>Les 7 décisions, une par une</h4>
+              <table class="tbl">
+            <thead><tr><th>Décision</th><th>Dans le prototype</th></tr></thead>
             <tbody>
               <tr><td>① Retour visible sur chaque écran</td><td><span class="st st-ok">Livrée</span>Flèche de retour sur tous les écrans</td></tr>
               <tr><td>② Mode Apprentissage</td><td><span class="st st-ok">Livrée</span>Correction immédiate et encadré « Le savais-tu ? »</td></tr>
@@ -694,12 +780,6 @@ footer .btn-line{background:#fff;color:var(--ink)}
               <tr><td>⑥ Hors ligne et synchronisation</td><td><span class="st st-final">Absente</span>Prévue dans la version finale, pas dans ce prototype</td></tr>
             </tbody>
           </table>
-          <div class="callout"><b>Ce que ça change :</b> les trois décisions partielles répondent aux faiblesses les plus graves de Wayground, l’anxiété face à l’échec et l’élan coupé. Ce sont les premières à finaliser, et les premières à faire tester par des enfants.</div>
-          <p class="limit"><b>Écarts assumés :</b> une application web React au lieu de l’application mobile prévue, un multijoueur conçu mais « bientôt disponible », et aucun test avec de vrais enfants.</p>
-
-          <details class="more">
-            <summary>Voir le détail : deux modes et traçabilité</summary>
-            <div class="more-body">
               <h4>Pourquoi deux modes plutôt qu’un</h4>
               <p>L’analyse de la tâche a fait apparaître deux besoins contradictoires : apprendre, donc être corrigé tout de suite, et se mesurer, donc ne pas être interrompu. Plutôt qu’un compromis qui servirait mal les deux, l’HTA les sépare en deux branches.</p>
               <h4>Un exemple de traçabilité</h4>
@@ -717,19 +797,19 @@ footer .btn-line{background:#fff;color:var(--ink)}
 <section id="ecrans">
   <div class="wrap">
     <h2>Du croquis à l’écran</h2>
-    <p class="sub">Trois livrables qui complètent l’explorateur. Touchez une image pour l’agrandir, puis passez à la suivante avec les flèches.</p>
+    <p class="sub">Les wireframes du parcours, la courbe d’expérience visée et la structure d’un écran. Touchez une image pour l’agrandir.</p>
 
-    <div class="gal gal-three">
+    <div class="gal gal-feature">
       <figure class="shot">
-        <button type="button" data-zoom="images/wireframes.png" data-caption="Wireframes" aria-label="Agrandir les wireframes"><img src="images/wireframes.png" loading="lazy" decoding="async" alt="Neuf wireframes en niveaux de gris : ouverture, inscription, choix du sujet, exemples de questions, solo ou amis, choix du mode, récompenses, résultat, sortie"></button>
+        <button type="button" data-zoom="images/wireframes.png" data-caption="Wireframes" aria-label="Agrandir les wireframes"><img src="images/wireframes.png" width="1140" height="1730" loading="lazy" decoding="async" alt="Neuf wireframes en niveaux de gris : ouverture, inscription, choix du sujet, exemples de questions, solo ou amis, choix du mode, récompenses, résultat, sortie"></button>
         <figcaption><b>Wireframes</b>Neuf écrans basse fidélité, de l’ouverture à la sortie.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-zoom="images/courbe-play-learn.png" data-caption="Courbe d’expérience visée" aria-label="Agrandir la courbe d’expérience visée"><img src="images/courbe-play-learn.png" loading="lazy" decoding="async" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours"></button>
+        <button type="button" data-zoom="images/courbe-play-learn.png" data-caption="Courbe d’expérience visée" aria-label="Agrandir la courbe d’expérience visée"><img src="images/courbe-play-learn.png" width="1170" height="550" loading="lazy" decoding="async" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours"></button>
         <figcaption><b>Courbe d’expérience visée</b>La même activité que chez Wayground, une fois chaque étape problématique repensée.</figcaption>
       </figure>
       <figure class="shot">
-        <button type="button" data-zoom="images/structure-connexion.png" data-caption="Structure de l’écran de connexion" aria-label="Agrandir la structure de l’écran de connexion"><img src="images/structure-connexion.png" loading="lazy" decoding="async" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques"></button>
+        <button type="button" data-zoom="images/structure-connexion.png" data-caption="Structure de l’écran de connexion" aria-label="Agrandir la structure de l’écran de connexion"><img src="images/structure-connexion.png" width="1152" height="650" loading="lazy" decoding="async" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques"></button>
         <figcaption><b>Structure d’un écran</b>L’écran de connexion décomposé ; en vert, ce que l’œil doit voir en premier.</figcaption>
       </figure>
     </div>
@@ -753,7 +833,7 @@ footer .btn-line{background:#fff;color:var(--ink)}
 
 <footer>
   <div class="wrap">
-    <p>PLAY &amp; LEARN — projet d’équipe, matière IHM (HM40), UTBM, 2026. Sources : rendus du projet ; INSEE, UNICEF France et Santé publique France pour la cible ; Jeff Sauro (MeasuringU) pour la moyenne SUS.</p>
+    <p>Étude de cas rédigée par Belva YONTA. PLAY &amp; LEARN est un projet d’équipe de la matière IHM (HM40), UTBM, 2026. Sources : rendus du projet ; INSEE, UNICEF France et Santé publique France pour la cible ; Jeff Sauro (MeasuringU) pour la moyenne SUS.</p>
     <a class="btn btn-line" href="https://kysyb2006.github.io/">← Retour au portfolio</a>
   </div>
 </footer>
@@ -905,22 +985,22 @@ footer .btn-line{background:#fff;color:var(--ink)}
         { label: 'Comportement', img: 'images/x/sc-minijeux.png', w: 1378, h: 692, alt: 'Statechart de la sélection des mini-jeux' }] },
     s3: { title: '03 · Choix du sujet', desc: 'Une liste de sujets parcourable au clavier ; chaque carte associe une icône, un nom et une courte description.',
       views: [
-        { label: 'Écran', tag: 'Première version du prototype', img: 'images/x/ecran-sujet.png', w: 585, h: 1266, alt: 'Prototype, choix du sujet' },
+        { label: 'Écran', tag: 'Prototype', img: 'images/x/ecran-sujet.png', w: 585, h: 1266, alt: 'Prototype, choix du sujet' },
         { label: 'Structure (PAC)', img: 'images/x/pac-sujet.png', w: 898, h: 702, alt: 'Modèle PAC du choix du sujet' },
         { label: 'Comportement', img: 'images/x/sc-sujet.png', w: 1382, h: 683, alt: 'Statechart du choix du sujet' }] },
     s4: { title: '04 · Progression', desc: 'Les statistiques et la chronologie du sujet : chapitre, unité et niveau. « Continuer » mène au choix du mode.',
       views: [
-        { label: 'Écran', tag: 'Première version du prototype', img: 'images/prototype-progression.png', w: 585, h: 1266, alt: 'Prototype, progression' },
+        { label: 'Écran', tag: 'Prototype', img: 'images/prototype-progression.png', w: 585, h: 1266, alt: 'Prototype, progression' },
         { label: 'Structure (PAC)', img: 'images/x/pac-progression.png', w: 1066, h: 710, alt: 'Modèle PAC de la progression' },
         { label: 'Comportement', img: 'images/x/sc-progression.png', w: 1378, h: 693, alt: 'Statechart de la progression' }] },
     s5: { title: '05 · Choix du mode', desc: 'Deux choix indépendants, modélisés en états orthogonaux : le type de jeu et le nombre de joueurs. Le quiz ne démarre qu’une fois les deux faits.',
       views: [
-        { label: 'Écran', tag: 'Première version du prototype', img: 'images/prototype-mode.png', w: 585, h: 1266, alt: 'Prototype, choix du mode' },
+        { label: 'Écran', tag: 'Prototype', img: 'images/prototype-mode.png', w: 585, h: 1266, alt: 'Prototype, choix du mode' },
         { label: 'Structure (PAC)', img: 'images/x/pac-mode.png', w: 1582, h: 752, alt: 'Modèle PAC du choix du mode' },
         { label: 'Comportement', img: 'images/x/sc-mode.png', w: 1383, h: 690, alt: 'Statechart du choix du mode, en états orthogonaux' }] },
     s6: { title: '06 · Écran de jeu', desc: 'La boucle question, réponse, explication, jusqu’à la fin du quiz, avec une barre de progression toujours visible.',
       views: [
-        { label: 'Écran', tag: 'Première version du prototype', img: 'images/prototype-quiz.png', w: 585, h: 1266, alt: 'Prototype, question de quiz corrigée' },
+        { label: 'Écran', tag: 'Prototype', img: 'images/prototype-quiz.png', w: 585, h: 1266, alt: 'Prototype, question de quiz corrigée' },
         { label: 'Structure (PAC)', img: 'images/x/pac-jeu.png', w: 1600, h: 630, alt: 'Modèle PAC de l’écran de jeu' },
         { label: 'Comportement', img: 'images/x/sc-jeu.png', w: 1377, h: 687, alt: 'Statechart de l’écran de jeu' }] },
     s7: { title: '07 · Résultat', desc: 'Le score et le pourcentage de réussite, avec « Rejouer » (mêmes réglages) ou le retour à l’accueil.',
@@ -961,7 +1041,7 @@ footer .btn-line{background:#fff;color:var(--ink)}
     var exBack = document.getElementById('ex-back');
     var exZoom = document.getElementById('ex-zoom');
     var exStatus = document.getElementById('ex-status');
-    var stack = ['hta'];
+    var stack = ['nav'];
     var viewIndex = 0;
 
     var el = function (tag, attrs, text) {
@@ -1023,6 +1103,10 @@ footer .btn-line{background:#fff;color:var(--ink)}
       var wide = mobile && view.w / view.h > 1.3 && avail > 0 && avail < Math.min(dispW, 900);
       if (mobile && wide) dispW = Math.min(dispW, 900);
       else if (avail > 0) dispW = Math.min(dispW, avail);
+      if (mobile) {
+        var dispH = Math.round(dispW * view.h / view.w);
+        exStage.style.height = Math.min(stageH, dispH + (wide ? 44 : 30)) + 'px';
+      }
       exStage.className = 'ex-stage' + (wide ? ' is-wide' : '');
       exStage.scrollLeft = 0;
       document.getElementById('ex-hint').classList.toggle('on', wide);
@@ -1030,18 +1114,18 @@ footer .btn-line{background:#fff;color:var(--ink)}
       var img = el('img', { src: view.img, width: view.w, height: view.h, alt: view.alt, decoding: 'async',
         style: 'width:' + dispW + 'px;height:' + Math.round(dispW * view.h / view.w) + 'px' });
       frame.appendChild(img);
-      (node.spots || []).forEach(function (s) {
+      (mobile ? [] : (node.spots || [])).forEach(function (s) {
         var hb = el('button', { type: 'button', 'class': 'ex-spot', tabindex: '-1', 'aria-hidden': 'true', title: s.label,
           style: 'left:' + s.x + '%;top:' + s.y + '%;width:' + s.w + '%;height:' + s.h + '%' });
         hb.addEventListener('click', function () { go(s.to); });
         frame.appendChild(hb);
       });
       exStage.appendChild(frame);
-      if (view.tag) exStage.appendChild(el('p', { 'class': 'ex-tag' }, view.tag));
+      if (view.tag) frame.appendChild(el('span', { 'class': 'ex-tag' + (view.tag === 'Prototype' ? '' : ' is-final') }, view.tag));
 
       exChoices.textContent = '';
       if (node.spots && node.spots.length) {
-        exChoices.appendChild(el('p', { 'class': 'ex-choices-label' }, node.spots.length > 1 ? 'Zoomer sur :' : 'Zoomer :'));
+        exChoices.appendChild(el('p', { 'class': 'ex-choices-label' }, 'Niveau suivant :'));
         var wrap = el('div', { 'class': 'chips' });
         node.spots.forEach(function (s) {
           var b = el('button', { type: 'button', 'class': 'ex-chip' }, s.label);
