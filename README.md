@@ -9,23 +9,20 @@ réalisé dans le cadre de la matière **IHM (HM40)** à l'UTBM, en 2026.
 
 ---
 
-## Équipe et périmètre
+## Le projet
 
-Projet mené en équipe de trois.
-
-- **Produits à trois** : cahier des charges fonctionnel, analyse de la tâche (HTA, SADT), structure des 7 écrans,
-  charte graphique, maquettes, modèle PAC et statecharts.
-- **Mon rendu individuel** : étude de la cible, analyse de l'activité avant / après, wireframes,
-  évaluation du concurrent Wayground (SUS, DEEP, AttrakDiff, critères de Bastien et Scapin).
-- **Prototype React** : codé par une coéquipière.
+Projet d'équipe, mené à trois dans la matière IHM. Livrables : étude de la cible et analyse de l'activité,
+évaluation chiffrée d'un concurrent (SUS, DEEP, AttrakDiff, critères de Bastien et Scapin), cahier des charges
+fonctionnel, analyse de la tâche (HTA, SADT), structure et maquettes des 7 écrans, modèles PAC et statecharts,
+et un prototype React.
 
 ## Ce que la page démontre
 
-1. **Comprendre avant de dessiner** : étude de la cible sourcée (INSEE, UNICEF, Santé publique France),
-   courbe d'expérience du concurrent, et une évaluation chiffrée (SUS de 47,5 / 100 pour Wayground)
-   dont chaque faiblesse devient une décision de conception.
-2. **De l'exigence à l'écran** : analyse fonctionnelle (22 fonctions de service, 9 phases de vie),
-   HTA, SADT, structure des écrans selon les lois de la Gestalt, PAC et statecharts.
+1. **Comprendre avant de dessiner** : la courbe d'expérience et l'évaluation du concurrent Wayground
+   (SUS de 47,5 / 100, contre 68 en moyenne) révèlent où il perd ses utilisateurs ; chaque faiblesse
+   devient l'une des 7 décisions de conception.
+2. **De l'exigence à l'écran** : une chaîne traçable du besoin aux écrans, puis une vérification
+   décision par décision dans le code du premier prototype : 3 livrées, 3 en partie, 1 réservée à la version finale.
 
 Les écarts entre le cahier des charges et le livré, et l'absence de tests avec de vrais enfants,
 sont indiqués sur la page.
@@ -35,6 +32,6 @@ sont indiqués sur la page.
 ```
 .
 ├── index.html   page autonome (CSS et JS inclus)
-├── images/      livrables du projet : courbes, wireframes, diagrammes, maquettes, captures du prototype
+├── images/      livrables du projet : courbes, wireframes, diagrammes, écrans, captures du prototype
 └── .nojekyll    désactive le traitement Jekyll de GitHub Pages
 ```

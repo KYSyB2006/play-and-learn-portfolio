@@ -377,13 +377,47 @@
   footer .note{color:var(--text-dim);opacity:1;}
   [data-theme="dark"] table.team .badge{color:#07090f;}
   table.decisions td:first-child{width:46%;}
-  .shots{grid-template-columns:repeat(3,1fr);align-items:stretch;}
   .shot{display:flex;flex-direction:column;}
-  .shot a{display:flex;align-items:center;justify-content:center;height:300px;padding:12px;background:#fff;}
+  .shot a{display:flex;align-items:center;justify-content:center;padding:12px;background:#fff;}
   .shot img{width:100%;height:100%;object-fit:contain;background:#fff;}
   .shot figcaption{flex:1;}
-  @media (max-width:960px){.shots{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:640px){.shots{grid-template-columns:1fr;}.shot a{height:260px;}}
+  .shots-diag{grid-template-columns:repeat(2,1fr);}
+  .shots-diag .shot a{height:340px;}
+  .shots-screens{grid-template-columns:repeat(4,1fr);}
+  .shots-screens .shot a{height:360px;}
+  .gal-title{margin:30px 0 14px;font-size:15px;letter-spacing:-.2px;color:var(--text);}
+  .gal-title:first-of-type{margin-top:6px;}
+  .hero-split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:center;}
+  .hero-phones{margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start;}
+  .hero-phones img{width:100%;height:auto;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow-lg);background:#fff;}
+  .hero-phones img:nth-child(2){margin-top:28px;}
+  .hero-phones figcaption{grid-column:1/-1;text-align:center;font-size:12.5px;color:var(--text-dim);margin-top:4px;}
+  .brief{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow-sm);}
+  .brief h3{margin:0 0 6px;font-size:15px;color:var(--text);}
+  .brief h3:not(:first-child){margin-top:18px;}
+  .brief p,.brief li{color:var(--text-dim);font-size:14.5px;line-height:1.6;margin:0;}
+  .brief ul{margin:0;padding-left:18px;}
+  .glossary{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px;}
+  .glossary dt{font-weight:700;color:var(--text);}
+  .glossary dd{margin:0;color:var(--text-dim);line-height:1.5;}
+  .actions{margin:0 0 18px;padding-left:20px;color:var(--text-dim);font-size:15px;line-height:1.65;}
+  .actions li{margin-bottom:6px;}
+  .actions b{color:var(--text);}
+  .inline-fig{margin:18px 0;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .inline-fig a{display:block;padding:14px;line-height:0;}
+  .inline-fig img{width:100%;height:auto;display:block;}
+  .inline-fig figcaption{padding:12px 16px 14px;font-size:13.5px;line-height:1.6;color:var(--text-dim);border-top:1px solid var(--border);background:var(--surface);}
+  .inline-fig figcaption b{color:var(--text);}
+  .st{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:8px;white-space:nowrap;vertical-align:1px;}
+  .st-ok{background:#e7f6ec;color:#14532d;}
+  .st-part{background:var(--amber-soft);color:var(--amber-text-strong);border:1px solid var(--amber-line);}
+  .st-final{background:var(--blue-soft);color:var(--blue-dark);}
+  [data-theme="dark"] .st-ok{background:#12301f;color:#bdf0cf;}
+  [data-theme="dark"] .st-final{color:#cfe0ff;background:#15233d;}
+  table.coverage{margin-top:18px;}
+  @media (max-width:960px){.hero-split{grid-template-columns:1fr;}.hero-phones{max-width:460px;}.shots-screens{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:720px){.brief{grid-template-columns:1fr;padding:20px;}.shots-diag{grid-template-columns:1fr;}}
+  @media (max-width:520px){.shots-screens{grid-template-columns:1fr;}.shots-diag .shot a,.shots-screens .shot a{height:260px;}.glossary{grid-template-columns:1fr;gap:2px;}.glossary dd{margin-bottom:8px;}}
   .scope-note .scope-lead{padding-top:14px;}
 </style>
 </head>
@@ -397,7 +431,7 @@
     <div class="brand">PLAY &amp; LEARN<span>.</span>ux</div>
     <div class="nav-right">
       <ul id="navLinks">
-        <li><a href="#perimetre">Équipe</a></li>
+        <li><a href="#projet">Projet</a></li>
         <li><a href="#comprendre">Comprendre</a></li>
         <li><a href="#concevoir">Concevoir</a></li>
         <li><a href="#ecrans">Écrans</a></li>
@@ -419,44 +453,67 @@
 <header class="hero">
   <div class="hero-aurora" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="eyebrow">PROJET IHM — HM40 · UTBM · 2026</div>
-    <h1 class="title">Concevoir un jeu éducatif que des enfants de 10 à 12 ans <span class="accent">ont envie d’ouvrir</span></h1>
-    <p class="lede">
-      PLAY &amp; LEARN est un ludiciel de culture générale pour préadolescents. Dans la matière IHM, la conception
-      passait avant le code : comprendre la cible et son activité, évaluer un concurrent, puis traduire ces constats
-      en cahier des charges, en diagrammes et en écrans. Un projet mené à trois, du premier constat aux maquettes.
-    </p>
-    <div class="meta-row">
-      <span class="pill">Belva YONTA</span>
-      <span class="pill">yontabelva@gmail.com</span>
-      <span class="pill">Étude de cas UX / IHM</span>
-      <span class="pill">Équipe de 3</span>
+  <div class="wrap hero-split">
+    <div>
+      <div class="eyebrow">PROJET IHM — HM40 · UTBM · 2026</div>
+      <h1 class="title">Concevoir un jeu éducatif que des enfants de 10 à 12 ans <span class="accent">ont envie d’ouvrir</span></h1>
+      <p class="lede">
+        PLAY &amp; LEARN est un ludiciel de culture générale pour préadolescents. Avant d’écrire une ligne de code,
+        l’équipe a étudié la cible, mesuré les défauts d’un concurrent, puis traduit chaque mesure en exigence, en
+        diagramme et en écran : des décisions de conception fondées sur des chiffres plutôt que sur des goûts.
+      </p>
+      <div class="meta-row">
+        <span class="pill">Belva YONTA</span>
+        <span class="pill">yontabelva@gmail.com</span>
+        <span class="pill">Étude de cas UX / IHM</span>
+        <span class="pill">Projet d’équipe</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="#comprendre">Voir les deux cas d’étude →</a>
+        <a class="btn ghost" href="#ecrans">Voir directement les écrans</a>
+      </div>
     </div>
-    <div class="cta-row">
-      <a class="btn primary" href="#comprendre">Voir les deux cas d’étude →</a>
-      <a class="btn ghost" href="#ecrans">Voir directement les écrans</a>
-    </div>
+    <figure class="hero-phones" aria-label="Captures de la première version du prototype">
+      <img src="images/prototype-progression.png" width="585" height="1266" alt="Prototype : progression du chapitre avec XP et étapes à débloquer" decoding="async">
+      <img src="images/prototype-mode.png" width="585" height="1266" alt="Prototype : choix entre les modes Apprentissage et Challenge" decoding="async">
+      <img src="images/prototype-quiz.png" width="585" height="1266" alt="Prototype : question corrigée avec un encadré Le savais-tu" decoding="async">
+      <figcaption>Première version du prototype</figcaption>
+    </figure>
   </div>
 </header>
 
-<section id="perimetre">
+<section id="projet">
   <div class="wrap">
-    <div class="section-tag">Contexte</div>
-    <h2>Un projet à trois, des livrables partagés</h2>
-    <p class="section-sub">L’essentiel du travail a été conçu ensemble. Pour éviter toute ambiguïté, voici ce qui a été produit à trois et ce que j’ai rendu seule.</p>
+    <div class="section-tag">Le projet</div>
+    <h2>Le projet en bref</h2>
+    <p class="section-sub">Le cadre, ce qui a été livré, et les quelques termes de conception utilisés plus bas.</p>
 
-    <div class="scope-note reveal">
-      <p class="scope-lead">Projet mené en équipe de trois. Produits ensemble : cahier des charges fonctionnel, analyse de la tâche (HTA, SADT), structure des 7 écrans, charte graphique, maquettes, modèle PAC et statecharts. Le prototype React a été codé par une coéquipière.</p>
-      <table class="team">
-        <thead><tr><th>Mon rendu</th><th>Contenu</th></tr></thead>
-        <tbody>
-          <tr class="mine"><td>Belva YONTA<span class="badge">Moi</span></td><td>Rendu individuel : étude de la cible, analyse de l’activité avant / après, wireframes, évaluation du concurrent Wayground</td></tr>
-        </tbody>
-      </table>
-      <div class="scale-note">
-        Les documents cités sur cette page sont les rendus du projet : le cahier des charges, le rapport final de 56 pages
-        et mon rendu individuel d’exercices. Dans les cas d’étude, « nous » désigne le travail à trois, « je » mon rendu individuel.
+    <div class="brief reveal">
+      <div class="brief-col">
+        <h3>Cadre</h3>
+        <p>Matière IHM (HM40) à l’UTBM, en 2026, en équipe de trois. Un enjeu central : <b>la conception passe avant le code</b>.</p>
+        <h3>Livrables de l’équipe</h3>
+        <ul>
+          <li>Étude de la cible et analyse de l’activité</li>
+          <li>Évaluation chiffrée d’un concurrent</li>
+          <li>Cahier des charges fonctionnel</li>
+          <li>Analyse de la tâche, structure et maquettes des 7 écrans</li>
+          <li>Un prototype React</li>
+        </ul>
+        <h3>Deux versions du produit</h3>
+        <p><b>Première version du prototype</b> : les captures de cette page (fond clair). <b>Version finale</b> : décrite dans le rapport, avec comptes et sauvegarde hors ligne ; ses écrans figurent dans la galerie (fond vert), son code n’est pas public.</p>
+      </div>
+      <div class="brief-col">
+        <h3>Lexique</h3>
+        <dl class="glossary">
+          <dt>SUS</dt><dd>Questionnaire standard d’utilisabilité, noté sur 100.</dd>
+          <dt>DEEP</dt><dd>Questionnaire d’utilisabilité perçue en six dimensions, noté sur 5.</dd>
+          <dt>Bastien et Scapin</dt><dd>Grille de critères ergonomiques : guidage, charge de travail, contrôle, erreurs…</dd>
+          <dt>HTA</dt><dd>La tâche de l’utilisateur découpée en sous-tâches, avec leur enchaînement.</dd>
+          <dt>SADT</dt><dd>Diagrammes de flux : ce qui entre, contrôle et sort de chaque activité.</dd>
+          <dt>F0 à F3</dt><dd>Flexibilité d’une exigence, de non négociable (F0) à indicative (F3).</dd>
+          <dt>PAC, statechart</dt><dd>Modèles du comportement d’un écran : ses composants, puis ses états et transitions.</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -474,26 +531,34 @@
 
       <div class="car-step">
         <div class="car-head"><span class="car-badge">C</span><span class="car-label">Contexte</span></div>
-        <p class="problem">À 10 – 12 ans, un enfant passe de la pensée concrète à la pensée abstraite, se lasse vite, craint l’échec et rejette tout ce qui fait « bébé ». Les applications éducatives existantes sont lentes, n’expliquent pas les réponses et ont une navigation confuse. Concevoir pour cette cible sans la connaître, c’est concevoir pour soi.</p>
+        <p class="problem">À 10 – 12 ans, un enfant passe de la pensée concrète à la pensée abstraite, se lasse vite, craint l’échec et rejette tout ce qui fait « bébé ». Les applications éducatives existantes sont lentes, n’expliquent pas les réponses et se pilotent mal.</p>
+        <div class="kpi-row">
+          <div class="kpi"><span class="kpi-num">1,62 M</span><span class="kpi-lbl">enfants de 10 à 12 ans en France</span></div>
+          <div class="kpi"><span class="kpi-num">45 %</span><span class="kpi-lbl">anxieux face à l’échec</span></div>
+          <div class="kpi"><span class="kpi-num">20 – 45 min</span><span class="kpi-lbl">d’attention soutenue</span></div>
+          <div class="kpi"><span class="kpi-num">35 %</span><span class="kpi-lbl">en famille monoparentale ou recomposée</span></div>
+        </div>
       </div>
 
       <div class="car-step">
         <div class="car-head"><span class="car-badge">A</span><span class="car-label">Action</span></div>
+        <ul class="actions">
+          <li><b>Étudier la cible</b> sur sept dimensions (démographie, physique, cognitif, psychologie, valeurs, social, culture), à partir de l’INSEE, de l’UNICEF et de Santé publique France.</li>
+          <li><b>Analyser l’activité</b> chez le concurrent Wayground : chaque action de l’enfant notée positive, neutre ou négative, puis tracée sur une courbe d’expérience.</li>
+          <li><b>Mesurer</b> Wayground avec quatre outils : SUS, DEEP, AttrakDiff et critères de Bastien et Scapin.</li>
+        </ul>
 
-        <div class="flow">
-          <div class="flow-step"><div class="n">Étude de la cible</div><p>Fiches « guide de connaissances » sur sept dimensions : socio-démographie, physique, cognitif, psychologie, idéologie, social, culture. Sources : INSEE, UNICEF, Santé publique France.</p></div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Analyse de l’activité</div><p>Actions de l’enfant chez le concurrent, notées positives, neutres ou négatives, puis courbe d’expérience. Même exercice avec notre solution.</p></div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Évaluation du concurrent</div><p>Wayground passé au crible du SUS, du DEEP, d’AttrakDiff et des critères ergonomiques de Bastien et Scapin.</p></div>
-        </div>
+        <figure class="inline-fig">
+          <a href="images/courbe-wayground.png" target="_blank" rel="noopener"><img src="images/courbe-wayground.png" width="1250" height="630" loading="lazy" decoding="async" alt="Courbe d’expérience de Wayground : positive du lancement jusqu’à la lecture des exemples de questions, puis sous la ligne neutre du lancement du jeu jusqu’à la sortie"></a>
+          <figcaption><b>Courbe d’expérience de Wayground.</b> Positive jusqu’au choix du thème, elle passe sous la ligne neutre dès le lancement du jeu et n’en ressort plus : lire les questions, répondre, lire une réponse sans explication, quitter par une navigation peu claire. Le cœur du produit est précisément ce qui déçoit.</figcaption>
+        </figure>
 
         <div class="why">
-          <b>Ce que montre la courbe d’expérience de Wayground :</b> l’expérience reste positive jusqu’au choix du thème, puis chute dès le lancement du jeu et ne remonte jamais. Les étapes qui font plonger la courbe sont celles du cœur du produit : lire les questions, répondre, lire la réponse sans explication, puis quitter par une navigation peu claire. C’est là qu’il fallait concentrer la conception.
+          <b>AttrakDiff confirme le diagnostic</b>, sur une échelle de −3 à +3 : Wayground est jugé attirant (+1), mais peu stimulant (−0,14), peu valorisant pour l’utilisateur (−0,57) et d’une utilité perçue quasi neutre (+0,14). Son apparence plaît ; son usage, beaucoup moins.
         </div>
 
         <div class="limit">
-          <b>Limite assumée :</b> l’évaluation de Wayground repose sur un seul répondant, moi, en situation d’utilisatrice. Les scores donnent une tendance et orientent la conception ; ce n’est pas une mesure statistique.
+          <b>Limite assumée :</b> l’évaluation de Wayground repose sur un seul évaluateur de l’équipe, en situation d’utilisateur. Les scores donnent une tendance qui oriente la conception ; ce n’est pas une mesure statistique.
         </div>
       </div>
 
@@ -501,15 +566,15 @@
         <div class="car-head"><span class="car-badge">R</span><span class="car-label">Résultat</span></div>
 
         <div class="kpi-row">
-          <div class="kpi"><span class="kpi-num">1,62 M</span><span class="kpi-lbl">enfants de 10 à 12 ans en France</span></div>
-          <div class="kpi"><span class="kpi-num">45 %</span><span class="kpi-lbl">anxieux face à l’échec</span></div>
-          <div class="kpi"><span class="kpi-num">47,5</span><span class="kpi-lbl">score SUS de Wayground, sur 100</span></div>
+          <div class="kpi"><span class="kpi-num">47,5</span><span class="kpi-lbl">score SUS de Wayground, contre 68 en moyenne</span></div>
+          <div class="kpi"><span class="kpi-num">2,33 / 5</span><span class="kpi-lbl">structure perçue (DEEP)</span></div>
           <div class="kpi"><span class="kpi-num">2 / 5</span><span class="kpi-lbl">contrôle explicite (Bastien et Scapin)</span></div>
+          <div class="kpi"><span class="kpi-num">7</span><span class="kpi-lbl">décisions de conception qui en découlent</span></div>
         </div>
 
         <div class="insight">
           <div class="insight-head">Où Wayground perd ses utilisateurs</div>
-          <div class="insight-sub">Mon évaluation du concurrent, notes sur 5, même échelle pour les deux grilles</div>
+          <div class="insight-sub">Évaluation du concurrent, notes sur 5, même échelle pour les deux grilles</div>
 
           <div class="tabs" role="tablist" aria-label="Basculer entre les deux grilles d’évaluation">
             <button class="tab-btn" type="button" role="tab" id="tab-deep" aria-selected="true" aria-controls="panel-deep" tabindex="0" data-tab="deep">Questionnaire DEEP</button>
@@ -538,23 +603,23 @@
 
           <div class="insight-callout">
             Les deux grilles convergent : <b>Wayground est cohérent visuellement mais difficile à comprendre et à piloter</b>.
-            Sa structure (2,33 / 5), son contrôle explicite (2 / 5) et sa charge de travail (2,25 / 5) sont ses points
-            les plus faibles, et son score SUS de 47,5 reste nettement sous la moyenne de référence de 68.
+            Sa structure, son contrôle explicite et sa charge de travail sont ses points les plus faibles. Son score SUS
+            de 47,5 reste nettement sous 68, la moyenne de référence établie par Jeff Sauro à partir de plus de 500 études.
             <br><br>
             <b>Ce que nous en avons fait :</b> chaque faiblesse mesurée est devenue une exigence de conception.
           </div>
         </div>
 
-        <table class="team decisions" style="margin-top:24px;">
+        <table class="team decisions">
           <thead><tr><th>Constat</th><th>Décision de conception</th></tr></thead>
           <tbody>
-            <tr><td>Retour en arrière peu clair chez Wayground, contrôle explicite à 2 / 5</td><td>Flèche de retour visible sur chaque écran, parcours linéaire</td></tr>
-            <tr><td>Réponses données sans explication</td><td><b>Mode Étude</b> : explication illustrée immédiatement après chaque réponse</td></tr>
-            <tr><td>Explications qui coupent l’élan quand l’enfant connaît déjà la réponse</td><td><b>Mode Challenge</b> : bilan et explications seulement en fin de partie</td></tr>
-            <tr><td>45 % des enfants anxieux face à l’échec</td><td>Rejouer les questions ratées sans pénalité, valoriser le parcours plutôt que la note</td></tr>
-            <tr><td>Attention de 20 à 45 minutes, fatigue fréquente</td><td>Sessions de 5 à 20 minutes, pause proposée au plus tard toutes les 7 minutes</td></tr>
-            <tr><td>25 % de familles monoparentales, 10 % de familles recomposées</td><td>Fonctionnement entièrement hors ligne et synchronisation entre appareils</td></tr>
-            <tr><td>Rejet des interfaces « infantiles »</td><td>Codes visuels des jeux vidéo : cartes, badges, niveaux, XP</td></tr>
+            <tr><td>Retour en arrière peu clair, contrôle explicite à 2 / 5</td><td>① Flèche de retour visible sur chaque écran, parcours linéaire</td></tr>
+            <tr><td>Réponses données sans explication</td><td>② <b>Mode Apprentissage</b> : explication immédiatement après chaque réponse</td></tr>
+            <tr><td>Explications qui coupent l’élan quand l’enfant connaît déjà la réponse</td><td>③ <b>Mode Challenge</b> : bilan et explications seulement en fin de partie</td></tr>
+            <tr><td>45 % des enfants anxieux face à l’échec</td><td>④ Rejouer les questions ratées sans pénalité</td></tr>
+            <tr><td>Attention de 20 à 45 minutes, fatigue fréquente</td><td>⑤ Sessions courtes, pause proposée au plus tard toutes les 7 minutes</td></tr>
+            <tr><td>35 % des enfants partagent leur temps entre deux foyers ou vivent avec un seul parent</td><td>⑥ Fonctionnement hors ligne et synchronisation entre appareils</td></tr>
+            <tr><td>Rejet des interfaces « infantiles »</td><td>⑦ Codes visuels des jeux vidéo : chapitres, badges, XP, séries</td></tr>
           </tbody>
         </table>
       </div>
@@ -566,7 +631,7 @@
   <div class="wrap">
     <div class="section-tag">Cas 2 — De l’exigence à l’écran</div>
     <h2>Une chaîne de conception traçable</h2>
-    <p class="section-sub">Comment passer de « l’enfant doit pouvoir apprendre sans réseau » à un écran précis, sans perdre le fil en route ?</p>
+    <p class="section-sub">Comment passer de « l’enfant doit pouvoir apprendre sans réseau » à un écran précis, et vérifier ensuite que le produit tient ses promesses ?</p>
 
     <div class="case reveal">
       <div class="case-kicker">Cas d’étude — méthode CAR</div>
@@ -574,45 +639,67 @@
 
       <div class="car-step">
         <div class="car-head"><span class="car-badge">C</span><span class="car-label">Contexte</span></div>
-        <p class="problem">Une liste de bonnes intentions ne guide pas une équipe de développement. Il fallait des exigences vérifiables, hiérarchisées, et des écrans dont chaque élément se justifie, pour que le prototype ne dérive pas des besoins de l’enfant.</p>
+        <p class="problem">Une liste de bonnes intentions ne guide pas le développement. Il fallait des exigences vérifiables et hiérarchisées, et des écrans dont chaque élément se justifie, pour que le prototype ne dérive pas des besoins de l’enfant.</p>
       </div>
 
       <div class="car-step">
         <div class="car-head"><span class="car-badge">A</span><span class="car-label">Action</span></div>
 
         <div class="flow">
-          <div class="flow-step"><div class="n">Besoin</div><p>Bête à cornes, validation du besoin, 9 phases de vie du produit, de l’installation à la désinstallation</p></div>
+          <div class="flow-step"><div class="n">Besoin</div><p>À qui sert le produit, sur quoi il agit, dans quel but ; puis les 9 situations de vie du produit, de l’installation à la désinstallation</p></div>
           <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Fonctions</div><p>Analyse fonctionnelle : 22 fonctions de service, chacune avec un critère, un niveau et une flexibilité de F0 à F3</p></div>
+          <div class="flow-step"><div class="n">Exigences</div><p>22 fonctions de service, chacune avec un critère mesurable, un niveau attendu et une flexibilité de F0 à F3</p></div>
           <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Tâches</div><p>HTA en 5 activités et diagrammes SADT (A-0, puis décomposition)</p></div>
+          <div class="flow-step"><div class="n">Tâches</div><p>HTA en 5 activités, puis diagrammes SADT des flux entre activités</p></div>
           <div class="flow-arrow">→</div>
-          <div class="flow-step"><div class="n">Écrans</div><p>Structure arborescente, lois de la Gestalt, charte 60-30-10, puis modèle PAC et statecharts pour les 7 écrans</p></div>
+          <div class="flow-step"><div class="n">Écrans</div><p>Structure de chaque écran, lois de la Gestalt, charte couleur 60-30-10, puis modèles PAC et statecharts</p></div>
         </div>
 
+        <figure class="inline-fig">
+          <a href="images/hta.png" target="_blank" rel="noopener"><img src="images/hta.png" width="1152" height="424" loading="lazy" decoding="async" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités : configurer le profil, sélectionner une activité, réaliser une partie, consulter la progression, synchroniser les données"></a>
+          <figcaption><b>Analyse hiérarchique de la tâche.</b> Cinq activités. La branche « Sélectionner une activité » sépare les modes Apprentissage et Challenge, et le jeu solo du multijoueur.</figcaption>
+        </figure>
+
         <div class="why">
-          <b>Un exemple de traçabilité, de bout en bout :</b> la fonction FP2 exige que 100 % des scores et badges soient conservés localement, au niveau F0 (non négociable). Le prototype final y répond par une stratégie « local-first » : le score s’écrit d’abord sur l’appareil, puis se synchronise en arrière-plan, et à la reconnexion la progression la plus avancée l’emporte. L’enfant ne perd jamais une partie, même sans réseau.
+          <b>Pourquoi deux modes plutôt qu’un :</b> l’analyse de la tâche a fait apparaître deux besoins contradictoires, apprendre (et donc être corrigé tout de suite) et se mesurer (et donc ne pas être interrompu). Plutôt qu’un compromis qui servirait mal les deux, l’HTA les sépare en deux branches.
         </div>
 
         <div class="why" style="margin-top:16px;">
-          <b>Pourquoi deux modes plutôt qu’un :</b> l’analyse de la tâche a fait apparaître deux besoins contradictoires, apprendre (et donc être corrigé tout de suite) et se mesurer (et donc ne pas être interrompu). Plutôt qu’un compromis qui servirait mal les deux, l’HTA les sépare en deux branches, Apprentissage et Challenge, qui se retrouvent telles quelles dans le prototype.
+          <b>Un exemple de traçabilité :</b> l’exigence FP2 impose que 100 % des scores et badges soient conservés sur l’appareil, au niveau F0, non négociable. La version finale y répond par une sauvegarde « local-first » : le score s’écrit d’abord sur l’appareil, se synchronise ensuite en arrière-plan, et à la reconnexion la progression la plus avancée l’emporte.
         </div>
       </div>
 
       <div class="car-step">
         <div class="car-head"><span class="car-badge">R</span><span class="car-label">Résultat</span></div>
+        <p class="problem">Pour savoir si la conception a tenu, nous avons repris les 7 décisions du Cas 1 et vérifié chacune dans le code de la première version du prototype.</p>
 
         <div class="kpi-row">
-          <div class="kpi"><span class="kpi-num">22</span><span class="kpi-lbl">fonctions de service caractérisées</span></div>
-          <div class="kpi"><span class="kpi-num">9</span><span class="kpi-lbl">phases de vie analysées</span></div>
-          <div class="kpi"><span class="kpi-num">5</span><span class="kpi-lbl">activités dans l’HTA</span></div>
-          <div class="kpi"><span class="kpi-num">7</span><span class="kpi-lbl">écrans modélisés, de la connexion aux résultats</span></div>
+          <div class="kpi"><span class="kpi-num">3 / 7</span><span class="kpi-lbl">décisions entièrement livrées dans le premier prototype</span></div>
+          <div class="kpi"><span class="kpi-num">3 / 7</span><span class="kpi-lbl">livrées en partie</span></div>
+          <div class="kpi"><span class="kpi-num">1 / 7</span><span class="kpi-lbl">réservée à la version finale</span></div>
         </div>
 
-        <p class="problem">Le rapport final de 56 pages relie le besoin, les tâches et chaque écran. Le prototype React reprend fidèlement le parcours conçu : choix du sujet, choix du mode, quiz avec explications, progression par chapitres avec badges et XP.</p>
+        <table class="team decisions coverage">
+          <thead><tr><th>Décision</th><th>Dans la première version du prototype</th></tr></thead>
+          <tbody>
+            <tr><td>① Retour visible sur chaque écran</td><td><span class="st st-ok">Livrée</span> Flèche de retour sur tous les écrans</td></tr>
+            <tr><td>② Mode Apprentissage</td><td><span class="st st-ok">Livrée</span> Correction immédiate et encadré « Le savais-tu ? »</td></tr>
+            <tr><td>⑦ Codes des jeux vidéo</td><td><span class="st st-ok">Livrée</span> Chapitres, XP, badges, série de jours</td></tr>
+            <tr><td>③ Mode Challenge</td><td><span class="st st-part">En partie</span> Le mode se choisit, mais le quiz corrige toujours immédiatement</td></tr>
+            <tr><td>④ Rejouer les questions ratées</td><td><span class="st st-part">En partie</span> « Rejouer » relance tout le quiz, pas seulement les erreurs</td></tr>
+            <tr><td>⑤ Sessions courtes et pauses</td><td><span class="st st-part">En partie</span> Quiz de 5 questions, mais aucune pause proposée</td></tr>
+            <tr><td>⑥ Hors ligne et synchronisation</td><td><span class="st st-final">Version finale</span> Décrite dans le rapport, absente de cette première version</td></tr>
+          </tbody>
+        </table>
+
+        <div class="insight-callout">
+          <b>Ce que ça change :</b> les trois décisions partielles sont exactement celles qui répondent aux faiblesses les plus
+          graves de Wayground, l’anxiété face à l’échec et l’élan coupé. Ce sont donc les premières à finaliser, et les premières
+          à faire tester par des enfants.
+        </div>
 
         <div class="limit">
-          <b>Écarts assumés entre le cahier des charges et le livré :</b> le cahier des charges visait une application mobile (React Native ou Flutter) ; nous avons livré une application web React, plus rapide à prototyper dans le temps du projet. Le mode multijoueur est conçu mais affiché « bientôt disponible ». Enfin, aucun test n’a été mené avec de vrais enfants de 10 à 12 ans : c’est la première chose à faire ensuite.
+          <b>Écarts assumés :</b> le cahier des charges visait une application mobile (React Native ou Flutter) ; nous avons livré une application web React, plus rapide à prototyper dans le temps du projet. Le multijoueur est conçu mais affiché « bientôt disponible ». Enfin, aucun test n’a été mené avec de vrais enfants de 10 à 12 ans.
         </div>
       </div>
     </div>
@@ -623,68 +710,45 @@
   <div class="wrap">
     <div class="section-tag">Restitution</div>
     <h2>Du croquis à l’écran</h2>
-    <p class="section-sub">Les livrables réels, dans l’ordre de la démarche. Cliquez sur une image pour l’ouvrir en grand.</p>
+    <p class="section-sub">Les livrables dans l’ordre de la démarche. Cliquez sur une image pour l’ouvrir en grand.</p>
 
-    <div class="shots reveal" id="shots">
-      <figure class="shot" data-shot>
-        <a href="images/courbe-wayground.png" target="_blank" rel="noopener"><img src="images/courbe-wayground.png" alt="Courbe d’expérience du concurrent Wayground : positive jusqu’au choix du thème, puis en chute à partir du lancement du jeu" loading="lazy" decoding="async"></a>
-        <figcaption><b>Courbe d’expérience du concurrent</b>Mon analyse de l’activité sur Wayground : l’expérience chute dès que le jeu commence.</figcaption>
-      </figure>
+    <h3 class="gal-title">Modéliser</h3>
+    <div class="shots shots-diag reveal" id="shots">
       <figure class="shot" data-shot>
         <a href="images/courbe-play-learn.png" target="_blank" rel="noopener"><img src="images/courbe-play-learn.png" alt="Courbe d’expérience visée pour PLAY &amp; LEARN : positive tout au long du parcours" loading="lazy" decoding="async"></a>
-        <figcaption><b>Courbe d’expérience visée</b>La même activité avec notre solution : chaque étape problématique a sa réponse de conception.</figcaption>
+        <figcaption><b>Courbe d’expérience visée</b>La même activité que chez Wayground, une fois chaque étape problématique repensée.</figcaption>
       </figure>
       <figure class="shot" data-shot>
-        <a href="images/radar-deep.png" target="_blank" rel="noopener"><img src="images/radar-deep.png" alt="Radar DEEP de Wayground sur six dimensions : contenu, structure, navigation, effort cognitif, cohérence, guidage visuel" loading="lazy" decoding="async"></a>
-        <figcaption><b>Radar DEEP du concurrent</b>Cohérence et contenu tiennent ; structure et effort cognitif décrochent.</figcaption>
+        <a href="images/sadt-a0.png" target="_blank" rel="noopener"><img src="images/sadt-a0.png" alt="Diagramme SADT A-0 : entrée informations de l’enfant, contrôles envie d’apprendre et consentement parental, sorties profil, compte et historique" loading="lazy" decoding="async"></a>
+        <figcaption><b>SADT, vue d’ensemble</b>Ce qui entre (informations de l’enfant), ce qui contrôle (envie d’apprendre, consentement parental), ce qui sort.</figcaption>
       </figure>
+      <figure class="shot" data-shot>
+        <a href="images/structure-connexion.png" target="_blank" rel="noopener"><img src="images/structure-connexion.png" alt="Structure arborescente de l’écran de connexion, avec la carte centrale et le bouton Se connecter surlignés comme sujets psychologiques" loading="lazy" decoding="async"></a>
+        <figcaption><b>Structure d’un écran</b>L’écran de connexion décomposé ; en vert, ce que l’œil doit voir en premier à chaque niveau.</figcaption>
+      </figure>
+      <figure class="shot" data-shot>
+        <a href="images/statechart-connexion.png" target="_blank" rel="noopener"><img src="images/statechart-connexion.png" alt="Statechart de la connexion et de l’inscription : états de saisie, transitions clavier, validations et messages d’erreur" loading="lazy" decoding="async"></a>
+        <figcaption><b>Statechart de la connexion</b>Chaque état, chaque transition clavier et chaque cas d’erreur, décidés avant le code.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="gal-title">Dessiner, puis livrer</h3>
+    <div class="shots shots-screens reveal">
       <figure class="shot" data-shot>
         <a href="images/wireframes.png" target="_blank" rel="noopener"><img src="images/wireframes.png" alt="Neuf wireframes en niveaux de gris : ouverture, inscription, choix du sujet, exemples de questions, solo ou amis, choix du mode, récompenses, résultat, sortie" loading="lazy" decoding="async"></a>
-        <figcaption><b>Mes wireframes</b>Neuf écrans basse fidélité, de l’ouverture de l’application à la sortie.</figcaption>
+        <figcaption><b>Wireframes</b>Neuf écrans basse fidélité, de l’ouverture à la sortie.</figcaption>
       </figure>
       <figure class="shot" data-shot>
-        <a href="images/hta.png" target="_blank" rel="noopener"><img src="images/hta.png" alt="Diagramme HTA : tâche racine Jouer à PLAY &amp; LEARN et apprendre, décomposée en cinq activités et leurs sous-tâches" loading="lazy" decoding="async"></a>
-        <figcaption><b>Analyse hiérarchique des tâches (HTA)</b>Configurer le profil, choisir une activité, jouer, consulter sa progression, synchroniser.</figcaption>
+        <a href="images/maquette-connexion.png" target="_blank" rel="noopener"><img src="images/maquette-connexion.png" alt="Version finale, écran de connexion : inscription avec Google, Microsoft ou e-mail, puis formulaire court" loading="lazy" decoding="async"></a>
+        <figcaption><b>Version finale : connexion</b>Inscription en un geste, formulaire réduit au minimum.</figcaption>
       </figure>
       <figure class="shot" data-shot>
-        <a href="images/sadt-a0.png" target="_blank" rel="noopener"><img src="images/sadt-a0.png" alt="Actigramme SADT A-0 : entrées, contrôles (envie d’apprendre, consentement parental), sorties et mécanismes" loading="lazy" decoding="async"></a>
-        <figcaption><b>Actigramme de contexte SADT A-0</b>Vue globale du système : ce qui entre, ce qui contrôle, ce qui sort.</figcaption>
+        <a href="images/maquette-minijeux.png" target="_blank" rel="noopener"><img src="images/maquette-minijeux.png" alt="Version finale, écran de sélection des mini-jeux : grille de cartes et bandeau de statistiques" loading="lazy" decoding="async"></a>
+        <figcaption><b>Version finale : mini-jeux</b>Grille de cartes et statistiques, dans le vert principal de la charte.</figcaption>
       </figure>
       <figure class="shot" data-shot>
-        <a href="images/structure-connexion.png" target="_blank" rel="noopener"><img src="images/structure-connexion.png" alt="Diagramme de structure arborescente de l’écran de connexion, avec le sujet psychologique surligné en vert" loading="lazy" decoding="async"></a>
-        <figcaption><b>Structure d’écran et Gestalt</b>L’écran de connexion décomposé, le sujet psychologique surligné à chaque niveau.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/maquette-connexion.png" target="_blank" rel="noopener"><img src="images/maquette-connexion.png" alt="Maquette de l’écran de connexion : inscription avec Google, Microsoft ou e-mail, puis formulaire court" loading="lazy" decoding="async"></a>
-        <figcaption><b>Maquette : connexion</b>Inscription en un geste (Google, Microsoft, e-mail), formulaire réduit au minimum.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/maquette-minijeux.png" target="_blank" rel="noopener"><img src="images/maquette-minijeux.png" alt="Maquette de l’écran de sélection des mini-jeux : grille de cartes et bandeau de statistiques" loading="lazy" decoding="async"></a>
-        <figcaption><b>Maquette : sélection des mini-jeux</b>Grille de cartes et statistiques visibles, dans le vert principal de la charte.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/maquette-resultats.png" target="_blank" rel="noopener"><img src="images/maquette-resultats.png" alt="Maquette de l’écran de résultats : trophée, score 4 sur 5, trois étoiles, boutons Rejouer et Accueil" loading="lazy" decoding="async"></a>
-        <figcaption><b>Maquette : résultats</b>Récompense immédiate et « Rejouer » mis en avant, pour dédramatiser l’erreur.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/pac-minijeux.png" target="_blank" rel="noopener"><img src="images/pac-minijeux.png" alt="Modèle PAC de l’écran de sélection des mini-jeux : décomposition en agents abstraction et présentation" loading="lazy" decoding="async"></a>
-        <figcaption><b>Modèle PAC</b>L’écran des mini-jeux décomposé en agents, chacun avec son abstraction et sa présentation.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/statechart-connexion.png" target="_blank" rel="noopener"><img src="images/statechart-connexion.png" alt="Statechart de l’écran de connexion et d’inscription : états de saisie, validations et messages d’erreur" loading="lazy" decoding="async"></a>
-        <figcaption><b>Statechart : connexion et inscription</b>Chaque état, chaque transition clavier et chaque cas d’erreur, avant le code.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/prototype-progression.png" target="_blank" rel="noopener"><img src="images/prototype-progression.png" alt="Prototype : écran de progression du chapitre 1 avec XP, série de jours et étapes à débloquer" loading="lazy" decoding="async"></a>
-        <figcaption><b>Prototype : progression</b>Chapitre, XP, série de jours et étapes à débloquer. Prototype codé par une coéquipière.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/prototype-mode.png" target="_blank" rel="noopener"><img src="images/prototype-mode.png" alt="Prototype : choix du type de jeu Apprentissage ou Challenge et du nombre de joueurs" loading="lazy" decoding="async"></a>
-        <figcaption><b>Prototype : choix du mode</b>Les deux branches de l’HTA, Apprentissage et Challenge, telles que conçues.</figcaption>
-      </figure>
-      <figure class="shot" data-shot>
-        <a href="images/prototype-quiz.png" target="_blank" rel="noopener"><img src="images/prototype-quiz.png" alt="Prototype : question de quiz corrigée, avec la bonne et la mauvaise réponse signalées et un encadré Le savais-tu" loading="lazy" decoding="async"></a>
-        <figcaption><b>Prototype : quiz en mode Apprentissage</b>Correction immédiate et encadré « Le savais-tu ? ».</figcaption>
+        <a href="images/maquette-resultats.png" target="_blank" rel="noopener"><img src="images/maquette-resultats.png" alt="Version finale, écran de résultats : trophée, score 4 sur 5, trois étoiles, boutons Rejouer et Accueil" loading="lazy" decoding="async"></a>
+        <figcaption><b>Version finale : résultats</b>Récompense immédiate et « Rejouer » mis en avant pour dédramatiser l’erreur.</figcaption>
       </figure>
     </div>
 
@@ -728,12 +792,12 @@
         </div>
       </div>
       <div class="stack-group">
-        <div class="label">Interface</div>
+        <div class="label">Interface et prototype</div>
         <div class="chips">
           <span class="chip">Wireframes</span>
           <span class="chip">Lois de la Gestalt</span>
           <span class="chip">Règle 60-30-10</span>
-          <span class="chip">Prototype React (équipe)</span>
+          <span class="chip">React</span>
         </div>
       </div>
     </div>
@@ -743,13 +807,13 @@
 <section id="perspectives">
   <div class="wrap">
     <div class="section-tag">Suite</div>
-    <h2>Ce que je ferais avec plus de temps</h2>
+    <h2>Ce que nous ferions avec plus de temps</h2>
     <div class="perspective reveal">
       <ul>
+        <li>Terminer les trois décisions partielles : un vrai mode Challenge à correction différée, « Rejouer » limité aux questions ratées, et des pauses proposées.</li>
         <li>Faire tester le prototype par cinq enfants de 10 à 12 ans, en observant où ils hésitent, plutôt que d’en juger à leur place.</li>
         <li>Passer notre propre prototype au SUS et au DEEP, pour comparer honnêtement avec les 47,5 de Wayground.</li>
-        <li>Mettre en œuvre les exigences d’accessibilité déjà écrites dans le cahier des charges : police OpenDyslexic, guidage audio, cibles tactiles de 44 px.</li>
-        <li>Construire le mode multijoueur avec le consentement parental prévu par la spécification.</li>
+        <li>Appliquer les exigences d’accessibilité déjà écrites dans le cahier des charges : police OpenDyslexic, guidage audio, cibles tactiles de 44 px.</li>
       </ul>
     </div>
   </div>
@@ -757,8 +821,8 @@
 
 <footer>
   <div class="wrap">
-    <p>PLAY &amp; LEARN — projet IHM (HM40), UTBM, 2026 · Belva YONTA, en équipe de trois · <a href="https://kysyb2006.github.io/">Retour au portfolio</a></p>
-    <p class="note">Chiffres et visuels issus des rendus du projet : cahier des charges fonctionnel, rapport final, rendu individuel d’exercices. Statistiques sur la cible : INSEE, UNICEF France, Santé publique France.</p>
+    <p>PLAY &amp; LEARN — projet d’équipe, matière IHM (HM40), UTBM, 2026 · Belva YONTA · <a href="https://kysyb2006.github.io/">Retour au portfolio</a></p>
+    <p class="note">Chiffres et visuels issus des rendus du projet : cahier des charges, rapport final et rendus d’exercices. Statistiques sur la cible : INSEE, UNICEF France, Santé publique France. Moyenne SUS : Jeff Sauro, MeasuringU.</p>
   </div>
 </footer>
 
